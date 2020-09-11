@@ -50,11 +50,10 @@ jobs:
           gem update cocoapods xcodeproj
           cd ios && pod install && cd ..
 
-      - name: Pre Build
-        - run: brew tap wix/brew
-        - run: brew install applesimutils
-        - run: sh scripts/build-env.sh
-        - run: mv src/app.tsx src/app.tsx.old && cat src/app.tsx.old|perl -pe'BEGIN{undef $/;} s/if \(isJailBroken.+?}/\/\/ No root or jailbreak detection/gms' > src/app.tsx
+      - run: brew tap wix/brew
+      - run: brew install applesimutils
+      - run: sh scripts/build-env.sh
+      - run: mv src/app.tsx src/app.tsx.old && cat src/app.tsx.old|perl -pe'BEGIN{undef $/;} s/if \(isJailBroken.+?}/\/\/ No root or jailbreak detection/gms' > src/app.tsx
 
       - name: build
           - run: yarn detox build e2e --configuration ios.sim.release
