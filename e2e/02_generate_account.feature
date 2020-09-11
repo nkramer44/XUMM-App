@@ -13,7 +13,7 @@ Feature: Generate Account
         Then I write down secret numbers
         Then I tap 'next-button'
         Given I should have 'account-generate-confirm-private-view'
-        # Then I enter my secret number
+        Then I enter my secret number
         Then I tap 'next-button'
         Given I should have 'account-generate-show-address-view'
         Then I read my account address
@@ -68,7 +68,7 @@ Feature: Generate Account
         Then I write down secret numbers
         Then I tap 'next-button'
         Given I should have 'account-generate-confirm-private-view'
-        # Then I enter my secret number
+        Then I enter my secret number
         Then I tap 'next-button'
         Given I should have 'account-generate-show-address-view'
         Then I read my account address
