@@ -1,13 +1,11 @@
-name: iOS
+name: e2e
 
 on: 
   push:
-  pull_request:
 
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 15
 
     env:
       DEVELOPER_DIR: /Applications/Xcode_11.2.app
