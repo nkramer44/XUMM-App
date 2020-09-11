@@ -176,12 +176,16 @@ ios-sim-x86_64: stop pre-build check-style ## Build an unsigned x86_64 version o
 
 unsigned-android: stop pre-build check-style prepare-android-build ## Build an unsigned version of the Android app
 	@cd fastlane && NODE_ENV=production bundle exec fastlane android unsigned
+	
+	
+pre-e2e: | pre-build  ## build for e2e test
+	@yarn detox build e2e --configuration ios.sim.debug
 
 test: | pre-run check-style ## Runs tests
 	@yarn test
 
-test-e2e: | pre-run ## Runs e2e tests
-	@yarn run test:e2e:ios
+test-e2e: | pre-run pre-e2e ## Runs e2e tests
+	@yarn cucumber-js ./e2e --configuration ios.sim.debug --cleanup --debug-synchronization 200
 
 build-pr: | can-build-pr stop pre-build check-style ## Build a PR from the XUMM repo
 	$(call start_packager)

@@ -9,8 +9,6 @@
     "check": "eslint --ignore-path .gitignore --ignore-pattern node_modules --quiet . && yarn run tsc",
     "tsc": "NODE_OPTIONS=--max_old_space_size=12000 tsc --noEmit",
     "test": "jest --forceExit --detectOpenHandles",
-    "test:e2e:ios": "detox build -c ios.sim.release && detox test -c ios.sim.release ",
-    "test:e2e:android": "detox build -c android.emu.release && detox test -c android.emu.release",
     "update-snapshots": "jest --updateSnapshot",
     "storybook": "start-storybook -p 7007",
     "postinstall": "make post-install",
