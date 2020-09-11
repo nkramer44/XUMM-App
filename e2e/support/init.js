@@ -6,7 +6,7 @@ const adapter = require('./adapter');
 const { startRecordingVideo, stopRecordingVideo } = require('../helpers/artifacts');
 
 BeforeAll(async () => {
-    await detox.init(config, { launchApp: false, reuse: true });
+    await detox.init(config, { launchApp: false, reuse: false });
     await detox.device.launchApp({
         permissions: { notifications: 'YES', camera: 'YES' },
     });
