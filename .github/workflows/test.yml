@@ -8,7 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+        
+      - name: Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
 
       - run: node --version
 
@@ -47,3 +55,8 @@ jobs:
       - run: yarn test
         env:
           CI: true
+
+      - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
