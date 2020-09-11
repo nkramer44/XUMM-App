@@ -56,7 +56,7 @@ jobs:
       - run: mv src/app.tsx src/app.tsx.old && cat src/app.tsx.old|perl -pe'BEGIN{undef $/;} s/if \(isJailBroken.+?}/\/\/ No root or jailbreak detection/gms' > src/app.tsx
 
       - name: build
-          - run: yarn detox build e2e --configuration ios.sim.release
+        - run: yarn detox build e2e --configuration ios.sim.release
       
       - name: run
         - run: yarn cucumber-js ./e2e --configuration ios.sim.release
