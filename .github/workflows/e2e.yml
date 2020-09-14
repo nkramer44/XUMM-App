@@ -58,6 +58,7 @@ jobs:
       - run: yarn cucumber-js ./e2e --configuration ios.sim.release
 
       - name: Upload recorded video
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: recording
