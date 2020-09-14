@@ -1,11 +1,15 @@
 const { spawn, kill } = require('child_process');
-const { createWriteStream, existsSync, unlinkSync } = require('fs');
+const { createWriteStream, existsSync, unlinkSync, mkdirSync } = require('fs');
 const path = require('path');
 
 const ARTIFACTS_DIR = path.resolve(__dirname, '../artifacts');
 
 const startDeviceLogStream = () => {
     const logFile = `${ARTIFACTS_DIR}/simulator.log`;
+
+    if (!existsSync(ARTIFACTS_DIR)) {
+        mkdirSync(ARTIFACTS_DIR);
+    }
 
     if (existsSync(logFile)) {
         unlinkSync(logFile);
