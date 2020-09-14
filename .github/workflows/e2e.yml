@@ -55,7 +55,6 @@ jobs:
       - run: sh scripts/build-env.sh
       - run: mv src/app.tsx src/app.tsx.old && cat src/app.tsx.old|perl -pe'BEGIN{undef $/;} s/if \(isJailBroken.+?}/\/\/ No root or jailbreak detection/gms' > src/app.tsx
       - run: yarn detox build e2e --configuration ios.sim.release
-      - run: yarn cucumber-js ./e2e --configuration ios.sim.release --cleanup
 
       - name: Upload artifact files
         if: ${{ always() }}

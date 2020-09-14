@@ -6,32 +6,52 @@ echo "Checking Google Services files..."
 GOOGLESERVICE_JSON_PATH="./android/app/google-services.json"
 GOOGLESERVICE_INFO_PATH="./ios/XUMM/GoogleService-Info.plist"
 
-GOOGLESERVICE_JSON_CONTENT='{\n
-\t"project_info": {\n
-\t\t"project_id": "sample",\n
-\t\t"project_number": "000000000000",\n
-\t\t"name": "sample",\n
-\t\t"firebase_url": "https://sample.firebaseio.com"\n
-\t},\n
-\t"client": [\n
-\t\t{\n
-\t\t\t"client_info": {\n
-\t\t\t\t"mobilesdk_app_id": "1:000000000000:android:ffffffffffffffff",\n
-\t\t\t\t"client_id": "android:com.xrpllabs.xumm",\n
-\t\t\t\t"client_type": 1,\n
-\t\t\t\t"android_client_info": {\n
-\t\t\t\t\t"package_name": "com.xrpllabs.xumm",\n
-\t\t\t\t\t"certificate_hash": []\n
-\t\t\t\t}\n
-\t\t\t},\n
-\t\t\t"api_key": [\n
-\t\t\t\t{\n
-\t\t\t\t\t"current_key": "sample"\n
-\t\t\t\t}\n
-\t\t\t]\n
-\t\t}\n
-\t],\n
-\t"configuration_version": "1"\n
+GOOGLESERVICE_JSON_CONTENT='{
+  "project_info": {
+    "project_number": "605969436814",
+    "firebase_url": "https://mock-project-dbf72.firebaseio.com",
+    "project_id": "mock-project-dbf72",
+    "storage_bucket": "mock-project-dbf72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605969436814:android:dafa7cd40f21cc153af9df",
+        "android_client_info": {
+          "package_name": "com.xrpllabs.xumm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605969436814-52cqhk0artfv0je48ud54hgqj9g2kf9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh03NeXbJVBFb9bmx0ZCwVtOwk2i6GOk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605969436814-52cqhk0artfv0je48ud54hgqj9g2kf9q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "605969436814-fkagbvf14hpkum9k3get2hqckk4upa84.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.xrpllabs.xumm"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }'
 
 
