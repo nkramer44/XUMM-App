@@ -40,40 +40,36 @@ GOOGLESERVICE_INFO_CONTENT='
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
-	<key>API_KEY</key>
-	<string>AIzaSyAzlj4APqi5S58nFtE52Da-fYBOHA2MhaY</string>
-	<key>BUNDLE_ID</key>
-	<string>id</string>
 	<key>CLIENT_ID</key>
-	<string>123456789000-hjugbg6ud799v4c49dim8ce2usclthar.apps.googleusercontent.com</string>
-	<key>DATABASE_URL</key>
-	<string>https://mockproject-1234.firebaseio.com</string>
+	<string>605969436814-fkagbvf14hpkum9k3get2hqckk4upa84.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.605969436814-fkagbvf14hpkum9k3get2hqckk4upa84</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDgFMurMEqDkIXF5V5RSjJdwtqySTPlDAw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>123456789000</string>
-	<key>GOOGLE_APP_ID</key>
-	<string>1:123456789000:ios:f1bf012572b04063</string>
-	<key>IS_ADS_ENABLED</key>
-	<true/>
-	<key>IS_ANALYTICS_ENABLED</key>
-	<true/>
-	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
-	<key>IS_GCM_ENABLED</key>
-	<true/>
-	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<string>605969436814</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.xrpllabs.xumm</string>
 	<key>PROJECT_ID</key>
-	<string>mockproject-1234</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar</string>
+	<string>mock-project-dbf72</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mockproject-1234.appspot.com</string>
+	<string>mock-project-dbf72.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:605969436814:ios:722fee6b295d63fd3af9df</string>
+	<key>DATABASE_URL</key>
+	<string>https://mock-project-dbf72.firebaseio.com</string>
 </dict>
 </plist>
 '
