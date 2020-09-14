@@ -4,18 +4,20 @@ const config = require('../../package.json').detox;
 const adapter = require('./adapter');
 
 const { startRecordingVideo, stopRecordingVideo } = require('../helpers/artifacts');
+const { startDeviceLogStream } = require('../helpers/simulator');
 
 BeforeAll(async () => {
     await detox.init(config, { launchApp: false, reuse: false });
-    await detox.device.launchApp({
-        permissions: { notifications: 'YES', camera: 'YES' },
-    });
+
+    // start device log
+    startDeviceLogStream();
 
     // start recording video
     startRecordingVideo();
 
-    // delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await detox.device.launchApp({
+        permissions: { notifications: 'YES', camera: 'YES' },
+    });
 });
 
 Before(async (context) => {
