@@ -110,7 +110,7 @@
         "build": "xcodebuild -workspace ios/XUMM.xcworkspace -scheme XUMM -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone 8"
+          "name": "iPhone 11 Pro Max"
         }
       },
       "ios.sim.release": {
@@ -118,7 +118,7 @@
         "build": "xcodebuild -workspace ios/XUMM.xcworkspace -scheme XUMM -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone 8"
+          "name": "iPhone 11 Pro Max"
         }
       },
       "android.emu.debug": {
