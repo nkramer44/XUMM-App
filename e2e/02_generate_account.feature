@@ -41,6 +41,7 @@ Feature: Generate Account
     Scenario: Test signing by adding a asset
         Then I tap 'add-asset-button'
         Given I should have 'add-asset-overlay'
+        Given I should wait 10 sec to see 'add-and-sign-button'
         Then I tap 'add-and-sign-button'
         Given I should have 'review-transaction-modal'
         Then I scroll up 'review-content-container'
@@ -101,6 +102,7 @@ Feature: Generate Account
     Scenario: Test signing by adding a asset
         Then I tap 'add-asset-button'
         Given I should have 'add-asset-overlay'
+        Given I should wait 10 sec to see 'add-and-sign-button'
         Then I tap 'add-and-sign-button'
         Given I should have 'review-transaction-modal'
         Then I scroll up 'review-content-container'
