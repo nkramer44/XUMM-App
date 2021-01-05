@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { AppSizes } from '@theme';
+import { AppSizes, AppStyles, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
     logo: {
@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    contentArea: {
+        paddingHorizontal: AppStyles.paddingHorizontalSml.paddingHorizontal,
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        borderColor: AppColors.lightBlue
+    }
 });
 
 export default styles;

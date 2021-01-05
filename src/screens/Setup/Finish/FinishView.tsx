@@ -117,7 +117,7 @@ class FinishView extends Component<Props, State> {
                     <Image style={styles.logo} source={Images.xummLogo} />
                 </View>
 
-                <View style={[AppStyles.flex8, AppStyles.centerContent]}>
+                <View style={[AppStyles.flex8, AppStyles.centerContent, styles.contentArea]}>
                     <WebView
                         startInLoadingState
                         onMessage={this.fetchTOSVersion}

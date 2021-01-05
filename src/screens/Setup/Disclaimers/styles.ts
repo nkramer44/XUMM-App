@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { AppSizes } from '@theme';
+import { AppSizes, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center' },
@@ -13,9 +13,24 @@ const styles = StyleSheet.create({
         height: AppSizes.screen.height * 0.1,
         resizeMode: 'contain',
     },
-    footerTextContainer: {
-        paddingVertical: 9,
+    footerStyle: {
+        height: 120,
+        width: '100%',
+        flexDirection: 'row',
+        padding: 0,
+        borderTopWidth: 5,
+        borderColor: AppColors.lightBlue,
     },
+    footerContent: {
+        width: '90%',
+        height: '100%',
+        justifyContent: 'center',
+    },
+    progressBar: {
+        position: 'absolute',
+        left: 0,
+        top: -5,
+    }
 });
 
 export default styles;

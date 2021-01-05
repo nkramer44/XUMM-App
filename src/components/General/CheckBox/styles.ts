@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { AppColors, AppFonts } from '@theme';
+import { AppStyles, AppColors, AppFonts } from '@theme';
 
 /* Styles ==================================================================== */
 export default StyleSheet.create({
@@ -8,11 +8,14 @@ export default StyleSheet.create({
         // minHeight: AppSizes.screen.height * 0.12,
         width: '100%',
         paddingHorizontal: 20,
+        paddingVertical: 20,
         left: 0,
         right: 0,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        // backgroundColor: AppColors.lightGrey,
+        borderRadius: AppStyles.borderRadius.borderRadius,
     },
     box: {
         height: 23,
@@ -20,7 +23,7 @@ export default StyleSheet.create({
         borderRadius: 5,
         borderWidth: 3,
         borderColor: AppColors.greyDark,
-        marginTop: 4,
+        // marginTop: 4,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -41,13 +44,16 @@ export default StyleSheet.create({
     labelSmall: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.blue,
+        color: AppColors.greyDark,
     },
     labelSelected: {
         color: AppColors.blue,
     },
     descriptionText: {
+        color: AppColors.greyDark,
+        marginTop: 3,
+    },
+    descriptionTextSelected: {
         color: AppColors.blue,
-        marginTop: 10,
     },
 });
