@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: AppStyles.paddingHorizontalSml.paddingHorizontal,
         borderTopWidth: 2,
         borderBottomWidth: 2,
-        borderColor: AppColors.lightBlue
-    }
+        borderColor: AppColors.lightBlue,
+    },
 });
 
 export default styles;

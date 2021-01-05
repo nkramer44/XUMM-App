@@ -190,7 +190,7 @@ class DisclaimersView extends Component<Props, State> {
                                 AppStyles.subtext,
                                 AppStyles.strong,
                                 AppStyles.colorBlue,
-                                AppStyles.textCenterAligned
+                                AppStyles.textCenterAligned,
                             ]}>
                                 {Localize.t('setupTermOfService.pleaseReadTheTextAboveCarefully')}
                             </Text>
