@@ -2,7 +2,7 @@
  * General Settings Screen
  */
 
-import { uniqBy } from 'lodash';
+import { uniqBy, sortBy } from 'lodash';
 
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
@@ -74,7 +74,7 @@ class GeneralSettingsView extends Component<Props, State> {
             });
         }
 
-        normalizedLocales = uniqBy(normalizedLocales, 'title');
+        normalizedLocales = sortBy(uniqBy(normalizedLocales, 'title'), 'title');
 
         Navigator.push(
             AppScreens.Modal.Picker,
@@ -89,15 +89,30 @@ class GeneralSettingsView extends Component<Props, State> {
         );
     };
 
+    showCurrencyPicker = () => {
+        const { coreSettings } = this.state;
+
+        Navigator.push(
+            AppScreens.Modal.CurrencyPicker,
+            {},
+            {
+                selected: coreSettings.currency,
+                onSelect: this.onCurrencySelected,
+            },
+        );
+    };
+
+    onCurrencySelected = (currencyCode: string) => {
+        // save in store
+        CoreRepository.saveSettings({ currency: currencyCode });
+    };
+
     onLanguageSelected = ({ value }: { value: string }) => {
         // save in store
         CoreRepository.saveSettings({ language: value });
 
         // change it from local instance
         Localize.setLocale(value);
-
-        // set locale to moment
-        // moment.locale(newLocale);
 
         // re-render the app
         Navigator.reRender();
@@ -263,6 +278,16 @@ class GeneralSettingsView extends Component<Props, State> {
                         </View>
                         <View style={[AppStyles.centerAligned, AppStyles.row]}>
                             <Text style={[styles.value]}>{this.getLanguageTitle()}</Text>
+                            <Icon size={25} style={[styles.rowIcon]} name="IconChevronRight" />
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.row]} onPress={this.showCurrencyPicker}>
+                        <View style={[AppStyles.flex3]}>
+                            <Text style={styles.label}>{Localize.t('global.currency')}</Text>
+                        </View>
+                        <View style={[AppStyles.centerAligned, AppStyles.row]}>
+                            <Text style={[styles.value]}>{coreSettings.currency}</Text>
                             <Icon size={25} style={[styles.rowIcon]} name="IconChevronRight" />
                         </View>
                     </TouchableOpacity>

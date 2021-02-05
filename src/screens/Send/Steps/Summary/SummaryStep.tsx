@@ -15,12 +15,15 @@ import {
     ScrollView,
     Platform,
     LayoutChangeEvent,
+    InteractionManager,
 } from 'react-native';
 
 import { AccountSchema } from '@store/schemas/latest';
 
+import { BackendService } from '@services';
+
 import { AppScreens } from '@common/constants';
-import { Prompt } from '@common/helpers/interface';
+import { Prompt, Toast } from '@common/helpers/interface';
 import { Navigator } from '@common/helpers/navigator';
 import { Images } from '@common/helpers/images';
 
@@ -28,7 +31,7 @@ import Preferences from '@common/libs/preferences';
 import { NormalizeCurrencyCode } from '@common/libs/utils';
 
 // components
-import { AmountInput, Button, Footer, Spacer, TextInput } from '@components/General';
+import { AmountInput, Button, Footer, Spacer, TextInput, SwipeButton } from '@components/General';
 import { AccountPicker } from '@components/Modules';
 
 // locale
@@ -45,6 +48,7 @@ export interface Props {}
 
 export interface State {
     confirmedDestinationTag: number;
+    currencyRate: any;
 }
 
 /* Component ==================================================================== */
@@ -61,10 +65,31 @@ class SummaryStep extends Component<Props, State> {
 
         this.state = {
             confirmedDestinationTag: undefined,
+            currencyRate: undefined,
         };
 
         this.gradientHeight = new Animated.Value(0);
     }
+
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(this.fetchCurrencyRate);
+    }
+
+    fetchCurrencyRate = () => {
+        const { coreSettings } = this.context;
+
+        const { currency } = coreSettings;
+
+        BackendService.getCurrencyRate(currency)
+            .then((r) => {
+                this.setState({
+                    currencyRate: r,
+                });
+            })
+            .catch(() => {
+                Toast(Localize.t('global.unableToFetchCurrencyRate'));
+            });
+    };
 
     setGradientHeight = (event: LayoutChangeEvent) => {
         const { height } = event.nativeEvent.layout;
@@ -199,49 +224,6 @@ class SummaryStep extends Component<Props, State> {
         );
     };
 
-    renderCurrencyItem = (item: any) => {
-        const { source } = this.context;
-
-        // XRP
-        if (typeof item === 'string') {
-            return (
-                <View style={[styles.pickerItem]}>
-                    <View style={[AppStyles.row, AppStyles.centerAligned]}>
-                        <View style={[styles.xrpAvatarContainer]}>
-                            <Image style={[styles.xrpAvatar]} source={Images.IconXrp} />
-                        </View>
-                        <View style={[AppStyles.column, AppStyles.centerContent]}>
-                            <Text style={[styles.currencyItemLabel]}>XRP</Text>
-                            <Text style={[styles.currencyBalance]}>
-                                {Localize.t('global.available')}: {Localize.formatNumber(source.availableBalance)}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            );
-        }
-
-        return (
-            <View style={[styles.pickerItem]}>
-                <View style={[AppStyles.row, AppStyles.centerAligned]}>
-                    <View style={[styles.brandAvatarContainer]}>
-                        <Image style={[styles.brandAvatar]} source={{ uri: item.counterParty.avatar }} />
-                    </View>
-                    <View style={[AppStyles.column, AppStyles.centerContent]}>
-                        <Text style={[styles.currencyItemLabel]}>
-                            {NormalizeCurrencyCode(item.currency.currency)}
-
-                            {item.currency.name && <Text style={[AppStyles.subtext]}> - {item.currency.name}</Text>}
-                        </Text>
-                        <Text style={[styles.currencyBalance]}>
-                            {Localize.t('global.balance')}: {Localize.formatNumber(item.balance)}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        );
-    };
-
     getCurrencyName = (): string => {
         const { currency } = this.context;
 
@@ -330,6 +312,71 @@ class SummaryStep extends Component<Props, State> {
         setDestination(undefined);
 
         goBack();
+    };
+
+    renderCurrencyItem = (item: any) => {
+        const { source } = this.context;
+
+        // XRP
+        if (typeof item === 'string') {
+            return (
+                <View style={[styles.pickerItem]}>
+                    <View style={[AppStyles.row, AppStyles.centerAligned]}>
+                        <View style={[styles.xrpAvatarContainer]}>
+                            <Image style={[styles.xrpAvatar]} source={Images.IconXrp} />
+                        </View>
+                        <View style={[AppStyles.column, AppStyles.centerContent]}>
+                            <Text style={[styles.currencyItemLabel]}>XRP</Text>
+                            <Text style={[styles.currencyBalance]}>
+                                {Localize.t('global.available')}: {Localize.formatNumber(source.availableBalance)}
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
+
+        return (
+            <View style={[styles.pickerItem]}>
+                <View style={[AppStyles.row, AppStyles.centerAligned]}>
+                    <View style={[styles.brandAvatarContainer]}>
+                        <Image style={[styles.brandAvatar]} source={{ uri: item.counterParty.avatar }} />
+                    </View>
+                    <View style={[AppStyles.column, AppStyles.centerContent]}>
+                        <Text style={[styles.currencyItemLabel]}>
+                            {NormalizeCurrencyCode(item.currency.currency)}
+
+                            {item.currency.name && <Text style={[AppStyles.subtext]}> - {item.currency.name}</Text>}
+                        </Text>
+                        <Text style={[styles.currencyBalance]}>
+                            {Localize.t('global.balance')}: {Localize.formatNumber(item.balance)}
+                        </Text>
+                    </View>
+                </View>
+            </View>
+        );
+    };
+
+    renderAmountRate = () => {
+        const { currencyRate } = this.state;
+
+        const { currency, amount } = this.context;
+
+        // only show rate for XRP
+        if (typeof currency === 'string' && currencyRate && amount) {
+            const rate = Number(amount) * currencyRate.lastRate;
+            if (rate > 0) {
+                return (
+                    <View style={[styles.rateContainer]}>
+                        <Text style={styles.rateText}>
+                            ~{currencyRate.code} {Localize.formatNumber(rate)}
+                        </Text>
+                    </View>
+                );
+            }
+        }
+
+        return null;
     };
 
     render() {
@@ -442,6 +489,7 @@ class SummaryStep extends Component<Props, State> {
                                     icon="IconEdit"
                                 />
                             </View>
+                            {this.renderAmountRate()}
                         </View>
 
                         {/* Memo */}
@@ -466,18 +514,13 @@ class SummaryStep extends Component<Props, State> {
                     </KeyboardAvoidingView>
                 </ScrollView>
                 {/* Bottom Bar */}
-                <Footer style={[AppStyles.row]} safeArea>
-                    <View style={[AppStyles.flex1, AppStyles.paddingRightSml]}>
-                        <Button secondary label={Localize.t('global.back')} onPress={this.goBack} />
-                    </View>
-                    <View style={[AppStyles.flex2]}>
-                        <Button
-                            textStyle={AppStyles.strong}
-                            label={Localize.t('global.send')}
-                            onPress={this.goNext}
-                            isLoading={isLoading}
-                        />
-                    </View>
+                <Footer safeArea>
+                    <SwipeButton
+                        label={Localize.t('global.slideToSend')}
+                        onSwipeSuccess={this.goNext}
+                        isLoading={isLoading}
+                        shouldResetAfterSuccess
+                    />
                 </Footer>
             </View>
         );

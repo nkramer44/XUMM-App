@@ -36,6 +36,8 @@ import styles from './styles';
 /* types ==================================================================== */
 export interface Props {
     onRead: (decoded: any) => void;
+    onClose?: () => void;
+    blackList?: StringType[];
     type: StringType;
     fallback?: boolean;
 }
@@ -316,8 +318,28 @@ class ScanView extends Component<Props, State> {
         }
     };
 
+    handleUndetectedType = (content: string, clipboard?: boolean) => {
+        // some users scan QR on tangem card, navigate them to the account add screen
+        if (content === 'https://xumm.app/tangem') {
+            this.routeUser(AppScreens.Account.Add, {}, {});
+            return;
+        }
+
+        // show error message base on origin
+        Alert.alert(
+            Localize.t('global.warning'),
+            clipboard
+                ? Localize.t('scan.invalidClipboardDateTryNewOneOrTryAgain')
+                : Localize.t('scan.invalidQRTryNewOneOrTryAgain'),
+            [{ text: 'OK', onPress: () => this.setShouldRead(true) }],
+            {
+                cancelable: false,
+            },
+        );
+    };
+
     handle = (content: string, clipboard?: boolean) => {
-        const { onRead, type, fallback } = this.props;
+        const { onRead, type, fallback, blackList } = this.props;
 
         const detected = new StringTypeDetector(content);
 
@@ -326,6 +348,14 @@ class ScanView extends Component<Props, State> {
 
         if (detectedType === StringType.PayId) {
             detectedType = StringType.XrplDestination;
+        }
+
+        if (!type && onRead && blackList) {
+            if (blackList.indexOf(detectedType) === -1) {
+                Navigator.dismissModal();
+                onRead(content);
+            }
+            return;
         }
 
         // just return scanned content
@@ -392,16 +422,8 @@ class ScanView extends Component<Props, State> {
                 this.handleTranslationBundle(parsed.uuid);
                 break;
             default:
-                Alert.alert(
-                    Localize.t('global.warning'),
-                    clipboard
-                        ? Localize.t('scan.invalidClipboardDateTryNewOneOrTryAgain')
-                        : Localize.t('scan.invalidQRTryNewOneOrTryAgain'),
-                    [{ text: 'OK', onPress: () => this.setShouldRead(true) }],
-                    {
-                        cancelable: false,
-                    },
-                );
+                this.handleUndetectedType(content, clipboard);
+                break;
         }
     };
 
@@ -442,7 +464,16 @@ class ScanView extends Component<Props, State> {
     };
 
     onClose = () => {
+        const { onClose } = this.props;
+
+        // close scan modal
         Navigator.dismissModal();
+
+        // call callback function
+        if (typeof onClose === 'function') {
+            onClose();
+        }
+
         return true;
     };
 

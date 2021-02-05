@@ -26,6 +26,7 @@
     "settings": "Settings",
     "search": "Search",
     "send": "Send",
+    "slideToSend": "Slide to send",
     "done": "Done",
     "previous": "Previous",
     "authorize": "Authorize",
@@ -115,6 +116,7 @@
     "signing": "Signing",
     "issuer": "Issuer",
     "accept": "Accept",
+    "slideToAccept": "Slide to accept",
     "decline": "Decline",
     "dismiss": "Dismiss (continue)",
     "from": "From",
@@ -245,7 +247,14 @@
     "thePasswordYouEnteredIsIncorrectExplain": "The password you entered is incorrect. To sign a transaction, you need to enter the right password. You entered this password when you added the account you want to sign with to XUMM.",
     "thePasscodeYouEnteredIsIncorrectExplain": "The passcode you entered is incorrect. To sign a transaction, you need to enter the right passcode. You entered this passcode when you setup XUMM for the first time.",
     "troubleshoot": "Troubleshoot",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "all": "All",
+    "currency": "Currency",
+    "currencies": "Currencies",
+    "noResultFound": "No result found",
+    "unableToFetchCurrencyRate": "Unable to fetch currency rate, please make sure you are connected to the internet",
+    "signRequest": "Sign Request",
+    "openForDetails": "Open for detail"
   },
   "onboarding": {
     "slideOne_title": "Payments and\r\npayment requests\r\non the XRP Ledger",
@@ -357,6 +366,7 @@
     "setARegularKey": "Set a Regular Key",
     "setRegularKey": "Set Regular Key",
     "canNotFetchTransactions": "Can not fetch account transactions!",
+    "unableToLoadTheTransaction": "Unable to load the transaction, please make sure you are connected to internet!",
     "emptyEventsNoAccount": "There are no events because you do not have an account.",
     "returnPayment": "Return payment",
     "newPayment": "New payment",
@@ -425,6 +435,7 @@
     "editContact": "Edit contact",
     "getStartedCreateContact": "Get started by adding your first contact.",
     "enterNameOrAddress": "Enter name or address",
+    "enterCurrencyCodeOrName": "Enter currency code or name",
     "enterName": "Please enter a name",
     "contactAlreadyExist": "Contact already exists",
     "contactSuccessSaved": "Contact successfully added",
@@ -465,7 +476,8 @@
     "eraseDataDescription": "Erase all data after 10 failed passcode attempts",
     "viewChangeLog": "View changelog",
     "hideBalanceByDefault": "Hide balance by default",
-    "blockTakingScreenshots": "Block taking screenshots"
+    "blockTakingScreenshots": "Block taking screenshots",
+    "unableToLoadListOfCurrencies": "Unable to load list of currencies!"
   },
   "account": {
     "addAccount": "Add an account",
@@ -547,6 +559,7 @@
     "howManyWordsYourMnemonicIs": "How many words does your mnemonic have?",
     "pleaseEnterYourSecretNumber": "Please enter your secret numbers",
     "invalidFamilySeed": "Invalid Family Seed",
+    "invalidHexPrivateKey": "Invalid HEX private key, a HEX private key should be 66 HEX characters (A-F, 0-9) long.",
     "pleaseProvideFamilySeed": "Please provide your account secret/family Seed.",
     "pleaseEnterYourFamilySeed": "Please enter your family seed",
     "accountImportCompleted": "Account import complete!",
@@ -658,6 +671,7 @@
     "destinationCannotActivateWithIOU": "The destination account hasn't been used before, and doesn't have any balance. To activate an account on the XRP ledger, an initial deposit of at least 20 XRP has to be sent to the account. Non XRP assets cannot be used for the initial deposit.",
     "destinationTagIsRequired": "The destination tag is required for sending this payment.",
     "unableGetRecipientAccountInfoPleaseTryAgain": "Unable to get recipient account info. Please try again.",
+    "theDestinationAccountIsSetAsBlackHole": "The destination account is set as black hole, sending to this account will cause losing sent XRP.",
     "noDestinationTag": "No destination tag",
     "thisAddressRequiredDestinationTag": "This address requires a destination tag.",
     "pleaseEnterAmount": "Please enter the amount for this transaction.",

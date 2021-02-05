@@ -4,8 +4,10 @@
  */
 import { get } from 'lodash';
 import { Alert, NativeModules } from 'react-native';
-
+import { OptionsModalPresentationStyle, OptionsModalTransitionStyle } from 'react-native-navigation';
 import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+
+import { AccountRepository } from '@store/repositories';
 
 import { Navigator } from '@common/helpers/navigator';
 import { AppScreens } from '@common/constants';
@@ -28,6 +30,12 @@ declare interface PushNotificationsService {
     on(event: string, listener: Function): this;
 }
 
+export enum NotificationType {
+    SignRequest = 'SignRequest',
+    OpenXApp = 'OpenXApp',
+    OpenTx = 'OpenTx'
+}
+
 /* Service  ==================================================================== */
 class PushNotificationsService extends EventEmitter {
     initialized: boolean;
@@ -40,7 +48,7 @@ class PushNotificationsService extends EventEmitter {
     }
 
     initialize = () => {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             try {
                 return this.checkPermission()
                     .then((hasPermission: boolean) => {
@@ -126,6 +134,20 @@ class PushNotificationsService extends EventEmitter {
         messaging().onNotificationOpenedApp(this.handleNotificationOpen);
     };
 
+    getType = (notification: any): NotificationType => {
+        const category = get(notification, ['data', 'category']);
+        switch (category) {
+            case 'SIGNTX':
+                return NotificationType.SignRequest;
+            case 'OPENXAPP':
+                return NotificationType.OpenXApp;
+            case 'TXPUSH':
+                return NotificationType.OpenTx;
+            default:
+                return undefined;
+        }
+    }
+
     isSignRequest = (notification: any) => {
         return get(notification, ['data', 'category']) === 'SIGNTX';
     };
@@ -154,31 +176,71 @@ class PushNotificationsService extends EventEmitter {
         this.setBadge();
     };
 
+    handleSingRequest = async (notification: any) => {
+        const payloadUUID = get(notification, ['data', 'payload']);
+
+        if (payloadUUID) {
+            await Payload.from(payloadUUID, PayloadOrigin.PUSH_NOTIFICATION)
+                .then((payload) => {
+                    // show review transaction screen
+                    Navigator.showModal(
+                        AppScreens.Modal.ReviewTransaction,
+                        { modalPresentationStyle: 'fullScreen' },
+                        {
+                            payload,
+                        },
+                    );
+                })
+                .catch((e) => {
+                    Alert.alert(Localize.t('global.error'), e.message);
+                    this.logger.error('Cannot fetch payload from backend', payloadUUID);
+                });
+        }
+    }
+
+    handleOpenXApp = (notification: any) => {
+        const xappUrl = get(notification, ['data', 'xappUrl']);
+
+        Navigator.showModal(
+            AppScreens.Modal.XAppBrowser,
+            {
+                modalTransitionStyle: OptionsModalTransitionStyle.coverVertical,
+                modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+            },
+            {
+                uri: xappUrl,
+                origin: PayloadOrigin.PUSH_NOTIFICATION,
+            },
+        );
+    }
+
+    handleOpenTx = (notification: any) => {
+        const hash = get(notification, ['data', 'tx']);
+        const address = get(notification, ['data', 'account']);
+
+        // check if account exist in xumm
+        const account = AccountRepository.findOne({ address });
+        if (!account) return;
+
+        Navigator.showModal(AppScreens.Transaction.Details, {}, { hash, account, asModal: true });
+    }
+
     /* Handle notifications when app is open from the notification */
     handleNotificationOpen = async (notification: any) => {
         if (!notification) return;
 
-        if (this.isSignRequest(notification)) {
-            // get payload uuid
-            const payloadUUID = get(notification, ['data', 'payload']);
-
-            if (payloadUUID) {
-                await Payload.from(payloadUUID, PayloadOrigin.PUSH_NOTIFICATION)
-                    .then((payload) => {
-                        // show review transaction screen
-                        Navigator.showModal(
-                            AppScreens.Modal.ReviewTransaction,
-                            { modalPresentationStyle: 'fullScreen' },
-                            {
-                                payload,
-                            },
-                        );
-                    })
-                    .catch((e) => {
-                        Alert.alert(Localize.t('global.error'), e.message);
-                        this.logger.error('Cannot fetch payload from backend', payloadUUID);
-                    });
-            }
+        switch (this.getType(notification)) {
+            case NotificationType.SignRequest:
+                this.handleSingRequest(notification);
+                break;
+            case NotificationType.OpenXApp:
+                this.handleOpenXApp(notification);
+                break;
+            case NotificationType.OpenTx:
+                this.handleOpenTx(notification);
+                break;
+            default:
+                break;
         }
     };
 }

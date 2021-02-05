@@ -7,7 +7,6 @@ import moment from 'moment-timezone';
 import { UIManager, Platform, Alert, Text, TextInput } from 'react-native';
 
 import messaging from '@react-native-firebase/messaging';
-import DeviceInfo from 'react-native-device-info';
 import { Navigation } from 'react-native-navigation';
 
 // constants
@@ -17,6 +16,7 @@ import { ErrorMessages } from '@common/constants';
 import { Prompt } from '@common/helpers/interface';
 import { Navigator } from '@common/helpers/navigator';
 import {
+    GetAppReadableVersion,
     GetDeviceTimeZone,
     GetDeviceLocaleSettings,
     FlagSecure,
@@ -51,10 +51,17 @@ class Application {
 
     run() {
         // start the app
-        this.logger.debug(`XUMM version ${DeviceInfo.getReadableVersion()}`);
+        this.logger.debug(`XUMM version ${GetAppReadableVersion()}`);
 
         // on app start
         Navigation.events().registerAppLaunchedListener(() => {
+            // if already initialized then boot
+            // NOTE: this should never happen
+            if (this.initialized) {
+                this.boot();
+                return;
+            }
+
             // all stuff we need to init before boot the app
             const waterfall = [
                 this.configure,
@@ -190,22 +197,16 @@ class Application {
 
                 const localeSettings = await GetDeviceLocaleSettings();
 
-                let locale;
-
                 // app is not initialized yet, set to default device locale
                 if (!core) {
                     this.logger.debug('Locale is not initialized, setting base on device languageCode');
-                    locale = Localize.setLocale(localeSettings.languageCode, localeSettings);
+                    const locale = Localize.setLocale(localeSettings.languageCode, localeSettings);
                     CoreRepository.saveSettings({ language: locale });
                 } else {
                     // use locale set in settings
                     this.logger.debug(`Locale set to: ${core.language.toUpperCase()}`);
-                    locale = Localize.setLocale(core.language, core.useSystemSeparators ? localeSettings : undefined);
+                    Localize.setLocale(core.language, core.useSystemSeparators ? localeSettings : undefined);
                 }
-
-                // set locale to moment
-                // moment.locale(locale);
-
                 return resolve();
             } catch (e) {
                 return reject(e);
