@@ -24,20 +24,20 @@ function ColorLuminance(hex, lum) {
 }
 */
 
-function hexToRgbA(hex, opacity){
-    var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-        c= hex.substring(1).split('');
-        if(c.length === 3){
-            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+function hexToRgbA(hex, opacity) {
+    let c;
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+        c = hex.substring(1).split('');
+        if (c.length === 3) {
+            c = [c[0], c[0], c[1], c[1], c[2], c[2]];
         }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',' + opacity + ')';
+        c = `0x${c.join('')}`;
+        return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',')},${opacity})`;
     }
     throw new Error('Bad Hex');
 }
 
-var  colorsTheme = {};
+let colorsTheme = {};
 
 const colorsGeneral = {
     blue: '#3052FF',
@@ -66,9 +66,9 @@ const colorMutations = {
     lightGreen: hexToRgbA(colorsGeneral.green, 0.06),
     lightRed: hexToRgbA(colorsGeneral.red, 0.06),
     lightGrey: hexToRgbA(colorsGeneral.grey, 0.06),
-}
+};
 
-if(global.theme === 'light'){
+if (global.theme === 'light') {
     colorsTheme = {
         white: '#FFFFFF',
         black: '#000000',
@@ -81,7 +81,7 @@ if(global.theme === 'light'){
         // greyDark: 'red',
     };
 }
-if(global.theme === 'dark'){
+if (global.theme === 'dark') {
     colorsTheme = {
         // THEME Dark
         themeDark: '#000000',
@@ -94,7 +94,7 @@ if(global.theme === 'dark'){
         greyDark: '#222530',
     };
 }
-if(global.theme === 'moonlight'){
+if (global.theme === 'moonlight') {
     colorsTheme = {
         // THEME Moonlight
         themeMoonlight: '#262934',
@@ -119,7 +119,7 @@ if(global.theme === 'moonlight'){
         // lightRed: '#FFF9F9',
     };
 }
-if(global.theme === 'royal'){
+if (global.theme === 'royal') {
     colorsTheme = {
         // THEME Dark
         themeDark: '#000000',
@@ -130,8 +130,8 @@ if(global.theme === 'royal'){
     };
 }
 
-var colors = { ...colorsGeneral, ...colorMutations, ...colorsTheme }
+const colors = { ...colorsGeneral, ...colorMutations, ...colorsTheme };
 
 export default {
-    ...colors
+    ...colors,
 };

@@ -506,11 +506,11 @@ export default StyleSheet.create({
         paddingBottom: Sizes.padding,
         paddingHorizontal: Sizes.padding,
         alignSelf: 'center',
-        color: Colors.black
+        color: Colors.black,
     },
     BackgroundShapes: {
         resizeMode: 'contain',
-        tintColor: Colors.light
+        tintColor: Colors.light,
     },
     BackgroundShapesWH: {
         width: '100%',
