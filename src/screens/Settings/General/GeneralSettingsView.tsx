@@ -24,7 +24,9 @@ import { AppStyles } from '@theme';
 import styles from './styles';
 
 /* types ==================================================================== */
-export interface Props {}
+export interface Props {
+    onPress: () => void;
+}
 
 export interface State {
     coreSettings: CoreSchema;
@@ -45,6 +47,7 @@ class GeneralSettingsView extends Component<Props, State> {
         super(props);
 
         this.state = { coreSettings: CoreRepository.getSettings(), locales: Localize.getLocales() };
+        // console.log(this.state);
     }
 
     componentDidMount() {
@@ -130,6 +133,16 @@ class GeneralSettingsView extends Component<Props, State> {
         return locale.nameLocal;
     };
 
+    selectTheme = (value: string) => {
+        // console.log(`Selected -> ${value}`);
+        CoreRepository.saveSettings({ theme: value });
+        // console.log(value.toLowerCase())
+        // global.theme = value.toLowerCase()
+        // console.log(global.theme)
+        // re-render the app
+        Navigator.reRender();
+    }
+
     render() {
         const { coreSettings } = this.state;
 
@@ -145,6 +158,105 @@ class GeneralSettingsView extends Component<Props, State> {
                     centerComponent={{ text: Localize.t('settings.generalSettings') }}
                 />
                 <ScrollView>
+                    <View style={styles.row}>
+                        <View style={[AppStyles.flex1]}>
+                            <Text style={AppStyles.pbold}>Theme</Text>
+                        </View>
+                    </View>
+                    <View style={styles.rowNoborder}>
+                        <View style={[AppStyles.flex1]}>
+                            <TouchableOpacity
+                                // testID={testID}
+                                activeOpacity={0.8}
+                                onPress={() => { this.selectTheme('Light'); }}
+                                style={[styles.themeItem, coreSettings.theme === 'Light'
+                                ? styles.themeItemSelected : null]}
+                            >
+                                <View style={AppStyles.flex1}>
+                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Light'
+                                    ? styles.themeItemDotSelected : null]}>
+                                        {coreSettings.theme === 'Light' && <View style={styles.themeItemFilled} />}
+                                    </View>
+                                </View>
+                                <View style={AppStyles.flex5}>
+                                    <Text
+                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Light'
+                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                    >
+                                        Default
+                                    </Text>
+                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Light'
+                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
+                                        Fresh and bright
+                                    </Text>
+                                </View>
+                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewLight]}>
+                                    <Text style={[AppStyles.p, AppStyles.strong]}>Aa</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                // testID={testID}
+                                activeOpacity={0.8}
+                                onPress={() => { this.selectTheme('Moonlight'); }}
+                                style={[styles.themeItem, coreSettings.theme === 'Moonlight'
+                                ? styles.themeItemSelected : null]}
+                            >
+                                <View style={AppStyles.flex1}>
+                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Moonlight'
+                                    ? styles.themeItemDotSelected : null]}>
+                                        {coreSettings.theme === 'Moonlight' && <View style={styles.themeItemFilled} />}
+                                    </View>
+                                </View>
+                                <View style={AppStyles.flex5}>
+                                    <Text
+                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Moonlight'
+                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                    >
+                                        Moonlight
+                                    </Text>
+                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Moonlight'
+                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
+                                        A touch of moon
+                                    </Text>
+                                </View>
+                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewMoonlight]}>
+                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewMoonlight]}>
+                                        Aa
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                // testID={testID}
+                                activeOpacity={0.8}
+                                onPress={() => { this.selectTheme('Dark'); }}
+                                style={[styles.themeItem, coreSettings.theme === 'Dark'
+                                ? styles.themeItemSelected : null]}
+                            >
+                                <View style={AppStyles.flex1}>
+                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Dark'
+                                    ? styles.themeItemDotSelected : null]}>
+                                        {coreSettings.theme === 'Dark' && <View style={styles.themeItemFilled} />}
+                                    </View>
+                                </View>
+                                <View style={AppStyles.flex5}>
+                                    <Text
+                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Dark'
+                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                    >
+                                        Dark
+                                    </Text>
+                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Dark'
+                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
+                                        Really dark
+                                    </Text>
+                                </View>
+                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewDark]}>
+                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewDark]}>Aa</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
                     <TouchableOpacity style={[styles.row]} onPress={this.showLanguagePicker}>
                         <View style={[AppStyles.flex3]}>
                             <Text style={styles.label}>{Localize.t('global.language')}</Text>

@@ -17,11 +17,11 @@ if [ -n "$files" ]; then
         fi
     done
 
-    echo "Checking for TSC"
-    tsc=$(node_modules/.bin/tsc --noEmit)
-    if [[ -n "$tsc" ]]; then
-        echo "ERROR: Check TSC hints."
-        echo "$tsc"
-        exit 1 # reject
-    fi
+#    echo "Checking for TSC"
+#    tsc=$(node_modules/.bin/tsc --noEmit)
+#    if [[ -n "$tsc" ]]; then
+#        echo "ERROR: Check TSC hints."
+#        echo "$tsc"
+#        exit 1 # reject
+#    fi
 fi

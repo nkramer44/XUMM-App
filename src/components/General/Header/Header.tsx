@@ -83,9 +83,10 @@ const Children = ({
                 <View style={[AppStyles.row]}>
                     {(placement === 'left' || placement === 'center') && (
                         <Icon
-                            style={[styles.iconStyle, AppStyles.marginRightSml, children.iconStyle]}
-                            size={children.iconSize || 30}
+                        style={styles.iconStyle}
+                        size={children.iconSize || 30}
                             name={children.icon}
+
                         />
                     )}
                     <Text style={[styles.textStyleSmall, children.textStyle]}>{children.text}</Text>
@@ -105,7 +106,11 @@ const Children = ({
             )}
 
             {children.icon && !children.text && (
-                <Icon size={children.iconSize || 30} name={children.icon} style={children.iconStyle} />
+                <Icon
+size={children.iconSize || 30}
+name={children.icon}
+                style={[styles.iconStyle, children.iconStyle]}
+                />
             )}
         </TouchableOpacity>
     );

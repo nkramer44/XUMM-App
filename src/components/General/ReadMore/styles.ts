@@ -14,7 +14,7 @@ export default StyleSheet.create({
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
         marginRight: 5,
-        color: AppColors.greyBlack,
+        color: AppColors.greyDark,
     },
     transparent: {
         opacity: 0,

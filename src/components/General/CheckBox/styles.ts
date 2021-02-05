@@ -14,7 +14,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: AppColors.lightGrey,
         borderRadius: AppStyles.borderRadius.borderRadius,
     },
     box: {

@@ -132,7 +132,6 @@ export default StyleSheet.create({
     colorOrange: { color: Colors.orange },
     colorRed: { color: Colors.red },
     colorGreyDark: { color: Colors.greyDark },
-    colorGreyBlack: { color: Colors.greyBlack },
     // colorPurple: { color: Colors.purple },
     // colorGreyBlue: { color: Colors.greyBlue },
     imgColorBlue: { tintColor: Colors.blue },
@@ -143,7 +142,6 @@ export default StyleSheet.create({
     imgColorGreyDark: { tintColor: Colors.greyDark },
     imgColorRed: { tintColor: Colors.red },
     imgColorOrange: { tintColor: Colors.orange },
-    imgColorGreyBlack: { tintColor: Colors.greyBlack },
 
     borderRadius: {
         borderRadius: 12,
@@ -508,9 +506,11 @@ export default StyleSheet.create({
         paddingBottom: Sizes.padding,
         paddingHorizontal: Sizes.padding,
         alignSelf: 'center',
+        color: Colors.black
     },
     BackgroundShapes: {
         resizeMode: 'contain',
+        tintColor: Colors.light
     },
     BackgroundShapesWH: {
         width: '100%',

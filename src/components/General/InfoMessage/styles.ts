@@ -54,8 +54,8 @@ export default StyleSheet.create({
     },
     successIcon: { tintColor: AppColors.green },
     neutral: {
-        backgroundColor: AppColors.lightGrey,
-        borderColor: AppColors.lightGrey,
+        backgroundColor: AppColors.light,
+        borderColor: AppColors.light,
         tintColor: AppColors.grey,
     },
     neutralIcon: { tintColor: AppColors.grey },

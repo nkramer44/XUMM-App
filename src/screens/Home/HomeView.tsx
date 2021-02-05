@@ -414,7 +414,9 @@ class HomeView extends Component<Props, State> {
 
                 {account.lines.length === 0 && (
                     <View testID="assets-empty-view" style={[styles.noTrustlineMessage]}>
+
                         <InfoMessage type="warning" label={Localize.t('home.youDonNotHaveOtherAssets')} />
+
                         <TouchableOpacity
                             style={[AppStyles.row, AppStyles.centerContent, AppStyles.paddingSml]}
                             onPress={this.openTrustLineDescription}

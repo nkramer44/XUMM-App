@@ -5,7 +5,7 @@ import { AppColors, AppSizes } from '@theme';
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: AppColors.lightGrey,
+        backgroundColor: AppColors.light,
     },
     filterIcon: {
         tintColor: AppColors.blue,

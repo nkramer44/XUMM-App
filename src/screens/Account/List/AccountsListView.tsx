@@ -25,7 +25,7 @@ import { Button, Icon, Header } from '@components/General';
 
 import Localize from '@locale';
 // style
-import { AppStyles } from '@theme';
+import { AppStyles, AppColors } from '@theme';
 import styles from './styles';
 
 /* types ==================================================================== */
@@ -127,7 +127,8 @@ class AccountListView extends Component<Props, State> {
                 onPress={() => {
                     this.onItemPress(item);
                 }}
-                underlayColor="rgba(248, 250, 253, 1)"
+                // underlayColor="rgba(248, 250, 253, 1)"
+                underlayColor={AppColors.light}
             >
                 <>
                     <View style={[AppStyles.row, styles.rowHeader, AppStyles.centerContent]}>

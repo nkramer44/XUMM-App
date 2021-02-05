@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
     rowLabel: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
+        color: AppColors.black,
+    },
+    rowIcon: {
+        tintColor: AppColors.black,
     },
     hr: {
         borderBottomColor: AppColors.grey,

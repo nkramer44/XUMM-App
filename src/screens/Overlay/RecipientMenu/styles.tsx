@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         padding: 15,
     },
     button: {
-        backgroundColor: AppColors.greyBlack,
+        backgroundColor: AppColors.greyDark,
         height: AppSizes.scale(50),
         borderRadius: AppSizes.scale(50) / 2,
     },

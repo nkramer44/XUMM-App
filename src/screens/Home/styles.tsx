@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     currencyItemLabel: {
         fontSize: AppFonts.h5.size,
         fontFamily: AppFonts.base.familyMonoBold,
-        // fontWeight: 'bold',
+        color: AppColors.black,
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginRight: 10,
         marginBottom: 3,
+        color: AppColors.black,
         // borderWidth: 1,
         // borderColor: 'red',
     },

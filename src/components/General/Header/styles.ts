@@ -1,11 +1,12 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { AppStyles, AppSizes } from '@theme';
+import { AppStyles, AppSizes, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        paddingTop: Platform.OS === 'ios' ? AppSizes.statusBarHeight : 0,
+        // paddingTop: Platform.OS === 'ios' ? AppSizes.statusBarHeight : 0,
+        paddingTop: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     iconStyle: {
-        alignSelf: 'center',
+        tintColor: AppColors.black,
     },
 });
 

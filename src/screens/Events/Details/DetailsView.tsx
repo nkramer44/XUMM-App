@@ -1052,7 +1052,7 @@ class TransactionDetailsView extends Component<Props, State> {
                     </View>
 
                     <Spacer />
-                    <Icon size={20} style={AppStyles.imgColorGreyBlack} name="IconSwitchAccount" />
+                    <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
                     <Spacer />
 
                     <View style={[AppStyles.row, styles.amountContainer]}>
@@ -1081,7 +1081,7 @@ class TransactionDetailsView extends Component<Props, State> {
                             </View>
 
                             <Spacer />
-                            <Icon size={20} style={AppStyles.imgColorGreyBlack} name="IconSwitchAccount" />
+                            <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
                             <Spacer />
 
                             <View style={[AppStyles.row, styles.amountContainer]}>
@@ -1110,7 +1110,7 @@ class TransactionDetailsView extends Component<Props, State> {
                     </View>
 
                     <Spacer />
-                    <Icon size={20} style={AppStyles.imgColorGreyBlack} name="IconSwitchAccount" />
+                    <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
                     <Spacer />
 
                     <View style={[AppStyles.row, styles.amountContainer]}>

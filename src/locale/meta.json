@@ -330,5 +330,12 @@
       "en-AU": "English (Australian)"
     },
     "source": "en-AU.json"
+  },
+  "fil": {
+    "name": {
+      "en": "Filipino",
+      "fil": "Wikang Filipino"
+    },
+    "source": "fil.json"
   }
 }
