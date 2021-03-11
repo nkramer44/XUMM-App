@@ -18,7 +18,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'stretch',
-        backgroundColor: Colors.background
+        backgroundColor: Colors.background,
     },
     tabContainer: {
         position: 'relative',
@@ -28,7 +28,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         alignContent: 'stretch',
         marginBottom: Sizes.tabbarHeight,
-        backgroundColor: Colors.background
+        backgroundColor: Colors.background,
     },
     headerContainer: {
         backgroundColor: Colors.transparent,
@@ -497,7 +497,7 @@ export default StyleSheet.create({
         height: Sizes.scale(140),
         alignSelf: 'center',
         marginBottom: 20,
-        overflow:'visible'
+        overflow: 'visible',
     },
     emptyText: {
         width: '90%',

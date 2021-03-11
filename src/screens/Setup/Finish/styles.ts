@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { AppSizes, AppStyles, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
-    container :{
+    container: {
         backgroundColor: AppColors.background,
     },
     logo: {
