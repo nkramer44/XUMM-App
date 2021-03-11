@@ -4,7 +4,16 @@
 
 import { sortBy } from 'lodash';
 import React, { Component } from 'react';
-import { Animated, View, Text, TouchableWithoutFeedback, Image, ScrollView, ActivityIndicator } from 'react-native';
+import {
+    Animated,
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    Image,
+    ScrollView,
+    ActivityIndicator,
+    InteractionManager,
+} from 'react-native';
 
 import Interactable from 'react-native-interactable';
 
@@ -43,6 +52,19 @@ class ExplainBalanceOverlay extends Component<Props, State> {
     panel: any;
     deltaY: Animated.Value;
     deltaX: Animated.Value;
+    isOpening: boolean;
+
+    static options() {
+        return {
+            statusBar: {
+                visible: true,
+                style: 'light',
+            },
+            topBar: {
+                visible: false,
+            },
+        };
+    }
 
     constructor(props: Props) {
         super(props);
@@ -54,12 +76,14 @@ class ExplainBalanceOverlay extends Component<Props, State> {
 
         this.deltaY = new Animated.Value(AppSizes.screen.height);
         this.deltaX = new Animated.Value(0);
+
+        this.isOpening = true;
     }
 
     componentDidMount() {
-        this.loadAccountObjects();
-
         this.slideUp();
+
+        InteractionManager.runAfterInteractions(this.loadAccountObjects);
     }
 
     loadAccountObjects = () => {
@@ -102,19 +126,27 @@ class ExplainBalanceOverlay extends Component<Props, State> {
         });
     };
 
-    onSnap = (event: any) => {
-        const { index } = event.nativeEvent;
+    onAlert = (event: any) => {
+        const { top, bottom } = event.nativeEvent;
 
-        if (index === 0) {
+        if (top && bottom) return;
+
+        if (top === 'enter' && this.isOpening) {
+            this.isOpening = false;
+        }
+
+        if (bottom === 'leave' && !this.isOpening) {
             Navigator.dismissOverlay();
         }
     };
 
     renderAccountObject = (item: any, index: number) => {
-        const { LedgerEntryType } = item;
+        const { account } = this.props;
+        const { LedgerEntryType, Account } = item;
 
         // ignore trustline as we handle them in better way
-        if (LedgerEntryType === 'RippleState') return null;
+        // ignore incoming escrow or objects
+        if (LedgerEntryType === 'RippleState' || (Account && Account !== account.address)) return null;
 
         return (
             <View key={`object-${index}`} style={[styles.currencyItemCard]}>
@@ -139,6 +171,9 @@ class ExplainBalanceOverlay extends Component<Props, State> {
         return (
             <>
                 {account.lines.map((line: TrustLineSchema, index: number) => {
+                    // don't render obligation trustlines
+                    if (line.obligation) return null;
+
                     return (
                         <View key={`line-${index}`} style={[styles.currencyItemCard]}>
                             <View style={[AppStyles.flex5, AppStyles.row, AppStyles.centerAligned]}>
@@ -222,11 +257,15 @@ class ExplainBalanceOverlay extends Component<Props, State> {
                         this.panel = r;
                     }}
                     animatedNativeDriver
-                    onSnap={this.onSnap}
+                    onAlert={this.onAlert}
                     verticalOnly
-                    snapPoints={[{ y: AppSizes.screen.height + 3 }, { y: AppSizes.screen.height * 0.12 }]}
-                    boundaries={{ top: AppSizes.screen.height * 0.1 }}
+                    snapPoints={[{ y: AppSizes.screen.height + 3 }, { y: AppSizes.heightPercentageToDP(10) }]}
+                    boundaries={{ top: AppSizes.heightPercentageToDP(8) }}
                     initialPosition={{ y: AppSizes.screen.height }}
+                    alertAreas={[
+                        { id: 'bottom', influenceArea: { bottom: AppSizes.screen.height } },
+                        { id: 'top', influenceArea: { top: AppSizes.heightPercentageToDP(10) } },
+                    ]}
                     animatedValueY={this.deltaY}
                     animatedValueX={this.deltaX}
                 >
@@ -237,12 +276,15 @@ class ExplainBalanceOverlay extends Component<Props, State> {
 
                         <View style={[AppStyles.row, AppStyles.centerAligned, AppStyles.paddingBottomSml]}>
                             <View style={[AppStyles.flex1, AppStyles.paddingLeftSml]}>
-                                <Text style={[AppStyles.h5, AppStyles.strong]}>{Localize.t('global.balance')}</Text>
+                                <Text numberOfLines={1} style={[AppStyles.h5, AppStyles.strong]}>
+                                    {Localize.t('global.balance')}
+                                </Text>
                             </View>
                             <View
                                 style={[AppStyles.row, AppStyles.flex1, AppStyles.paddingRightSml, AppStyles.flexEnd]}
                             >
                                 <Button
+                                    numberOfLines={1}
                                     light
                                     roundedSmall
                                     isDisabled={false}

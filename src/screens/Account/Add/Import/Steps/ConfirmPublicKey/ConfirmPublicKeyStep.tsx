@@ -10,6 +10,7 @@ import Clipboard from '@react-native-community/clipboard';
 import { AccountRepository } from '@store/repositories';
 import { AccountTypes } from '@store/types';
 
+import { ConvertCodecAlphabet } from '@common/libs/utils';
 import { Toast, Prompt } from '@common/helpers/interface';
 
 // components
@@ -66,6 +67,26 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
         } else {
             goNext('LabelStep');
         }
+    };
+
+    copyPubKeyToClipboard = () => {
+        const { importedAccount } = this.context;
+
+        Clipboard.setString(importedAccount.address);
+        Toast(Localize.t('account.publicKeyCopiedToClipboard'));
+    };
+
+    getOtherChainAddress = (): string => {
+        const { importedAccount, alternativeSeedAlphabet } = this.context;
+
+        const { alphabet } = alternativeSeedAlphabet;
+
+        if (typeof alphabet === 'string') {
+            return ConvertCodecAlphabet(importedAccount.address, alphabet, false);
+        }
+
+        // this should not happen
+        return 'Unknown';
     };
 
     renderRegularKeys = () => {
@@ -135,7 +156,7 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
     };
 
     render() {
-        const { importedAccount, isLoading } = this.context;
+        const { importedAccount, isLoading, alternativeSeedAlphabet } = this.context;
 
         if (!importedAccount) {
             return null;
@@ -147,15 +168,41 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
                     {Localize.t('account.pleaseConfirmYourAccountAddress')}
                 </Text>
 
+                {alternativeSeedAlphabet && (
+                    <View
+                        style={[
+                            AppStyles.flex1,
+                            AppStyles.centerContent,
+                            AppStyles.stretchSelf,
+                            AppStyles.paddingHorizontalSml,
+                        ]}
+                    >
+                        <Text style={styles.addressHeader}>
+                            {Localize.t('account.yourChainAddressWas', { chain: alternativeSeedAlphabet.name })}
+                        </Text>
+                        <View style={[styles.addressContainer, AppStyles.stretchSelf]}>
+                            <Text testID="account-alternative-address" selectable style={[styles.addressField]}>
+                                {this.getOtherChainAddress()}
+                            </Text>
+                        </View>
+                    </View>
+                )}
+
                 <View
                     style={[
                         AppStyles.flex1,
-                        AppStyles.centerContent,
+                        !alternativeSeedAlphabet && AppStyles.centerContent,
                         AppStyles.stretchSelf,
                         AppStyles.paddingHorizontalSml,
                     ]}
                 >
-                    <View style={[styles.labelWrapper, AppStyles.stretchSelf]}>
+                    {alternativeSeedAlphabet && (
+                        <Text style={styles.addressHeader}>
+                            {Localize.t('account.yourXRPLedgerAccountIsGoingToBe')}
+                        </Text>
+                    )}
+
+                    <View style={[styles.addressContainer, AppStyles.stretchSelf]}>
                         <Text testID="account-address-text" selectable style={[styles.addressField]}>
                             {importedAccount.address}
                         </Text>
@@ -166,10 +213,7 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
                         style={AppStyles.buttonBlueLight}
                         iconStyle={AppStyles.imgColorGreyDark}
                         textStyle={[AppStyles.colorGreyDark]}
-                        onPress={() => {
-                            Clipboard.setString(importedAccount.address);
-                            Toast(Localize.t('account.publicKeyCopiedToClipboard'));
-                        }}
+                        onPress={this.copyPubKeyToClipboard}
                         roundedSmall
                         outline
                     />

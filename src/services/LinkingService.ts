@@ -14,6 +14,7 @@ import NavigationService from '@services/NavigationService';
 import { Payload, PayloadOrigin } from '@common/libs/payload';
 
 import { Navigator } from '@common/helpers/navigator';
+import { Prompt } from '@common/helpers/interface';
 import { AppScreens } from '@common/constants';
 
 import { NormalizeDestination } from '@common/libs/utils';
@@ -123,7 +124,7 @@ class LinkingService extends EventEmitter {
         );
     };
 
-    handleXAPPLink = (url: string) => {
+    handleXAPPLink = (url: string, parsed: { xapp: string; path: string; params: any }) => {
         Navigator.showModal(
             AppScreens.Modal.XAppBrowser,
             {
@@ -131,11 +132,62 @@ class LinkingService extends EventEmitter {
                 modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
             },
             {
-                uri: url,
+                identifier: parsed.xapp,
                 origin: PayloadOrigin.DEEP_LINK,
+                originData: { url },
+                path: parsed.path,
+                params: parsed.params,
             },
         );
-    }
+    };
+
+    handleAlternativeSeedCodec = (parsed: {
+        name: string;
+        alphabet: string | boolean;
+        params?: Record<string, unknown>;
+    }) => {
+        const { alphabet } = parsed;
+        if (alphabet) {
+            Navigator.push(
+                AppScreens.Account.Import,
+                {},
+                {
+                    alternativeSeedAlphabet: parsed,
+                },
+            );
+        }
+    };
+
+    handleXummFeature = (parsed: { feature: string; type: string; params?: Record<string, unknown> }) => {
+        const { feature, type } = parsed;
+
+        // Feature: allow import of Secret Numbers without Checksum
+        if (feature === 'secret' && type === 'offline-secret-numbers') {
+            Prompt(
+                Localize.t('global.warning'),
+                Localize.t('account.importSecretWithoutChecksumWarning'),
+                [
+                    {
+                        text: Localize.t('global.cancel'),
+                    },
+                    {
+                        text: Localize.t('global.continue'),
+                        style: 'destructive',
+                        onPress: () => {
+                            Navigator.push(
+                                AppScreens.Account.Import,
+                                {},
+                                {
+                                    importOfflineSecretNumber: true,
+                                },
+                            );
+                        },
+                    },
+                ],
+                { type: 'default' },
+            );
+        }
+    };
 
     handle = (url: string) => {
         const detected = new StringTypeDetector(url);
@@ -161,6 +213,15 @@ class LinkingService extends EventEmitter {
             case StringType.PayId:
                 this.handleXrplDestination(parsed);
                 break;
+            case StringType.XummXapp:
+                this.handleXAPPLink(url, parsed);
+                break;
+            case StringType.XrplAltFamilySeedAlphabet:
+                this.handleAlternativeSeedCodec(parsed);
+                break;
+            case StringType.XummFeature:
+                this.handleXummFeature(parsed);
+                break;
             default:
                 break;
         }
@@ -168,12 +229,7 @@ class LinkingService extends EventEmitter {
 
     handleDeepLink = async ({ url }: { url: string }) => {
         // ignore if the app is not initialized or not url
-        if (!url || typeof (url) !== 'string') return;
-
-        if (url.startsWith('https://xumm.app/detect/')) {
-            this.handleXAPPLink(url);
-            return;
-        }
+        if (!url || typeof url !== 'string') return;
 
         this.handle(url);
     };

@@ -306,7 +306,9 @@ class GeneralSettingsView extends Component<Props, State> {
 
                     <TouchableOpacity style={[styles.row]} onPress={this.showLanguagePicker}>
                         <View style={[AppStyles.flex3]}>
-                            <Text style={styles.label}>{Localize.t('global.language')}</Text>
+                            <Text numberOfLines={1} style={styles.label}>
+                                {Localize.t('global.language')}
+                            </Text>
                         </View>
                         <View style={[AppStyles.centerAligned, AppStyles.row]}>
                             <Text style={[styles.value]}>{this.getLanguageTitle()}</Text>
@@ -316,7 +318,9 @@ class GeneralSettingsView extends Component<Props, State> {
 
                     <TouchableOpacity style={[styles.row]} onPress={this.showCurrencyPicker}>
                         <View style={[AppStyles.flex3]}>
-                            <Text style={styles.label}>{Localize.t('global.currency')}</Text>
+                            <Text numberOfLines={1} style={styles.label}>
+                                {Localize.t('global.currency')}
+                            </Text>
                         </View>
                         <View style={[AppStyles.centerAligned, AppStyles.row]}>
                             <Text style={[styles.value]}>{coreSettings.currency}</Text>
@@ -326,7 +330,9 @@ class GeneralSettingsView extends Component<Props, State> {
 
                     <View style={styles.row}>
                         <View style={[AppStyles.flex3]}>
-                            <Text style={styles.label}>{Localize.t('settings.hapticFeedback')}</Text>
+                            <Text numberOfLines={1} style={styles.label}>
+                                {Localize.t('settings.hapticFeedback')}
+                            </Text>
                         </View>
                         <View style={[AppStyles.rightAligned, AppStyles.flex1]}>
                             <Switch checked={coreSettings.hapticFeedback} onChange={this.hapticFeedbackChange} />
@@ -335,7 +341,9 @@ class GeneralSettingsView extends Component<Props, State> {
 
                     <View style={styles.row}>
                         <View style={[AppStyles.flex3]}>
-                            <Text style={styles.label}>{Localize.t('settings.useSystemSeparators')}</Text>
+                            <Text numberOfLines={1} style={styles.label}>
+                                {Localize.t('settings.useSystemSeparators')}
+                            </Text>
                         </View>
                         <View style={[AppStyles.rightAligned, AppStyles.flex1]}>
                             <Switch

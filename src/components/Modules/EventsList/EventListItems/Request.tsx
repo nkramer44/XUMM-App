@@ -27,7 +27,7 @@ export interface State {}
 
 export enum RequestType {
     SignRequest = 'SignRequest',
-    OpenXApp = 'OpenXApp'
+    OpenXApp = 'OpenXApp',
 }
 
 /* Component ==================================================================== */
@@ -35,9 +35,11 @@ class RequestTemplate extends Component<Props, State> {
     openXApp = () => {
         const { item } = this.props;
 
-        const url = get(item, 'payload.request_json.xappUrl');
+        const xappIdentifier = get(item, 'payload.request_json.xappIdentifier');
+        const title = get(item, 'payload.request_json.xappTitle', 'xApp');
+        const originData = { payload: get(item, 'meta.uuid') };
 
-        if (url) {
+        if (xappIdentifier) {
             Navigator.showModal(
                 AppScreens.Modal.XAppBrowser,
                 {
@@ -45,12 +47,15 @@ class RequestTemplate extends Component<Props, State> {
                     modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
                 },
                 {
-                    uri: url,
+                    identifier: xappIdentifier,
+
+                    title,
                     origin: PayloadOrigin.EVENT_LIST,
+                    originData,
                 },
             );
         }
-    }
+    };
 
     openSignRequest = () => {
         const { item } = this.props;
@@ -62,13 +67,13 @@ class RequestTemplate extends Component<Props, State> {
                 payload: item,
             },
         );
-    }
+    };
 
     onPress = () => {
         switch (this.getType()) {
             case RequestType.OpenXApp:
-                 this.openXApp();
-                 break;
+                this.openXApp();
+                break;
             case RequestType.SignRequest:
                 this.openSignRequest();
                 break;
@@ -80,12 +85,12 @@ class RequestTemplate extends Component<Props, State> {
     getType = (): RequestType => {
         const { item } = this.props;
 
-        if (get(item, 'payload.tx_type') === 'SignIn' && has(item, 'payload.request_json.xappUrl')) {
+        if (get(item, 'payload.tx_type') === 'SignIn' && has(item, 'payload.request_json.xappIdentifier')) {
             return RequestType.OpenXApp;
         }
 
         return RequestType.SignRequest;
-    }
+    };
 
     getDescription = () => {
         const { item } = this.props;
@@ -98,23 +103,20 @@ class RequestTemplate extends Component<Props, State> {
             default:
                 return Localize.t('global.signRequest');
         }
-    }
+    };
 
     render() {
         const { item } = this.props;
 
         return (
-            <TouchableHighlight
-                onPress={this.onPress}
-                underlayColor="#FFF"
-            >
+            <TouchableHighlight onPress={this.onPress} underlayColor="#FFF">
                 <View style={[AppStyles.row, styles.row]}>
                     <View style={[AppStyles.flex1, AppStyles.centerContent]}>
                         <Avatar size={40} border source={{ uri: item.application.icon_url }} />
                     </View>
                     <View style={[AppStyles.flex5, AppStyles.centerContent]}>
                         <Text style={[styles.label]}>{item.application.name}</Text>
-                        <Text style={[styles.description]}>Sign Request</Text>
+                        <Text style={[styles.description]}>{this.getDescription()}</Text>
                     </View>
                 </View>
             </TouchableHighlight>

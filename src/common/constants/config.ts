@@ -21,7 +21,8 @@ export default {
 
     // xrpl nodes
     nodes: {
-        main: ['wss://xrpl.ws', 'wss://xrpl.link', 'wss://s2.ripple.com'],
+        default: 'wss://xrplcluster.com',
+        main: ['wss://xrplcluster.com', 'wss://xrpl.link', 'wss://s2.ripple.com'],
         test: ['wss://testnet.xrpl-labs.com', 'wss://s.altnet.rippletest.net:51233'],
     },
 
@@ -72,6 +73,18 @@ export default {
             },
             account: {
                 main: 'https://xrplorer.com/account/',
+                test: 'https://test.bithomp.com/explorer/',
+            },
+        },
+        {
+            value: 'xrpintel',
+            title: 'xrpintel',
+            tx: {
+                main: 'https://xrpintel.com/tx/',
+                test: 'https://test.bithomp.com/explorer/',
+            },
+            account: {
+                main: 'https://xrpintel.com/account/',
                 test: 'https://test.bithomp.com/explorer/',
             },
         },

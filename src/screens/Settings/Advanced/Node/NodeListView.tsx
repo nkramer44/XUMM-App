@@ -113,6 +113,7 @@ class NodeListView extends Component<Props, State> {
                     { text: Localize.t('global.cancel') },
                     {
                         text: Localize.t('global.doIt'),
+                        style: 'destructive',
                         onPress: () => {
                             CoreRepository.saveSettings({
                                 defaultNode: item.url,
@@ -136,7 +137,9 @@ class NodeListView extends Component<Props, State> {
     renderSectionHeader = ({ section: { title } }: any) => {
         return (
             <View style={styles.sectionHeader}>
-                <Text style={styles.sectionHeaderText}>{title}</Text>
+                <Text numberOfLines={1} style={styles.sectionHeaderText}>
+                    {title}
+                </Text>
             </View>
         );
     };

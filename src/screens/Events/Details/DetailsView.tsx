@@ -3,7 +3,7 @@
  */
 import { find, isEmpty, isUndefined, get } from 'lodash';
 import moment from 'moment-timezone';
-import { Navigation } from 'react-native-navigation';
+import { Navigation, OptionsModalPresentationStyle, OptionsModalTransitionStyle } from 'react-native-navigation';
 
 import React, { Component, Fragment } from 'react';
 import {
@@ -27,7 +27,7 @@ import { CoreSchema, AccountSchema } from '@store/schemas/latest';
 import CoreRepository from '@store/repositories/core';
 import AccountRepository from '@store/repositories/account';
 
-import { Payload } from '@common/libs/payload';
+import { Payload, PayloadOrigin } from '@common/libs/payload';
 import { TransactionsType } from '@common/libs/ledger/transactions/types';
 import transactionFactory from '@common/libs/ledger/parser/transaction';
 
@@ -40,7 +40,7 @@ import { Navigator } from '@common/helpers/navigator';
 
 import { getAccountName, AccountNameType } from '@common/helpers/resolver';
 
-import { Header, Button, Badge, Spacer, Icon, ReadMore } from '@components/General';
+import { Header, Button, Badge, Spacer, Icon, ReadMore, AmountText } from '@components/General';
 import { RecipientElement } from '@components/Modules';
 
 import Localize from '@locale';
@@ -52,9 +52,9 @@ import styles from './styles';
 /* types ==================================================================== */
 export interface Props {
     tx?: TransactionsType;
-    hash?: string
+    hash?: string;
     account: AccountSchema;
-    asModal?: boolean
+    asModal?: boolean;
 }
 
 export interface State {
@@ -67,7 +67,7 @@ export interface State {
     incomingTx: boolean;
     scamAlert: boolean;
     showMemo: boolean;
-    isLoading: boolean
+    isLoading: boolean;
 }
 
 /* Component ==================================================================== */
@@ -148,14 +148,15 @@ class TransactionDetailsView extends Component<Props, State> {
         } else {
             Navigator.pop();
         }
-    }
+    };
 
     loadTransaction = () => {
         const { hash, account } = this.props;
 
         if (!hash) return;
 
-        LedgerService.getTransaction(hash).then((resp: any) => {
+        LedgerService.getTransaction(hash)
+            .then((resp: any) => {
                 if (get(resp, 'error')) {
                     throw new Error('Not found');
                 }
@@ -165,22 +166,26 @@ class TransactionDetailsView extends Component<Props, State> {
 
                 const transaction = transactionFactory({ tx: resp, meta });
 
-                this.setState({
-                    tx: transaction,
-                    isLoading: false,
-                    incomingTx: transaction.Destination?.address === account.address,
-                }, this.loadDetails);
-        }).catch(() => {
-            Toast(Localize.t('events.unableToLoadTheTransaction'));
-            setTimeout(this.close, 2000);
-        });
-    }
+                this.setState(
+                    {
+                        tx: transaction,
+                        isLoading: false,
+                        incomingTx: transaction.Destination?.address === account.address,
+                    },
+                    this.loadDetails,
+                );
+            })
+            .catch(() => {
+                Toast(Localize.t('events.unableToLoadTheTransaction'));
+                setTimeout(this.close, 2000);
+            });
+    };
 
     loadDetails = () => {
         this.checkForScamAlert();
         this.setPartiesDetails();
         this.setBalanceChanges();
-    }
+    };
 
     setBalanceChanges = () => {
         const { tx } = this.state;
@@ -227,7 +232,12 @@ class TransactionDetailsView extends Component<Props, State> {
                 }
                 break;
             case 'AccountDelete':
-                address = tx.Destination.address;
+                if (incomingTx) {
+                    address = tx.Account.address;
+                } else {
+                    address = tx.Destination.address;
+                    tag = tx.Destination.tag;
+                }
                 break;
             case 'TrustSet':
                 // incoming trustline
@@ -438,6 +448,8 @@ class TransactionDetailsView extends Component<Props, State> {
                 return Localize.t('global.escrow');
             case 'Check':
                 return Localize.t('global.check');
+            case 'TicketCreate':
+                return Localize.t('events.createTicket');
             default:
                 return tx.Type;
         }
@@ -447,6 +459,24 @@ class TransactionDetailsView extends Component<Props, State> {
         const { tx, incomingTx } = this.state;
         const { account } = this.props;
 
+        // open the XApp
+        if (type === 'OpenXapp') {
+            Navigator.showModal(
+                AppScreens.Modal.XAppBrowser,
+                {
+                    modalTransitionStyle: OptionsModalTransitionStyle.coverVertical,
+                    modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+                },
+                {
+                    identifier: tx.getXappIdentifier(),
+                    origin: PayloadOrigin.TRANSACTION_MEMO,
+                    originData: { txid: tx.Hash },
+                },
+            );
+            return;
+        }
+
+        // handle return or new payment process
         if (type === 'Payment') {
             const params = {
                 scanResult: {
@@ -469,6 +499,24 @@ class TransactionDetailsView extends Component<Props, State> {
                 Object.assign(params, { amount: tx.Amount.value, currency });
             }
             Navigator.push(AppScreens.Transaction.Payment, {}, params);
+            return;
+        }
+
+        // when the Escrow is eligible for release, we'll leave out the button if an escrow has a condition,
+        // in which case we will show a message and return
+        if (type === 'EscrowFinish' && tx.Condition) {
+            Navigator.showAlertModal({
+                type: 'warning',
+                text: Localize.t('events.pleaseReleaseThisEscrowUsingTheToolUsedToCreateTheEscrow'),
+                buttons: [
+                    {
+                        text: Localize.t('global.ok'),
+                        onPress: () => {},
+                        light: false,
+                    },
+                ],
+            });
+            return;
         }
 
         let transaction = { Account: account.address };
@@ -753,6 +801,12 @@ class TransactionDetailsView extends Component<Props, State> {
         return Localize.t('events.itRemovesAuthorizesSendingPaymentsToThisAccount', { address: tx.Unauthorize });
     };
 
+    renderTicketCreate = () => {
+        const { tx } = this.state;
+
+        return Localize.t('events.itCreatesTicketForThisAccount', { ticketCount: tx.TicketCount });
+    };
+
     renderTrustSet = () => {
         const { tx } = this.state;
 
@@ -881,6 +935,9 @@ class TransactionDetailsView extends Component<Props, State> {
             case 'AccountSet':
                 content += this.renderAccountSet();
                 break;
+            case 'TicketCreate':
+                content += this.renderTicketCreate();
+                break;
             default:
                 content += `This is a ${tx.Type} transaction`;
         }
@@ -895,9 +952,30 @@ class TransactionDetailsView extends Component<Props, State> {
 
     renderMemos = () => {
         const { tx } = this.state;
-        const { showMemo, scamAlert } = this.state;
+        const { showMemo, scamAlert, incomingTx } = this.state;
 
+        // if no memo or the transaction contain xApp memo return null
         if (!tx.Memos) return null;
+
+        // check for xapp memo
+        // only for payments and incoming transactions
+        if (incomingTx && !scamAlert) {
+            const xAppIdentifier = tx.getXappIdentifier();
+            if (xAppIdentifier) {
+                return (
+                    <View style={styles.memoContainer}>
+                        <Button
+                            rounded
+                            block
+                            label={Localize.t('global.openXApp')}
+                            secondary
+                            // eslint-disable-next-line react/jsx-no-bind
+                            onPress={this.onActionButtonPress.bind(null, 'OpenXapp')}
+                        />
+                    </View>
+                );
+            }
+        }
 
         return (
             <View style={styles.memoContainer}>
@@ -996,7 +1074,9 @@ class TransactionDetailsView extends Component<Props, State> {
         const props = {
             icon: incomingTx ? 'IconCornerRightDown' : 'IconCornerLeftUp',
             color: {},
-            text: '',
+            prefix: '',
+            value: 0,
+            currency: '',
         };
 
         switch (tx.Type) {
@@ -1005,25 +1085,24 @@ class TransactionDetailsView extends Component<Props, State> {
                     if (balanceChanges?.received) {
                         Object.assign(props, {
                             color: styles.incomingColor,
-                            text: `${Localize.formatNumber(balanceChanges.received.value)} ${NormalizeCurrencyCode(
-                                balanceChanges.received.currency,
-                            )}`,
+                            value: balanceChanges.received.value,
+                            currency: balanceChanges.received.currency,
                             icon: 'IconCornerRightDown',
                         });
                     } else {
                         Object.assign(props, {
                             color: styles.outgoingColor,
-                            text: `${'-'}${Localize.formatNumber(tx.Amount.value)} ${NormalizeCurrencyCode(
-                                tx.Amount.currency,
-                            )}`,
+                            prefix: '-',
+                            value: tx.Amount.value,
+                            currency: tx.Amount.currency,
                         });
                     }
                 } else {
                     Object.assign(props, {
                         color: incomingTx ? styles.incomingColor : styles.outgoingColor,
-                        text: `${incomingTx ? '' : '-'}${Localize.formatNumber(
-                            tx.Amount.value,
-                        )} ${NormalizeCurrencyCode(tx.Amount.currency)}`,
+                        prefix: incomingTx ? '' : '-',
+                        value: tx.Amount.value,
+                        currency: tx.Amount.currency,
                     });
                 }
 
@@ -1031,9 +1110,9 @@ class TransactionDetailsView extends Component<Props, State> {
             case 'AccountDelete': {
                 Object.assign(props, {
                     color: incomingTx ? styles.incomingColor : styles.outgoingColor,
-                    text: `${incomingTx ? '' : '-'}${Localize.formatNumber(tx.Amount.value)} ${NormalizeCurrencyCode(
-                        tx.Amount.currency,
-                    )}`,
+                    prefix: incomingTx ? '' : '-',
+                    value: tx.Amount.value,
+                    currency: tx.Amount.currency,
                 });
                 break;
             }
@@ -1041,21 +1120,26 @@ class TransactionDetailsView extends Component<Props, State> {
             case 'Escrow':
                 Object.assign(props, {
                     color: incomingTx ? styles.orangeColor : styles.outgoingColor,
-                    text: `-${Localize.formatNumber(tx.Amount.value)} ${NormalizeCurrencyCode(tx.Amount.currency)}`,
+                    prefix: '-',
+                    value: tx.Amount.value,
+                    currency: tx.Amount.currency,
                 });
                 break;
             case 'EscrowFinish':
                 Object.assign(props, {
                     color: incomingTx ? styles.orangeColor : styles.naturalColor,
-                    text: `${Localize.formatNumber(tx.Amount.value)} ${NormalizeCurrencyCode(tx.Amount.currency)}`,
                     icon: 'IconCornerRightDown',
+                    value: tx.Amount.value,
+                    currency: tx.Amount.currency,
                 });
                 break;
             case 'CheckCreate':
             case 'Check':
                 Object.assign(props, {
                     color: styles.naturalColor,
-                    text: `${Localize.formatNumber(tx.SendMax.value)} ${NormalizeCurrencyCode(tx.SendMax.currency)}`,
+                    icon: 'IconCornerRightDown',
+                    value: tx.SendMax.value,
+                    currency: tx.SendMax.currency,
                 });
                 break;
             case 'CheckCash': {
@@ -1064,9 +1148,9 @@ class TransactionDetailsView extends Component<Props, State> {
 
                 Object.assign(props, {
                     color: incoming ? styles.incomingColor : styles.outgoingColor,
-                    text: `${incoming ? '' : '-'}${Localize.formatNumber(amount.value)} ${NormalizeCurrencyCode(
-                        amount.currency,
-                    )}`,
+                    prefix: incoming ? '' : '-',
+                    value: amount.value,
+                    currency: amount.currency,
                 });
                 break;
             }
@@ -1076,16 +1160,16 @@ class TransactionDetailsView extends Component<Props, State> {
                     const takerPaid = tx.TakerPaid(account.address);
                     Object.assign(props, {
                         color: styles.incomingColor,
-                        text: `${Localize.formatNumber(takerPaid.value)} ${NormalizeCurrencyCode(takerPaid.currency)}`,
                         icon: 'IconCornerRightDown',
+                        value: takerPaid.value,
+                        currency: takerPaid.currency,
                     });
                 } else {
                     Object.assign(props, {
                         color: styles.naturalColor,
-                        text: `${Localize.formatNumber(tx.TakerPays.value)} ${NormalizeCurrencyCode(
-                            tx.TakerPays.currency,
-                        )}`,
                         icon: 'IconCornerRightDown',
+                        value: tx.TakerPays.value,
+                        currency: tx.TakerPays.currency,
                     });
                 }
 
@@ -1100,7 +1184,7 @@ class TransactionDetailsView extends Component<Props, State> {
             return null;
         }
 
-        if (tx.Type === 'OfferCreate') {
+        if (tx.Type === 'OfferCreate' || tx.Type === 'Offer') {
             let takerGets;
 
             if (tx.Executed) {
@@ -1112,22 +1196,27 @@ class TransactionDetailsView extends Component<Props, State> {
             return (
                 <View style={styles.amountHeaderContainer}>
                     <View style={[AppStyles.row, styles.amountContainerSmall]}>
-                        <Text style={[styles.amountTextSmall]} numberOfLines={1}>
-                            {`${takerGets.value} ${NormalizeCurrencyCode(takerGets.currency)}`}
-                        </Text>
+                        <AmountText
+                            value={takerGets.value}
+                            currency={takerGets.currency}
+                            style={[styles.amountTextSmall]}
+                        />
                     </View>
 
                     <Spacer />
-                    <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
+                    <Icon size={20} style={AppStyles.imgColorGrey} name="IconSwitchAccount" />
                     <Spacer />
 
                     <View style={[AppStyles.row, styles.amountContainer]}>
                         {/*
                     // @ts-ignore */}
                         <Icon name={props.icon} size={27} style={[props.color, AppStyles.marginRightSml]} />
-                        <Text style={[styles.amountText, props.color]} numberOfLines={1}>
-                            {props.text}
-                        </Text>
+                        <AmountText
+                            value={props.value}
+                            currency={props.currency}
+                            prefix={props.prefix}
+                            style={[styles.amountText, props.color]}
+                        />
                     </View>
                 </View>
             );
@@ -1139,56 +1228,32 @@ class TransactionDetailsView extends Component<Props, State> {
                     return (
                         <View style={styles.amountHeaderContainer}>
                             <View style={[AppStyles.row, styles.amountContainerSmall]}>
-                                <Text style={[styles.amountTextSmall]} numberOfLines={1}>
-                                    {`${balanceChanges.sent.value} ${NormalizeCurrencyCode(
-                                        balanceChanges.sent.currency,
-                                    )}`}
-                                </Text>
+                                <AmountText
+                                    value={balanceChanges.sent.value}
+                                    currency={balanceChanges.sent.currency}
+                                    style={[styles.amountTextSmall]}
+                                />
                             </View>
 
                             <Spacer />
-                            <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
+                            <Icon size={20} style={AppStyles.imgColorGrey} name="IconSwitchAccount" />
                             <Spacer />
 
                             <View style={[AppStyles.row, styles.amountContainer]}>
                                 {/*
                         // @ts-ignore */}
                                 <Icon name={props.icon} size={27} style={[props.color, AppStyles.marginRightSml]} />
-                                <Text style={[styles.amountText, props.color]} numberOfLines={1}>
-                                    {props.text}
-                                </Text>
+                                <AmountText
+                                    value={props.value}
+                                    currency={props.currency}
+                                    prefix={props.prefix}
+                                    style={[styles.amountText, props.color]}
+                                />
                             </View>
                         </View>
                     );
                 }
             }
-        }
-
-        if (tx.Type === 'OfferCreate') {
-            const takerGot = tx.TakerGot(account.address);
-
-            return (
-                <View style={styles.amountHeaderContainer}>
-                    <View style={[AppStyles.row, styles.amountContainerSmall]}>
-                        <Text style={[styles.amountTextSmall]} numberOfLines={1}>
-                            {`${takerGot.value} ${NormalizeCurrencyCode(takerGot.currency)}`}
-                        </Text>
-                    </View>
-
-                    <Spacer />
-                    <Icon size={20} style={AppStyles.imgColorGreyDark} name="IconSwitchAccount" />
-                    <Spacer />
-
-                    <View style={[AppStyles.row, styles.amountContainer]}>
-                        {/*
-                    // @ts-ignore */}
-                        <Icon name={props.icon} size={27} style={[props.color, AppStyles.marginRightSml]} />
-                        <Text style={[styles.amountText, props.color]} numberOfLines={1}>
-                            {props.text}
-                        </Text>
-                    </View>
-                </View>
-            );
         }
 
         return (
@@ -1197,9 +1262,12 @@ class TransactionDetailsView extends Component<Props, State> {
                     {/*
                         // @ts-ignore */}
                     <Icon name={props.icon} size={27} style={[props.color, AppStyles.marginRightSml]} />
-                    <Text style={[styles.amountText, props.color]} numberOfLines={1}>
-                        {props.text}
-                    </Text>
+                    <AmountText
+                        value={props.value}
+                        currency={props.currency}
+                        prefix={props.prefix}
+                        style={[styles.amountText, props.color]}
+                    />
                 </View>
             </View>
         );
@@ -1402,13 +1470,11 @@ class TransactionDetailsView extends Component<Props, State> {
                 <View style={[AppStyles.flex1, AppStyles.centerContent]}>
                     <ActivityIndicator color={AppColors.blue} size="large" />
                     <Spacer />
-                    <Text style={[AppStyles.p, AppStyles.textCenterAligned]}>
-                        {Localize.t('global.pleaseWait')}
-                    </Text>
+                    <Text style={[AppStyles.p, AppStyles.textCenterAligned]}>{Localize.t('global.pleaseWait')}</Text>
                 </View>
             </ImageBackground>
-            );
-    }
+        );
+    };
 
     render() {
         const { asModal } = this.props;

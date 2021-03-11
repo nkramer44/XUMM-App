@@ -126,6 +126,7 @@
     "setFlag": "Set Flag",
     "clearFlag": "Clear Flag",
     "messageKey": "MessageKey",
+    "hidden": "Hidden",
     "transferRate": "TransferRate",
     "emailHash": "EmailHash",
     "domain": "Domain",
@@ -135,6 +136,7 @@
     "passcode": "Passcode",
     "longTap": "Long Tap",
     "offerSequence": "Offer Sequence",
+    "ticketCount": "Ticket Count",
     "finishAfter": "Finish After",
     "cancelAfter": "Cancel After",
     "expireAfter": "Expire After",
@@ -254,7 +256,14 @@
     "noResultFound": "No result found",
     "unableToFetchCurrencyRate": "Unable to fetch currency rate, please make sure you are connected to the internet",
     "signRequest": "Sign Request",
-    "openForDetails": "Open for detail"
+    "openForDetails": "Open for detail",
+    "scanAQRCode": "Scan a QR code",
+    "unableToLoadXApp": "Unable to load the xApp!",
+    "requestWithAmount": "Request with amount",
+    "openXApp": "Open xApp",
+    "reallySmallAmount": "Really small amount",
+    "about": "About",
+    "theAmountIsTooSmallToDisplay": "The amount is to small to display:\n%{amount}"
   },
   "onboarding": {
     "slideOne_title": "Payments and\r\npayment requests\r\non the XRP Ledger",
@@ -270,6 +279,7 @@
     "passCodeDescription": "We use the passcode to lock the app, confirm settings and to keep your account secure.",
     "setPasscode": "Please set your passcode",
     "repeatPasscode": "Please repeat your new passcode",
+    "passcodeDoNotMatch": "The passcode do not match!",
     "warnNeedPasscode": "You will need your passcode to unlock the app",
     "UnableToStoreThePasscode": "Unable to store the passcode. This should not happen. A bug report was sent to the XUMM support team. Please contact us at support@xumm.app for more information."
   },
@@ -324,7 +334,8 @@
     "shareReadonlyAccountWarning": "Do you own the keys to this Read Only account or is this your exchange account?",
     "iOwnTheKeys": "I own the keys",
     "exchangeAccount": "Exchange Account",
-    "exchangeAccountReadonlyExplain": "You cannot deposit directly to your exchange account: you need a destination tag to do so. Please get your destination tag from your exchange, and deposit manually."
+    "exchangeAccountReadonlyExplain": "You cannot deposit directly to your exchange account: you need a destination tag to do so. Please get your destination tag from your exchange, and deposit manually.",
+    "viewMoreXApps": "View more xApps"
   },
   "events": {
     "eventTypeAll": "All",
@@ -362,6 +373,7 @@
     "unauthorizeDeposit": "Unauthorize deposit ",
     "deleteAccount": "Delete Account",
     "setSignerList": "Set Signer List",
+    "createTicket": "Create ticket",
     "updateAccountSettings": "Update account settings",
     "setARegularKey": "Set a Regular Key",
     "setRegularKey": "Set Regular Key",
@@ -417,7 +429,9 @@
     "itRemovesTheAccountTransferRate": "It removes the account transfer rate",
     "itSetsAccountTransferRateTo": "It sets the account's transfer rate to %{transferRate}.",
     "itSetsTheAccountFlag": "It sets the account's flag %{flag}.",
-    "itClearsTheAccountFlag": "It clears the account's flag %{flag}."
+    "itClearsTheAccountFlag": "It clears the account's flag %{flag}.",
+    "itCreatesTicketForThisAccount": "It creates %{ticketCount} ticket for this account.",
+    "pleaseReleaseThisEscrowUsingTheToolUsedToCreateTheEscrow": "Please release this escrow using the tool / platform used to create the escrow. XUMM can not release the escrow as there is an Escrow Condition present on the escrow."
   },
   "profile": {
     "availableInFuture": "This feature will be available soon!",
@@ -477,7 +491,11 @@
     "viewChangeLog": "View changelog",
     "hideBalanceByDefault": "Hide balance by default",
     "blockTakingScreenshots": "Block taking screenshots",
-    "unableToLoadListOfCurrencies": "Unable to load list of currencies!"
+    "unableToLoadListOfCurrencies": "Unable to load list of currencies!",
+    "pushNotifications": "Push Notifications",
+    "reRegisterForPushNotifications": "Re-register for push notifications",
+    "successfullyReRegisteredForPushNotifications": "Successfully re-registered for push notifications.",
+    "unableToReRegisteredForPushNotifications": "Unable to re-registered for push notifications. An unexpected error occurred!"
   },
   "account": {
     "addAccount": "Add an account",
@@ -614,7 +632,9 @@
     "availableForSpending": "Available for spending",
     "deleteAccountWarning": "This is an Account Delete transaction. When signing your account will be deleted, and all your remaining funds (except for the last 5 reserved XRP, as the fee on the XRP ledger for deleting an account is 5 XRP) will be sent to the configured destination. Please check the destination twice, and ONLY continue if you ACTUALLY want to delete your account on the XRP ledger",
     "deleteAccountObjectsExistError": "You cannot delete this account, as your account contains specific XRP ledger objects, like other assets, Decentralized Exchange offers, Escrows (as a creator or beneficiary)",
-    "unableToCheckAccountObjects": "Unable to check for account objects, please make sure you are connected to the XRP ledger node",
+    "deleteAccountSequenceIsNotEnoughError": "This account cannot be deleted (yet). It takes %{remainingSequence} more ledgers to close before this account can be deleted.",
+    "unableToCheckAccountObjects": "Unable to check for account objects. Please make sure you are connected to the XRPL node.",
+    "unableToFetchLedgerSequence": "Unable to fetch current ledger sequence. Please make sure you are connected to the XRPL node.",
     "unableGetDestinationAccountInfo": "Unable to get destination account info, please make sure you are connected to the XRP ledger node",
     "destinationAccountIsNotActivated": "This destination account is not activated. The destination account must be a funded account in the XRP Ledger.",
     "destinationAccountAndSourceCannotBeSame": "Destination account and source cannot be the same.",
@@ -625,7 +645,15 @@
     "thisAddressAppearsToBeExchangeAddress": "This address appears to be an exchange address, are you sure you want to continue?\r\n\r\nYou can never send to this address without respecting the instructions of your exchange.",
     "accountDestroyWarning": "Your account will be deleted PERMANENTLY, are you sure?",
     "destroyAccount": "Delete this account",
-    "importTangemCard": "Import Tangem Card"
+    "importTangemCard": "Import Tangem Card",
+    "unableToHideAllAccountsError": "Unable to hide this account, at least one account should be visible.",
+    "tapAndHoldToReorder": "Tap and hold on an item to reorder by the desired priority",
+    "importSecret": "Import secret",
+    "toTurnYourSecretIntoXrplLedgerAccountPleaseEnterYourSecret": "To turn your secret into an XRP Ledger account, please enter your secret.",
+    "enterSecret": "Enter secret",
+    "yourChainAddressWas": "Your %{chain} address was:",
+    "yourXRPLedgerAccountIsGoingToBe": "Your XRP Ledger account is going to be:",
+    "importSecretWithoutChecksumWarning": "If you continue, you will import an XRP Ledger account from Secret Numbers. The Secret Numbers should be generated **by you** using an offline method (eg. with dice). You **must** have stored your generated secret numbers (eg. stamped in metal, written down).\nONLY CONTINUE IF YOU KNOW WHAT YOU ARE DOING."
   },
   "send": {
     "amountIsBiggerThanYourSpend": "This amount is bigger than what you can spend (%{spendable})",
@@ -675,9 +703,9 @@
     "noDestinationTag": "No destination tag",
     "thisAddressRequiredDestinationTag": "This address requires a destination tag.",
     "pleaseEnterAmount": "Please enter the amount for this transaction.",
-    "trustLineLimitExceeded": "TrustLine limit is exceeded.\r\n\r\nNow: %{balance}\r\nMax: %{peer_limit}\r\nAvailable for issuing: %{available}\r\n\r\nThe recipient can update the Trustline limit.",
-    "unableToSendPaymentNotEnoughLiquidity": "Unable to send the payment right now due to lack of liquidity.",
-    "destinationTagWarningConfirm": "You are sending to an account with a Destination Tag. Please double-check the Destination Tag: if you send to the wrong Tag, you will need to contact the Destination account's support team to recover your funds!",
+    "trustLineLimitExceeded": "TrustLine limit is exceeded, now: %{balance}, max: %{peer_limit}, available for issuing: %{available}. The recipient can update the TrustLine limit.",
+    "unableToSendPaymentRecipientDoesNotHaveTrustLine": "Unable to send the token to the recipient.\nThe recipient does not have a TrustLine for this token setup to the issuer of this token.",
+    "destinationTagWarningConfirm": "You are sending to an account with a destination tag. Please double-check the destination tag: if you send to the wrong tag, you will need to contact the Destination account's support team to recover your funds!",
     "doubleCheckDestinationTag": "Double check destination tag",
     "sendToAccountWithDisallowXrpFlagWarning": "The destination account indicates that it doesn't want to receive XRP payments. Only non-XRP (IOU) payments can be sent to this destination."
   },

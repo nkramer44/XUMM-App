@@ -27,7 +27,7 @@ class MnemonicAlertStep extends Component<Props, State> {
     context: React.ContextType<typeof StepsContext>;
 
     openFAQ = () => {
-        const url = 'https://support.xumm.app/en/articles/3852597-how-does-xumm-security-compare-to-a-hardware-wallet';
+        const url = 'http://xumm.app/redir/faq/security-hardware/en';
 
         Linking.canOpenURL(url).then((supported) => {
             if (supported) {
@@ -38,8 +38,13 @@ class MnemonicAlertStep extends Component<Props, State> {
         });
     };
 
+    goNext = () => {
+        const { goNext } = this.context;
+        goNext('EnterMnemonic');
+    };
+
     render() {
-        const { goNext, goBack } = this.context;
+        const { goBack } = this.context;
 
         return (
             <SafeAreaView testID="account-import-mnemonic-alert-view" style={[AppStyles.container]}>
@@ -81,9 +86,7 @@ class MnemonicAlertStep extends Component<Props, State> {
                             secondary
                             label={Localize.t('global.back')}
                             icon="IconChevronLeft"
-                            onPress={() => {
-                                goBack();
-                            }}
+                            onPress={goBack}
                         />
                     </View>
                     <View style={[AppStyles.flex5]}>
@@ -91,9 +94,7 @@ class MnemonicAlertStep extends Component<Props, State> {
                             testID="next-button"
                             textStyle={AppStyles.strong}
                             label={Localize.t('global.nextIUnderstand')}
-                            onPress={() => {
-                                goNext('EnterMnemonic');
-                            }}
+                            onPress={this.goNext}
                         />
                     </View>
                 </Footer>

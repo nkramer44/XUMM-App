@@ -49,8 +49,21 @@ class ViewPublicKeyStep extends Component<Props, State> {
         );
     };
 
+    goNext = () => {
+        const { goNext } = this.context;
+
+        goNext('ExplainActivation');
+    };
+
+    copyPubKeyToClipboard = () => {
+        const { generatedAccount } = this.context;
+
+        Clipboard.setString(generatedAccount.address);
+        Toast(Localize.t('account.publicKeyCopiedToClipboard'));
+    };
+
     render() {
-        const { generatedAccount, goNext } = this.context;
+        const { generatedAccount } = this.context;
 
         return (
             <SafeAreaView testID="account-generate-show-address-view" style={[AppStyles.container]}>
@@ -75,13 +88,10 @@ class ViewPublicKeyStep extends Component<Props, State> {
                     <Button
                         label={Localize.t('account.copyAddress')}
                         icon="IconClipboard"
-                        style={AppStyles.buttonSilver}
+                        style={AppStyles.buttonGrey}
                         iconStyle={AppStyles.imgColorGrey}
                         textStyle={[AppStyles.colorGrey]}
-                        onPress={() => {
-                            Clipboard.setString(generatedAccount.address);
-                            Toast(Localize.t('account.publicKeyCopiedToClipboard'));
-                        }}
+                        onPress={this.copyPubKeyToClipboard}
                         roundedSmall
                         outline
                     />
@@ -104,9 +114,7 @@ class ViewPublicKeyStep extends Component<Props, State> {
                             isDisabled={!generatedAccount}
                             textStyle={AppStyles.strong}
                             label={Localize.t('global.next')}
-                            onPress={() => {
-                                goNext('ExplainActivation');
-                            }}
+                            onPress={this.goNext}
                         />
                     </View>
                 </Footer>

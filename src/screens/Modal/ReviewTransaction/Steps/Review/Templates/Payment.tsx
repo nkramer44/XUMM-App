@@ -14,7 +14,7 @@ import { txFlags } from '@common/libs/ledger/parser/common/flags/txFlags';
 import { NormalizeCurrencyCode } from '@common/libs/utils';
 import { getAccountName, AccountNameType } from '@common/helpers/resolver';
 
-import { AmountInput, Button, InfoMessage, Spacer } from '@components/General';
+import { AmountInput, AmountText, Button, InfoMessage, Spacer } from '@components/General';
 import { RecipientElement } from '@components/Modules';
 
 import { Toast } from '@common/helpers/interface';
@@ -170,7 +170,7 @@ class PaymentTemplate extends Component<Props, State> {
 
                     const sendMaxXRP = new BigNumber(transaction.Amount.value)
                         .multipliedBy(liquidity.rate)
-                        .decimalPlaces(6)
+                        .decimalPlaces(8)
                         .toString(10);
 
                     // @ts-ignore
@@ -179,7 +179,7 @@ class PaymentTemplate extends Component<Props, State> {
 
                     this.setState({
                         isPartialPayment: true,
-                        exchangeRate: new BigNumber(1).dividedBy(liquidity.rate).decimalPlaces(6).toNumber(),
+                        exchangeRate: new BigNumber(1).dividedBy(liquidity.rate).decimalPlaces(8).toNumber(),
                         xrpRoundedUp: sendMaxXRP,
                     });
                 } else {
@@ -323,35 +323,43 @@ class PaymentTemplate extends Component<Props, State> {
                             }
                         }}
                     >
-                        <View style={[AppStyles.row, AppStyles.flex1]}>
-                            <AmountInput
-                                ref={(r) => {
-                                    this.amountInput = r;
-                                }}
-                                onChange={this.onAmountChange}
-                                style={[styles.amountInput]}
+                        {editableAmount ? (
+                            <>
+                                <View style={[AppStyles.row, AppStyles.flex1]}>
+                                    <AmountInput
+                                        ref={(r) => {
+                                            this.amountInput = r;
+                                        }}
+                                        onChange={this.onAmountChange}
+                                        style={[styles.amountInput]}
+                                        value={amount}
+                                        editable={editableAmount}
+                                    />
+                                    <Text style={[styles.amountInput]}>
+                                        {' '}
+                                        {transaction.Amount?.currency
+                                            ? NormalizeCurrencyCode(transaction.Amount.currency)
+                                            : 'XRP'}
+                                    </Text>
+                                </View>
+                                <Button
+                                    onPress={() => {
+                                        if (this.amountInput) {
+                                            this.amountInput.focus();
+                                        }
+                                    }}
+                                    style={styles.editButton}
+                                    roundedSmall
+                                    iconSize={13}
+                                    light
+                                    icon="IconEdit"
+                                />
+                            </>
+                        ) : (
+                            <AmountText
+                                style={styles.amountInput}
                                 value={amount}
-                                editable={editableAmount}
-                            />
-                            <Text style={[styles.amountInput]}>
-                                {' '}
-                                {transaction.Amount?.currency
-                                    ? NormalizeCurrencyCode(transaction.Amount.currency)
-                                    : 'XRP'}
-                            </Text>
-                        </View>
-                        {editableAmount && (
-                            <Button
-                                onPress={() => {
-                                    if (this.amountInput) {
-                                        this.amountInput.focus();
-                                    }
-                                }}
-                                style={styles.editButton}
-                                roundedSmall
-                                iconSize={13}
-                                light
-                                icon="IconEdit"
+                                currency={transaction.Amount.currency}
                             />
                         )}
                     </TouchableOpacity>

@@ -38,7 +38,7 @@ import { VibrateHapticFeedback, Prompt, Toast } from '@common/helpers/interface'
 import Localize from '@locale';
 
 // components
-import { Button, RaisedButton, InfoMessage, Spacer, Icon } from '@components/General';
+import { Button, RaisedButton, InfoMessage, Spacer, Icon, AmountText } from '@components/General';
 
 // style
 import { AppStyles, AppColors } from '@theme';
@@ -276,6 +276,10 @@ class HomeView extends Component<Props, State> {
         Alert.alert(Localize.t('global.warning'), Localize.t('home.exchangeAccountReadonlyExplain'));
     };
 
+    onRequestPress = () => {
+        Navigator.push(AppScreens.Transaction.Request);
+    };
+
     onShowAccountQRPress = () => {
         const { account } = this.state;
 
@@ -464,11 +468,14 @@ class HomeView extends Component<Props, State> {
             <View style={[AppStyles.flex6, styles.currencyList]} testID="activated-account-container">
                 <View style={[AppStyles.row, AppStyles.centerContent, styles.trustLinesHeader]}>
                     <View style={[AppStyles.flex5, AppStyles.centerContent]}>
-                        <Text style={[AppStyles.pbold]}>{Localize.t('home.otherAssets')}</Text>
+                        <Text numberOfLines={1} style={[AppStyles.pbold]}>
+                            {Localize.t('home.otherAssets')}
+                        </Text>
                     </View>
                     {isSpendable && (
                         <View style={[AppStyles.flex5]}>
                             <Button
+                                numberOfLines={1}
                                 testID="add-asset-button"
                                 label={Localize.t('home.addAsset')}
                                 onPress={this.addCurrency}
@@ -562,15 +569,19 @@ class HomeView extends Component<Props, State> {
                                                 source={{ uri: line.currency.avatar }}
                                             />
                                         )}
-                                        <Text
-                                            style={[
-                                                AppStyles.pbold,
-                                                AppStyles.monoBold,
-                                                discreetMode && AppStyles.colorGrey,
-                                            ]}
-                                        >
-                                            {discreetMode ? '••••••••' : Localize.formatNumber(line.balance)}
-                                        </Text>
+
+                                        {discreetMode ? (
+                                            <Text
+                                                style={[AppStyles.pbold, AppStyles.monoBold, AppStyles.colorGrey]}
+                                            >
+                                                ••••••••
+                                            </Text>
+                                        ) : (
+                                            <AmountText
+                                                value={line.balance}
+                                                style={[AppStyles.pbold, AppStyles.monoBold]}
+                                            />
+                                        )}
                                     </View>
                                 </TouchableOpacity>
                             );
@@ -607,7 +618,7 @@ class HomeView extends Component<Props, State> {
                         iconPosition="right"
                         label={Localize.t('global.request')}
                         textStyle={[styles.requestButtonText]}
-                        onPress={this.onShowAccountQRPress}
+                        onPress={this.onRequestPress}
                         activeOpacity={0}
                     />
                 </View>
@@ -667,7 +678,9 @@ class HomeView extends Component<Props, State> {
 
         if (!isLoadingRate) {
             if (showRate) {
-                balance = `${currencyRate.symbol} ${Localize.formatNumber(account.balance * currencyRate.lastRate)}`;
+                balance = `${currencyRate.symbol} ${Localize.formatNumber(
+                    Number(account.availableBalance) * Number(currencyRate.lastRate),
+                )}`;
             } else {
                 balance = Localize.formatNumber(account.availableBalance);
             }
@@ -676,7 +689,9 @@ class HomeView extends Component<Props, State> {
         return (
             <>
                 <View style={[AppStyles.row, AppStyles.centerAligned]}>
-                    <Text style={[AppStyles.flex1, styles.balanceLabel]}>{Localize.t('global.balance')}</Text>
+                    <Text numberOfLines={1} style={[AppStyles.flex1, styles.balanceLabel]}>
+                        {Localize.t('global.balance')}
+                    </Text>
 
                     <TouchableOpacity style={AppStyles.paddingRightSml} onPress={this.toggleDiscreetMode}>
                         <Text style={[styles.cardSmallLabel]}>

@@ -2,7 +2,7 @@
  * Send Summary Step
  */
 
-import { isNil } from 'lodash';
+import { isEmpty } from 'lodash';
 import BigNumber from 'bignumber.js';
 import React, { Component } from 'react';
 import {
@@ -28,17 +28,17 @@ import { Navigator } from '@common/helpers/navigator';
 import { Images } from '@common/helpers/images';
 
 import Preferences from '@common/libs/preferences';
-import { NormalizeCurrencyCode } from '@common/libs/utils';
+import { NormalizeCurrencyCode, XRPLValueToNFT } from '@common/libs/utils';
 
 // components
-import { AmountInput, Button, Footer, Spacer, TextInput, SwipeButton } from '@components/General';
+import { AmountInput, AmountText, Button, Footer, Spacer, TextInput, SwipeButton, Header } from '@components/General';
 import { AccountPicker } from '@components/Modules';
 
 // locale
 import Localize from '@locale';
 
 // style
-import { AppStyles, AppColors } from '@theme';
+import { AppStyles, AppColors, AppSizes } from '@theme';
 import styles from './styles';
 
 import { StepsContext } from '../../Context';
@@ -125,17 +125,18 @@ class SummaryStep extends Component<Props, State> {
     };
 
     getAvailableBalance = () => {
-        const { currency, source } = this.context;
+        const { currency, source, sendingNFT } = this.context;
 
         let availableBalance;
 
         // XRP
         if (typeof currency === 'string') {
             availableBalance = source.availableBalance;
+        } else if (sendingNFT) {
+            availableBalance = XRPLValueToNFT(currency.balance);
         } else {
             availableBalance = currency.balance;
         }
-
         return availableBalance;
     };
 
@@ -253,6 +254,7 @@ class SummaryStep extends Component<Props, State> {
             return;
         }
 
+        // @ts-ignore
         const availableBalance = new BigNumber(this.getAvailableBalance()).toNumber();
 
         // check if amount is bigger than what user can spend
@@ -283,7 +285,7 @@ class SummaryStep extends Component<Props, State> {
             return;
         }
 
-        if (!isNil(destination.tag) && destination.tag !== confirmedDestinationTag) {
+        if (!isEmpty(destination.tag) && destination.tag !== confirmedDestinationTag) {
             Navigator.showOverlay(
                 AppScreens.Overlay.ConfirmDestinationTag,
                 {
@@ -348,9 +350,11 @@ class SummaryStep extends Component<Props, State> {
 
                             {item.currency.name && <Text style={[AppStyles.subtext]}> - {item.currency.name}</Text>}
                         </Text>
-                        <Text style={[styles.currencyBalance]}>
-                            {Localize.t('global.balance')}: {Localize.formatNumber(item.balance)}
-                        </Text>
+                        <AmountText
+                            prefix={`${Localize.t('global.balance')}: `}
+                            style={[styles.currencyBalance]}
+                            value={item.balance}
+                        />
                     </View>
                 </View>
             </View>
@@ -380,12 +384,17 @@ class SummaryStep extends Component<Props, State> {
     };
 
     render() {
-        const { source, accounts, amount, destination, currency, isLoading } = this.context;
+        const { source, accounts, amount, destination, currency, sendingNFT, isLoading } = this.context;
 
         return (
             <View testID="send-summary-view" style={[styles.container]}>
-                <ScrollView style={[AppStyles.flex1, AppStyles.stretchSelf]}>
-                    <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="position">
+                <KeyboardAvoidingView
+                    enabled={Platform.OS === 'ios'}
+                    behavior="padding"
+                    style={[AppStyles.flex1, AppStyles.stretchSelf]}
+                    keyboardVerticalOffset={Header.Height + AppSizes.extraKeyBoardPadding}
+                >
+                    <ScrollView>
                         <View onLayout={this.setGradientHeight} style={[styles.rowItem, styles.rowItemGrey]}>
                             <Animated.Image
                                 source={Images.SideGradient}
@@ -473,6 +482,7 @@ class SummaryStep extends Component<Props, State> {
                                         ref={(r) => {
                                             this.amountInput = r;
                                         }}
+                                        fractional={!sendingNFT}
                                         onChange={this.onAmountChange}
                                         style={[styles.amountInput]}
                                         value={amount}
@@ -511,8 +521,8 @@ class SummaryStep extends Component<Props, State> {
                                 numberOfLines={1}
                             />
                         </View>
-                    </KeyboardAvoidingView>
-                </ScrollView>
+                    </ScrollView>
+                </KeyboardAvoidingView>
                 {/* Bottom Bar */}
                 <Footer safeArea>
                     <SwipeButton

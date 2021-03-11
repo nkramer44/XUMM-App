@@ -136,6 +136,7 @@ class FinishView extends Component<Props, State> {
 
                 <Footer>
                     <Button
+                        numberOfLines={1}
                         isDisabled={!isTOSLoaded}
                         testID="confirm-button"
                         isLoading={isLoading}

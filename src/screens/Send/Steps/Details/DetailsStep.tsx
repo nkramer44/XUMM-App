@@ -27,10 +27,10 @@ import { BackendService } from '@services';
 import { Images } from '@common/helpers/images';
 import { Prompt, Toast } from '@common/helpers/interface';
 
-import { NormalizeCurrencyCode } from '@common/libs/utils';
+import { NormalizeCurrencyCode, XRPLValueToNFT } from '@common/libs/utils';
 
 // components
-import { Header, Button, AccordionPicker, AmountInput, Footer } from '@components/General';
+import { Header, Button, AccordionPicker, AmountInput, AmountText, Footer } from '@components/General';
 import { AccountPicker } from '@components/Modules';
 
 import Localize from '@locale';
@@ -124,6 +124,7 @@ class DetailsStep extends Component<Props, State> {
             return;
         }
 
+        // @ts-ignore
         const availableBalance = new BigNumber(this.getAvailableBalance()).toNumber();
 
         // check if amount is bigger than what user can spend
@@ -139,7 +140,7 @@ class DetailsStep extends Component<Props, State> {
                     {
                         text: Localize.t('global.update'),
                         onPress: () => {
-                            setAmount(availableBalance.toString());
+                            this.onAmountChange(availableBalance.toString());
                         },
                     },
                 ],
@@ -167,13 +168,15 @@ class DetailsStep extends Component<Props, State> {
     };
 
     getAvailableBalance = () => {
-        const { currency, source } = this.context;
+        const { currency, source, sendingNFT } = this.context;
 
         let availableBalance;
 
         // XRP
         if (typeof currency === 'string') {
             availableBalance = source.availableBalance;
+        } else if (sendingNFT) {
+            availableBalance = XRPLValueToNFT(currency.balance);
         } else {
             availableBalance = currency.balance;
         }
@@ -301,11 +304,12 @@ class DetailsStep extends Component<Props, State> {
 
                             {item.currency.name && <Text style={[AppStyles.subtext]}> - {item.currency.name}</Text>}
                         </Text>
-                        <Text
+
+                        <AmountText
+                            prefix={`${Localize.t('global.balance')}: `}
                             style={[styles.currencyBalance, selected ? AppStyles.colorBlue : AppStyles.colorGreyDark]}
-                        >
-                            {Localize.t('global.balance')}: {Localize.formatNumber(item.balance)}
-                        </Text>
+                            value={item.balance}
+                        />
                     </View>
                 </View>
             </View>
@@ -314,16 +318,17 @@ class DetailsStep extends Component<Props, State> {
 
     render() {
         const { amountRate, currencyRate } = this.state;
-        const { goBack, accounts, source, currency, amount, coreSettings } = this.context;
+        const { goBack, accounts, source, currency, amount, sendingNFT, coreSettings } = this.context;
 
         return (
             <View testID="send-details-view" style={[styles.container]}>
-                <ScrollView style={[AppStyles.flex1, AppStyles.stretchSelf]}>
-                    <KeyboardAvoidingView
-                        enabled={Platform.OS === 'ios'}
-                        keyboardVerticalOffset={Header.Height + AppSizes.extraKeyBoardPadding}
-                        behavior="position"
-                    >
+                <KeyboardAvoidingView
+                    enabled={Platform.OS === 'ios'}
+                    behavior="padding"
+                    style={[AppStyles.flex1, AppStyles.stretchSelf]}
+                    keyboardVerticalOffset={Header.Height + AppSizes.extraKeyBoardPadding}
+                >
+                    <ScrollView>
                         {/* Source Account */}
                         <View
                             onLayout={this.setGradientHeight}
@@ -384,6 +389,7 @@ class DetailsStep extends Component<Props, State> {
                                         ref={(r) => {
                                             this.amountInput = r;
                                         }}
+                                        fractional={!sendingNFT}
                                         testID="amount-input"
                                         onChange={this.onAmountChange}
                                         returnKeyType="done"
@@ -404,29 +410,31 @@ class DetailsStep extends Component<Props, State> {
                                     icon="IconEdit"
                                 />
                             </View>
-
-                            <View style={[styles.amountRateContainer]}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.amountRateInput]}>~ </Text>
+                            {/* only show rate for XRP payments */}
+                            {typeof currency === 'string' && (
+                                <View style={[styles.amountRateContainer]}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.amountRateInput]}>~ </Text>
+                                    </View>
+                                    <View style={AppStyles.flex1}>
+                                        <AmountInput
+                                            editable={!!currencyRate}
+                                            testID="amount-rate-input"
+                                            onChange={this.onRateAmountChange}
+                                            returnKeyType="done"
+                                            style={[styles.amountRateInput]}
+                                            placeholderTextColor={AppColors.greyDark}
+                                            value={amountRate}
+                                        />
+                                    </View>
+                                    <View style={styles.currencySymbolTextContainer}>
+                                        <Text style={[styles.currencySymbolText]}>{coreSettings.currency}</Text>
+                                    </View>
                                 </View>
-                                <View style={AppStyles.flex1}>
-                                    <AmountInput
-                                        editable={!!currencyRate}
-                                        testID="amount-rate-input"
-                                        onChange={this.onRateAmountChange}
-                                        returnKeyType="done"
-                                        style={[styles.amountRateInput]}
-                                        placeholderTextColor={AppColors.greyDark}
-                                        value={amountRate}
-                                    />
-                                </View>
-                                <View style={styles.currencySymbolTextContainer}>
-                                    <Text style={[styles.currencySymbolText]}>{coreSettings.currency}</Text>
-                                </View>
-                            </View>
+                            )}
                         </View>
-                    </KeyboardAvoidingView>
-                </ScrollView>
+                    </ScrollView>
+                </KeyboardAvoidingView>
 
                 {/* Bottom Bar */}
                 <Footer style={[AppStyles.row]} safeArea>

@@ -18,6 +18,7 @@ import { OptionsModalPresentationStyle, OptionsModalTransitionStyle } from 'reac
 import Interactable from 'react-native-interactable';
 
 import { Navigator } from '@common/helpers/navigator';
+import { Images } from '@common/helpers/images';
 
 import { AccountRepository } from '@store/repositories';
 import { AccountSchema } from '@store/schemas/latest';
@@ -27,7 +28,9 @@ import { BackendService } from '@services';
 import { AppScreens } from '@common/constants';
 
 // components
-import { Button, Icon, Spacer, HorizontalLine } from '@components/General';
+import { Button, Spacer, HorizontalLine } from '@components/General';
+
+import Localize from '@locale';
 
 // style
 import { AppStyles, AppSizes, AppColors } from '@theme';
@@ -40,7 +43,6 @@ export interface State {
     account: AccountSchema;
     isLoading: boolean;
     apps: any;
-    moreUrl: string;
 }
 
 /* Component ==================================================================== */
@@ -50,6 +52,7 @@ class HomeActionsOverlay extends Component<Props, State> {
     panel: any;
     deltaY: Animated.Value;
     deltaX: Animated.Value;
+    isOpening: boolean;
 
     static options() {
         return {
@@ -70,11 +73,12 @@ class HomeActionsOverlay extends Component<Props, State> {
             account: AccountRepository.getDefaultAccount(),
             isLoading: true,
             apps: [],
-            moreUrl: '',
         };
 
         this.deltaY = new Animated.Value(AppSizes.screen.height);
         this.deltaX = new Animated.Value(0);
+
+        this.isOpening = true;
     }
 
     componentDidMount() {
@@ -84,15 +88,12 @@ class HomeActionsOverlay extends Component<Props, State> {
     }
 
     fetchApps = () => {
-        const { account } = this.state;
-
-        BackendService.getXAppShortList(account.address).then((resp: any) => {
-            const { apps, moreUrl } = resp;
+        BackendService.getXAppShortList().then((resp: any) => {
+            const { apps } = resp;
 
             this.setState({
                 apps,
                 isLoading: false,
-                moreUrl,
             });
         });
     };
@@ -113,10 +114,16 @@ class HomeActionsOverlay extends Component<Props, State> {
         }, 20);
     };
 
-    onSnap = async (event: any) => {
-        const { index } = event.nativeEvent;
+    onAlert = (event: any) => {
+        const { top, bottom } = event.nativeEvent;
 
-        if (index === 0) {
+        if (top && bottom) return;
+
+        if (top && this.isOpening) {
+            this.isOpening = false;
+        }
+
+        if (bottom && !this.isOpening) {
             Navigator.dismissOverlay();
         }
     };
@@ -133,20 +140,20 @@ class HomeActionsOverlay extends Component<Props, State> {
     };
 
     onViewMoreAppsPress = () => {
-        const { moreUrl } = this.state;
+        const moreIdentifier = 'xumm.more';
 
-        this.openURL(moreUrl, 'XApps');
+        this.openXApp(moreIdentifier, 'XApps');
     };
 
     onAppPress = (index: number) => {
         const { apps } = this.state;
 
-        const { location, title } = apps[index];
+        const { identifier, title } = apps[index];
 
-        this.openURL(location, title);
+        this.openXApp(identifier, title);
     };
 
-    openURL = (location: string, title: string) => {
+    openXApp = (identifier: string, title: string) => {
         const { account } = this.state;
 
         this.slideDown();
@@ -159,7 +166,7 @@ class HomeActionsOverlay extends Component<Props, State> {
                     modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
                 },
                 {
-                    uri: location,
+                    identifier,
                     title,
                     account,
                 },
@@ -172,11 +179,7 @@ class HomeActionsOverlay extends Component<Props, State> {
 
         return (
             <View style={AppStyles.flex1}>
-                <TouchableWithoutFeedback
-                    onPress={() => {
-                        this.slideDown();
-                    }}
-                >
+                <TouchableWithoutFeedback onPress={this.slideDown}>
                     <Animated.View
                         style={[
                             AppStyles.shadowContent,
@@ -196,24 +199,31 @@ class HomeActionsOverlay extends Component<Props, State> {
                         this.panel = r;
                     }}
                     animatedNativeDriver
-                    onSnap={this.onSnap}
+                    onAlert={this.onAlert}
                     verticalOnly
                     snapPoints={[
                         { y: AppSizes.screen.height + 3 },
-                        { y: AppSizes.screen.height - AppSizes.moderateScale(480) - AppSizes.navigationBarHeight },
+                        { y: AppSizes.screen.height - AppSizes.moderateScale(430) - AppSizes.navigationBarHeight },
+                    ]}
+                    alertAreas={[
+                        { id: 'bottom', influenceArea: { bottom: AppSizes.screen.height } },
                         {
-                            y: AppSizes.screen.height - AppSizes.moderateScale(480) - AppSizes.navigationBarHeight,
+                            id: 'top',
+                            influenceArea: {
+                                top:
+                                    AppSizes.screen.height - AppSizes.moderateScale(430) - AppSizes.navigationBarHeight,
+                            },
                         },
                     ]}
                     boundaries={{
-                        top: AppSizes.screen.height - AppSizes.moderateScale(530) - AppSizes.navigationBarHeight,
+                        top: AppSizes.screen.height - AppSizes.moderateScale(480) - AppSizes.navigationBarHeight,
                     }}
                     initialPosition={{ y: AppSizes.screen.height + 3 }}
                     animatedValueY={this.deltaY}
                     animatedValueX={this.deltaX}
                 >
                     <View
-                        style={[styles.container, { height: AppSizes.moderateScale(530) }]}
+                        style={[styles.container, { height: AppSizes.moderateScale(480) }]}
                         onStartShouldSetResponder={() => true}
                     >
                         <View style={AppStyles.panelHeader}>
@@ -221,16 +231,19 @@ class HomeActionsOverlay extends Component<Props, State> {
                         </View>
 
                         <View style={[AppStyles.centerAligned, AppStyles.paddingBottomSml]}>
-                            <Text style={[AppStyles.h5, AppStyles.strong]}>What do you want to do?</Text>
+                            <Text numberOfLines={1} style={[AppStyles.h5, AppStyles.strong]}>
+                                {Localize.t('payload.whatDoYouWantToDo')}
+                            </Text>
                         </View>
 
                         <View style={[AppStyles.row, AppStyles.centerAligned]}>
                             <View style={[AppStyles.flex1]}>
-                                <Text style={[AppStyles.h5]}>xApps</Text>
+                                <Image source={Images.IconXApps} resizeMode="contain" style={styles.xAppsIcon} />
                             </View>
                             <View style={[AppStyles.row, AppStyles.flex1, AppStyles.flexEnd]}>
                                 <Button
-                                    label="View more xApps"
+                                    numberOfLines={1}
+                                    label={Localize.t('home.viewMoreXApps')}
                                     icon="IconApps"
                                     iconStyle={[AppStyles.imgColorBlue]}
                                     iconSize={17}
@@ -274,27 +287,15 @@ class HomeActionsOverlay extends Component<Props, State> {
                                 { marginBottom: AppSizes.navigationBarHeight },
                             ]}
                         >
-                            <View style={[AppStyles.flex1, AppStyles.paddingRightSml]}>
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    onPress={() => {}}
-                                    style={[styles.actionButton, styles.actionButtonLight]}
-                                >
-                                    <Icon size={30} name="IconClipboard" />
-                                    <Spacer />
-                                    <Text style={[styles.actionButtonText]}>Copy from clipboard</Text>
-                                </TouchableOpacity>
-                            </View>
                             <View style={[AppStyles.flex1]}>
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
+                                <Button
+                                    numberOfLines={1}
+                                    label={Localize.t('global.scanAQRCode')}
                                     onPress={this.onScanButtonPress}
-                                    style={[styles.actionButton, styles.actionButtonBlack]}
-                                >
-                                    <Icon size={26} name="IconScan" style={AppStyles.imgColorWhite} />
-                                    <Spacer />
-                                    <Text style={[styles.actionButtonText, AppStyles.colorWhite]}>Scan a QR code</Text>
-                                </TouchableOpacity>
+                                    style={styles.actionButtonBlack}
+                                    icon="IconScan"
+                                    iconStyle={AppStyles.imgColorWhite}
+                                />
                             </View>
                         </View>
                     </View>

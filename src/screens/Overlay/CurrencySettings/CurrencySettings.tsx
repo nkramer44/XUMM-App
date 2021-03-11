@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js';
 
 import React, { Component } from 'react';
 import { View, Animated, Text, Image, Alert, InteractionManager } from 'react-native';
+import { OptionsModalPresentationStyle, OptionsModalTransitionStyle } from 'react-native-navigation';
 
 import { TrustLineSchema, AccountSchema } from '@store/schemas/latest';
 
@@ -24,7 +25,7 @@ import { AppScreens } from '@common/constants';
 import LedgerService from '@services/LedgerService';
 
 // components
-import { Button, Spacer, RaisedButton } from '@components/General';
+import { Button, Spacer, RaisedButton, AmountText } from '@components/General';
 
 import Localize from '@locale';
 
@@ -42,6 +43,7 @@ export interface State {
     isLoading: boolean;
     latestLineBalance: number;
     canRemove: boolean;
+    isNFT: boolean;
 }
 /* Component ==================================================================== */
 class CurrencySettingsModal extends Component<Props, State> {
@@ -64,6 +66,7 @@ class CurrencySettingsModal extends Component<Props, State> {
             isLoading: false,
             latestLineBalance: 0,
             canRemove: false,
+            isNFT: props.trustLine.isNFT,
         };
 
         this.animatedColor = new Animated.Value(0);
@@ -88,7 +91,7 @@ class CurrencySettingsModal extends Component<Props, State> {
     }
 
     dismiss = () => {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             Animated.parallel([
                 Animated.timing(this.animatedColor, {
                     toValue: 0,
@@ -138,7 +141,7 @@ class CurrencySettingsModal extends Component<Props, State> {
         const { trustLine, account } = this.props;
 
         /* eslint-disable-next-line */
-        return new Promise(async (resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
             const payment = new Payment();
 
             payment.Destination = {
@@ -178,7 +181,7 @@ class CurrencySettingsModal extends Component<Props, State> {
     checkForIssuerState = () => {
         const { trustLine } = this.props;
 
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             LedgerService.getAccountInfo(trustLine.currency.issuer)
                 .then((issuerAccountInfo: any) => {
                     const issuerFlags = new Flag(
@@ -328,9 +331,31 @@ class CurrencySettingsModal extends Component<Props, State> {
         });
     };
 
+    showNFTInfo = () => {
+        const { trustLine, account } = this.props;
+
+        this.dismiss().then(() => {
+            Navigator.showModal(
+                AppScreens.Modal.XAppBrowser,
+                {
+                    modalTransitionStyle: OptionsModalTransitionStyle.coverVertical,
+                    modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+                },
+                {
+                    identifier: 'xumm.nft-info',
+                    account,
+                    params: {
+                        issuer: trustLine.currency.issuer,
+                        token: trustLine.currency.currency,
+                    },
+                },
+            );
+        });
+    };
+
     render() {
         const { trustLine } = this.props;
-        const { isLoading, canRemove } = this.state;
+        const { isLoading, canRemove, isNFT } = this.state;
 
         const interpolateColor = this.animatedColor.interpolate({
             inputRange: [0, 150],
@@ -375,9 +400,7 @@ class CurrencySettingsModal extends Component<Props, State> {
                                 {trustLine.currency.avatar && (
                                     <Image style={styles.currencyAvatar} source={{ uri: trustLine.currency.avatar }} />
                                 )}
-                                <Text style={[AppStyles.pbold, AppStyles.monoBold]}>
-                                    {Localize.formatNumber(trustLine.balance)}
-                                </Text>
+                                <AmountText value={trustLine.balance} style={[AppStyles.pbold, AppStyles.monoBold]} />
                             </View>
                         </View>
 
@@ -396,17 +419,30 @@ class CurrencySettingsModal extends Component<Props, State> {
                                     Navigator.push(AppScreens.Transaction.Payment, {}, { currency: trustLine });
                                 }}
                             />
-                            <RaisedButton
-                                isDisabled={trustLine.obligation}
-                                style={styles.exchangeButton}
-                                icon="IconCornerRightUp"
-                                iconSize={20}
-                                iconStyle={[styles.exchangeButtonIcon]}
-                                iconPosition="right"
-                                label={Localize.t('global.exchange')}
-                                textStyle={[styles.exchangeButtonText]}
-                                onPress={this.showExchangeScreen}
-                            />
+                            {isNFT ? (
+                                <RaisedButton
+                                    style={styles.infoButton}
+                                    icon="IconInfo"
+                                    iconSize={20}
+                                    iconStyle={[styles.infoButtonIcon]}
+                                    iconPosition="right"
+                                    label={Localize.t('global.about')}
+                                    textStyle={[styles.infoButtonText]}
+                                    onPress={this.showNFTInfo}
+                                />
+                            ) : (
+                                <RaisedButton
+                                    isDisabled={trustLine.obligation}
+                                    style={styles.exchangeButton}
+                                    icon="IconCornerRightUp"
+                                    iconSize={20}
+                                    iconStyle={[styles.exchangeButtonIcon]}
+                                    iconPosition="right"
+                                    label={Localize.t('global.exchange')}
+                                    textStyle={[styles.exchangeButtonText]}
+                                    onPress={this.showExchangeScreen}
+                                />
+                            )}
                         </View>
 
                         <Spacer size={20} />
