@@ -197,6 +197,7 @@ class CurrencyPickerModal extends Component<Props, State> {
                 <SearchBar
                     onChangeText={this.onSearchChange}
                     placeholder={Localize.t('settings.enterCurrencyCodeOrName')}
+                    placeholderTextColor={AppColors.textSecondary}
                     containerStyle={styles.searchContainer}
                 />
 

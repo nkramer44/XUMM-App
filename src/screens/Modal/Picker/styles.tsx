@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
         paddingVertical: AppSizes.paddingSml,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderTopWidth: StyleSheet.hairlineWidth,
-        borderColor: AppColors.grey,
+        borderColor: AppColors.tint,
     },
     checkIcon: {
         tintColor: AppColors.blue,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.base.size,
         fontWeight: 'bold',
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
 });
 

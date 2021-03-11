@@ -12,18 +12,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderBottomWidth: 1,
-        borderColor: AppColors.grey,
+        borderColor: AppColors.tint,
     },
     checkIcon: {
         tintColor: AppColors.blue,
-    },
-    descriptionText: {
-        fontFamily: AppFonts.base.family,
-        fontSize: AppFonts.base.size,
-        fontWeight: 'bold',
-        color: AppColors.black,
     },
     sectionHeader: {
         paddingVertical: 7,

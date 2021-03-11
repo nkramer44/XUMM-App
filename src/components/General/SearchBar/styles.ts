@@ -8,7 +8,7 @@ export default StyleSheet.create({
         height: AppSizes.heightPercentageToDP(5.5),
         marginHorizontal: 10,
         borderRadius: 15,
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.tint,
     },
     searchIcon: {
         flexDirection: 'column',
@@ -17,6 +17,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         left: 0,
+        tintColor: AppColors.textPrimary,
     },
     searchInput: {
         flex: 1,
@@ -26,7 +27,7 @@ export default StyleSheet.create({
         fontFamily: AppFonts.base.familyMonoBold,
         fontSize: AppFonts.p.size,
         fontWeight: '600',
-        color: AppColors.blue,
+        color: AppColors.textPrimary,
     },
     searchClear: {
         height: '100%',
@@ -35,5 +36,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         right: 0,
+        tintColor: AppColors.textPrimary,
     },
 });

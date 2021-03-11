@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
     rowLabel: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     rowIcon: {
-        tintColor: AppColors.black,
+        tintColor: AppColors.textPrimary,
     },
     hr: {
-        borderBottomColor: AppColors.grey,
+        borderBottomColor: AppColors.tint,
         borderBottomWidth: 2,
         marginTop: 7,
         marginBottom: 7,

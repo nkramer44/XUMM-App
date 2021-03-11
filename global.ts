@@ -1,13 +1,15 @@
-/* eslint-disable */
+// /* eslint-disable */
 
 // Native modules
 import { NativeModules } from 'react-native';
+
 const { CryptoModule } = NativeModules;
 
 global.Buffer = require('buffer').Buffer;
 global.process = require('process');
-// global.theme = 'light';
-global.theme = 'dark';
+
+global.theme = 'light';
+// global.theme = 'dark';
 // global.theme = 'moonlight';
 // global.theme = 'royal';
 

@@ -4,26 +4,26 @@ import { AppColors, AppSizes, AppFonts } from '@theme';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
-    container: {
-        marginBottom: AppSizes.tabbarHeight,
-    },
-    contentCard: {
-        marginHorizontal: 22,
-        marginBottom: 30,
-        backgroundColor: AppColors.white,
-        borderRadius: AppSizes.screen.width * 0.06,
-        shadowColor: AppColors.greyDark,
-        shadowOffset: { width: 0, height: 3 },
-        shadowRadius: 8,
-        shadowOpacity: 0.1,
-        elevation: 10,
+    // contentCard: {
+    //     marginHorizontal: 22,
+    //     marginBottom: 30,
+    //     backgroundColor: AppColors.white,
+    //     borderRadius: AppSizes.screen.width * 0.06,
+    //     shadowColor: AppColors.grey,
+    //     shadowOffset: { width: 0, height: 3 },
+    //     shadowRadius: 8,
+    //     shadowOpacity: 0.1,
+    //     elevation: 10,
+    // },
+    BackgroundShapes: {
+        // tintColor: AppColors.red,
     },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     accountCard: {
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.tint,
         marginBottom: 20,
         padding: 16,
         borderRadius: 16,
@@ -31,26 +31,26 @@ const styles = StyleSheet.create({
     balanceLabel: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     cardSmallLabel: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size * 0.8,
-        color: AppColors.greyBlack,
+        color: AppColors.grey,
         textAlign: 'center',
     },
     iconSettings: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginTop: 8,
         marginRight: 6,
     },
     iconEye: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginTop: 12,
         marginRight: 3,
     },
     iconShare: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginTop: 12,
         marginRight: 3,
     },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     cardAddressText: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: AppFonts.base.size * 0.9,
-        color: AppColors.greyBlack,
+        color: AppColors.grey,
     },
     shareIconContainer: {
         padding: 8,
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         paddingHorizontal: 15,
         paddingBottom: 5,
-        backgroundColor: AppColors.white,
-        shadowColor: AppColors.white,
+        backgroundColor: AppColors.background,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 12 },
         shadowRadius: 5,
         shadowOpacity: 1,
@@ -101,13 +101,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingVertical: 10,
         marginTop: 10,
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.lightGrey,
         borderRadius: 8,
     },
     balanceText: {
         fontFamily: AppFonts.base.familyMonoBold,
         fontSize: AppFonts.h4.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         paddingRight: 8,
     },
     currencyItem: {
@@ -120,13 +120,14 @@ const styles = StyleSheet.create({
     currencyItemLabel: {
         fontSize: AppFonts.h5.size,
         fontFamily: AppFonts.base.familyMonoBold,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
     currencyItemLabelSmall: {
         fontSize: AppFonts.p.size,
         fontFamily: AppFonts.base.familyMono,
+        color: AppColors.textPrimary,
         alignItems: 'flex-start',
         justifyContent: 'center',
         marginRight: 10,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     issuerLabel: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     xrpAvatarContainer: {
         padding: 10,
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     trustLineInfoIcon: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginRight: 5,
     },
     xrpAvatar: {
@@ -224,15 +225,15 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     switchAccountButton: {
-        backgroundColor: AppColors.white,
-        borderColor: AppColors.light,
+        backgroundColor: AppColors.tint,
+        borderColor: AppColors.lightGrey,
         paddingHorizontal: 10,
         alignSelf: 'flex-end',
     },
     switchAccountButtonText: {
         fontSize: AppFonts.small.size,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.blue,
+        color: AppColors.grey,
         paddingLeft: 1,
         paddingRight: 0,
     },
@@ -241,6 +242,7 @@ const styles = StyleSheet.create({
     },
     xrpIcon: {
         paddingRight: 40,
+        tintColor: AppColors.textPrimary,
     },
 });
 

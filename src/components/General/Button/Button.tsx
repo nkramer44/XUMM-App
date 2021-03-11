@@ -17,6 +17,7 @@ interface Props {
     iconStyle?: ImageStyle | ImageStyle[];
     secondary?: boolean;
     light?: boolean;
+    contrast?: boolean;
     outline?: boolean;
     clear?: boolean;
     rounded?: boolean;
@@ -58,6 +59,7 @@ export default class Button extends Component<Props> {
             iconPosition,
             secondary,
             light,
+            contrast,
             outline,
             clear,
             rounded,
@@ -87,6 +89,7 @@ export default class Button extends Component<Props> {
                             styles.textButton,
                             secondary && styles.textButtonSecondary,
                             light && styles.textButtonLight,
+                            contrast && styles.textButtonContrast,
                             outline && styles.textButtonOutline,
                             clear && styles.textButtonClear,
                             rounded && styles.textButtonRounded,
@@ -154,6 +157,7 @@ export default class Button extends Component<Props> {
             style,
             secondary,
             light,
+            contrast,
             outline,
             clear,
             rounded,
@@ -191,6 +195,7 @@ export default class Button extends Component<Props> {
                     styles.button,
                     secondary && styles.buttonSecondary,
                     light && styles.buttonLight,
+                    contrast && styles.buttonContrast,
                     outline && styles.buttonOutline,
                     clear && styles.buttonClear,
                     rounded && styles.buttonRounded,

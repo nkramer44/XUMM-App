@@ -10,12 +10,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         // backgroundColor: AppColors.grey,
     },
-    accountIcon: {
-        width: AppSizes.screen.width * 0.07,
-        height: AppSizes.screen.width * 0.07,
-        tintColor: AppColors.greyDark,
-        resizeMode: 'contain',
-    },
     rowIcon: {
         tintColor: AppColors.blue,
         marginRight: -10,
@@ -26,15 +20,15 @@ const styles = StyleSheet.create({
         paddingVertical: AppSizes.paddingSml,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderTopWidth: StyleSheet.hairlineWidth,
-        borderColor: AppColors.grey,
+        borderColor: AppColors.tint,
     },
     label: {
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.subtext.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     destructionLabel: {
         fontFamily: AppFonts.base.family,
@@ -46,14 +40,14 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.subtext.size,
         textAlign: 'right',
-        color: AppColors.greyDark,
+        color: AppColors.textSecondary,
     },
     descriptionText: {
         padding: AppSizes.paddingSml,
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.base.size,
         fontWeight: 'bold',
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
 });
 

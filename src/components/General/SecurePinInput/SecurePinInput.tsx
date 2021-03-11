@@ -177,7 +177,7 @@ class SecurePinInput extends Component<Props, State> {
                 return (
                     <TouchableHighlight
                         testID="x-key"
-                        underlayColor={AppColors.grey}
+                        underlayColor={AppColors.tint}
                         style={styles.line}
                         key="x-key"
                         onPress={() => {
@@ -196,7 +196,7 @@ class SecurePinInput extends Component<Props, State> {
                     return (
                         <TouchableHighlight
                             testID="y-key"
-                            underlayColor={AppColors.grey}
+                            underlayColor={AppColors.tint}
                             style={styles.line}
                             key="y-key"
                             onPress={() => {
@@ -233,7 +233,7 @@ class SecurePinInput extends Component<Props, State> {
             return (
                 <TouchableHighlight
                     testID={`${item}-key`}
-                    underlayColor={AppColors.grey}
+                    underlayColor={AppColors.tint}
                     style={styles.line}
                     activeOpacity={0.7}
                     key={`${item}-key`}

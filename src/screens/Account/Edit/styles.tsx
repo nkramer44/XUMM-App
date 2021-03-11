@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
     accountIcon: {
         width: AppSizes.screen.width * 0.07,
         height: AppSizes.screen.width * 0.07,
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         resizeMode: 'contain',
     },
     rowIcon: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.blue,
         marginRight: -10,
     },
     row: {
@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: AppSizes.paddingSml,
         paddingVertical: AppSizes.paddingSml,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderTopWidth: StyleSheet.hairlineWidth,
-        borderColor: AppColors.lightBlue,
+        borderColor: AppColors.tint,
     },
 
     label: {
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.subtext.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     destructionLabel: {
         fontFamily: AppFonts.base.family,
@@ -48,19 +48,19 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.subtext.size,
         textAlign: 'right',
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     address: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: AppFonts.small.size,
         textAlign: 'right',
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     descriptionText: {
         padding: AppSizes.paddingSml,
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
 });
 

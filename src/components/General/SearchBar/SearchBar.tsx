@@ -33,8 +33,8 @@ class SearchBar extends PureComponent<Props, State> {
 
     static defaultProps = {
         placeholder: 'Please type ...',
-        backgroundColor: AppColors.greyDark,
-        innerBackground: AppColors.greyDark,
+        backgroundColor: AppColors.tint,
+        innerBackground: AppColors.tint,
         radius: 5,
         border: false,
         onChangeText: () => {},
@@ -72,7 +72,7 @@ class SearchBar extends PureComponent<Props, State> {
         return (
             <View style={[styles.searchContainer, containerStyle]}>
                 <Animated.View style={[styles.searchIcon]}>
-                    <Icon name="IconSearch" size={20} style={AppStyles.imgColorGreyDark} />
+                    <Icon name="IconSearch" size={20} style={AppStyles.imgColorPrimary} />
                 </Animated.View>
 
                 <View style={AppStyles.flex1}>
@@ -81,6 +81,7 @@ class SearchBar extends PureComponent<Props, State> {
                         onChangeText={this.onChangeText}
                         value={value}
                         placeholder={placeholder}
+                        placeholderTextColor={AppColors.textSecondary}
                         underlineColorAndroid="rgba(0,0,0,0)"
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -89,7 +90,7 @@ class SearchBar extends PureComponent<Props, State> {
 
                 <TouchableOpacity style={[styles.searchClear]} onPress={this.onClearPress}>
                     <Animated.View style={[AppStyles.centerSelf, { opacity: alpha }]}>
-                        <Icon name="IconX" size={20} />
+                        <Icon name="IconX" size={20} style={AppStyles.imgColorPrimary} />
                     </Animated.View>
                 </TouchableOpacity>
             </View>

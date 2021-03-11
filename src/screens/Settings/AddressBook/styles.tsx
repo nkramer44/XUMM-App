@@ -28,24 +28,24 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: '500',
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     address: {
         fontSize: 11,
-        color: AppColors.greyDark,
+        color: AppColors.textSecondary,
     },
     sectionHeader: {
         paddingVertical: 5,
         paddingHorizontal: 12,
         marginHorizontal: 20,
         borderRadius: 5,
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.tint,
     },
     sectionHeaderText: {
         fontSize: AppFonts.p.size,
         fontFamily: AppFonts.base.familyMono,
         paddingLeft: 8,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
 });
 

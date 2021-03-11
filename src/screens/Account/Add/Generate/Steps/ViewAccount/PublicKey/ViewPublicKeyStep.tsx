@@ -75,9 +75,9 @@ class ViewPublicKeyStep extends Component<Props, State> {
                     <Button
                         label={Localize.t('account.copyAddress')}
                         icon="IconClipboard"
-                        style={AppStyles.buttonGreyOutline}
-                        iconStyle={AppStyles.imgColorGreyDark}
-                        textStyle={[AppStyles.colorGreyDark]}
+                        style={AppStyles.buttonSilver}
+                        iconStyle={AppStyles.imgColorGrey}
+                        textStyle={[AppStyles.colorGrey]}
                         onPress={() => {
                             Clipboard.setString(generatedAccount.address);
                             Toast(Localize.t('account.publicKeyCopiedToClipboard'));

@@ -122,7 +122,7 @@ class Header extends PureComponent<Props> {
 
     static defaultProps = {
         placement: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
     };
 
     render() {
@@ -134,7 +134,6 @@ class Header extends PureComponent<Props> {
             placement,
             containerStyle,
         } = this.props;
-
         return (
             <View style={[styles.container, backgroundColor && { backgroundColor }, containerStyle]}>
                 <Children style={placement === 'center' && styles.rightLeftContainer} placement="left">

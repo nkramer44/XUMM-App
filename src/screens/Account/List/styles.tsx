@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: AppSizes.paddingSml,
         paddingVertical: AppSizes.paddingSml,
-        borderWidth: 1,
-        borderColor: AppColors.grey,
-        borderRadius: 15,
+        borderWidth: 2,
+        borderColor: AppColors.tint,
+        borderRadius: 20,
         marginHorizontal: 20,
         marginBottom: 10,
     },
@@ -19,23 +19,15 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         paddingBottom: 15,
         borderBottomWidth: 1,
-        borderBottomColor: AppColors.grey,
+        borderBottomColor: AppColors.tint,
         paddingRight: 0,
     },
-    accountIcon: {
-        tintColor: AppColors.black,
-        resizeMode: 'contain',
-        marginTop: 5,
-        marginRight: 10,
+    buttonEditIcon: {
+        tintColor: AppColors.textPrimary,
+        marginLeft: 10,
     },
-    rowHeaderText: {
-        marginTop: 5,
-    },
-    rowIcon: {
-        tintColor: AppColors.blue,
-    },
-    rowText: {
-        color: AppColors.blue,
+    buttonEditText: {
+        color: AppColors.textPrimary,
     },
     subRow: {
         paddingTop: 12,
@@ -43,26 +35,10 @@ const styles = StyleSheet.create({
     subLabel: {
         paddingBottom: 5,
     },
-    tag: {
-        flexDirection: 'row',
-        paddingHorizontal: 7,
-        paddingVertical: 5,
-        marginLeft: 10,
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: AppColors.lightBlue,
-    },
-    tagText: {
-        textAlign: 'left',
-        fontSize: 10,
-        fontFamily: AppFonts.subtext.family,
-        color: AppColors.blue,
-        paddingTop: 1,
-    },
     accountLabel: {
         fontFamily: AppFonts.h5.family,
         fontSize: AppFonts.p.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     accessLevelContainer: {
         left: 0,
@@ -74,7 +50,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         fontSize: AppFonts.base.size * 0.7,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         includeFontPadding: false,
     },
 });

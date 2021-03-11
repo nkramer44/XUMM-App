@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         fontSize: AppFonts.base.size * 0.7,
     },
     debug: {
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     warn: {
         color: AppColors.orange,

@@ -34,7 +34,7 @@ export default StyleSheet.create({
         marginLeft: 12,
         borderRadius: 9,
         opacity: 0.3,
-        backgroundColor: AppColors.greyDark,
+        backgroundColor: AppColors.silver,
     },
     pinActiveStyle: {
         opacity: 1.0,
@@ -58,7 +58,7 @@ export default StyleSheet.create({
         height: AppSizes.verticalScale(65),
     },
     numTextInt: {
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         textAlign: 'center',
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.h3.size,
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     numTextAlpha: {
         fontSize: AppFonts.base.size * 0.65,
         textAlign: 'center',
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         letterSpacing: 2,
     },
     bottomWrap: {

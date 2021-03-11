@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     iconStyle: {
-        tintColor: AppColors.black,
+        tintColor: AppColors.textPrimary,
     },
 });
 

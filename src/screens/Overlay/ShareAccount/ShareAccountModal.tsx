@@ -162,25 +162,26 @@ class ShareAccountModal extends Component<Props, State> {
                                 value={`${account.address}`}
                                 style={styles.qrCode}
                             />
+                            <Text style={styles.addressText}>{account.address}</Text>
                         </View>
 
-                        <Text style={styles.addressText}>{account.address}</Text>
-
-                        <Spacer size={20} />
+                        {/* <Spacer size={10} /> */}
 
                         <Button
                             light
                             rounded
+                            block
                             icon="IconShare"
                             iconStyle={AppStyles.imgColorBlue}
                             label={Localize.t('global.share')}
                             onPress={this.onSharePress}
                         />
-                        <Spacer size={20} />
+                        <Spacer size={10} />
 
                         <Button
                             light
                             rounded
+                            block
                             label={Localize.t('account.copyAddress')}
                             icon="IconClipboard"
                             iconStyle={AppStyles.imgColorBlue}

@@ -16,18 +16,19 @@ import { AppColors, AppFonts } from '@theme';
 /* Constants ==================================================================== */
 const defaultOptions = {
     layout: {
-        backgroundColor: AppColors.white,
-        componentBackgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
+        componentBackgroundColor: AppColors.background,
         orientation: ['portrait'] as any,
     },
     topBar: {
         visible: false,
     },
     statusBar: {
+        style: global.theme === 'light' ? 'dark' : 'light',
         drawBehind: false,
     },
     bottomTabs: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         translucent: false,
         hideShadow: true,
         animate: true,
@@ -45,10 +46,10 @@ const defaultOptions = {
 };
 
 const bottomTabStyles = {
-    // iconColor: AppColors.greyDark,
+    // iconColor: AppColors.red,
     // selectedIconColor: AppColors.black,
-    textColor: AppColors.greyDark,
-    selectedTextColor: AppColors.black,
+    textColor: AppColors.grey,
+    selectedTextColor: global.theme === 'light' ? AppColors.black : AppColors.white,
     fontFamily: AppFonts.base.familyExtraBold,
 };
 
@@ -64,8 +65,8 @@ const TabBarIcons = {
         scale: GetBottomTabScale(),
     },
     [AppScreens.TabBar.Actions]: {
-        icon: Images.IconTabbarActions,
-        iconSelected: Images.IconTabbarActions,
+        icon: Images.IconTabBarActions,
+        iconSelected: Images.IconTabBarActions,
         offset: { top: IsIOS10() && 6, right: 0, bottom: IsIOS10() && -6, left: 0 },
         scale: GetBottomTabScale(0.65),
     },
@@ -281,7 +282,7 @@ const Navigator = {
                 bottomTab: {
                     text: Platform.select({
                         android: Localize.t(`global.${tab.toLowerCase()}`),
-                        ios: tab !== 'Scan' ? Localize.t(`global.${tab.toLowerCase()}`) : '',
+                        ios: tab !== 'Actions' ? Localize.t(`global.${tab.toLowerCase()}`) : '',
                     }),
                 },
             });

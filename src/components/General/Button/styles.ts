@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size * 1.1,
         textAlign: 'center',
-        color: AppColors.white,
+        // color: AppColors.white,
         paddingHorizontal: 5,
+        color: AppColors.white,
         // borderWidth: 1,
         // borderColor: AppColors.red,
     },
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
 
     // Secondary
     buttonSecondary: {
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.light,
     },
     textButtonSecondary: {
         fontFamily: AppFonts.base.familyBold,
@@ -53,9 +54,19 @@ const styles = StyleSheet.create({
         tintColor: AppColors.black,
     },
 
+    // Contrast
+    buttonContrast: {
+        backgroundColor: AppColors.contrast,
+    },
+    textButtonContrast: {
+        fontFamily: AppFonts.base.familyBold,
+        color: AppColors.textContrast,
+        fontSize: AppFonts.base.size * 1.1,
+    },
+
     // Light
     buttonLight: {
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.lightGrey,
     },
     textButtonLight: {
         fontFamily: AppFonts.base.familyBold,
@@ -121,7 +132,7 @@ const styles = StyleSheet.create({
     // Rounded Mini
     buttonRoundedMini: {
         height: AppSizes.scale(20),
-        paddingHorizontal: 8,
+        paddingHorizontal: 80,
         alignSelf: 'center',
         borderRadius: AppSizes.scale(33) / 2,
     },
@@ -130,9 +141,11 @@ const styles = StyleSheet.create({
     },
     iconLeft: {
         marginRight: 3,
+        tintColor: AppColors.textPrimary,
     },
     iconRight: {
         marginLeft: 3,
+        tintColor: AppColors.textPrimary,
     },
     spinner: {
         flex: 1,

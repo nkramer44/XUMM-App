@@ -14,8 +14,9 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: AppColors.grey,
-        borderColor: AppColors.grey,
+        backgroundColor: AppColors.lightGrey,
+        borderColor: AppColors.lightGrey,
+        color: AppColors.silver,
         borderWidth: 3,
         marginBottom: 20,
     },
@@ -24,7 +25,7 @@ export default StyleSheet.create({
         width: 26,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         marginTop: 4,
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,15 +42,20 @@ export default StyleSheet.create({
     },
 
     selected: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.tint,
         borderColor: AppColors.blue,
-        color: AppColors.blue,
+    },
+    textColor: {
+        color: AppColors.grey,
+    },
+    textColorSelected: {
+        color: AppColors.textPrimary,
     },
     labelSmall: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyBold,
     },
     descriptionText: {
-        marginTop: 10,
+        marginTop: 4,
     },
 });

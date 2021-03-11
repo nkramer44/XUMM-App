@@ -5,18 +5,18 @@ import { AppColors, AppFonts, AppSizes } from '@theme';
 /* Styles ==================================================================== */
 export default StyleSheet.create({
     wrapper: {
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.tint,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'stretch',
         alignSelf: 'stretch',
         paddingHorizontal: 15,
-        borderColor: AppColors.grey,
+        borderColor: AppColors.tint,
         height: AppSizes.heightPercentageToDP(7),
         minHeight: 55,
         width: '100%',
         borderWidth: 2,
-        borderRadius: 10,
+        borderRadius: 14,
     },
     input: {
         flex: 1,
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     },
     scanButton: {
         position: 'absolute',
-        right: 3,
+        right: 4,
         height: AppSizes.heightPercentageToDP(6),
         width: AppSizes.heightPercentageToDP(6),
         minHeight: 45,
@@ -46,7 +46,8 @@ export default StyleSheet.create({
         position: 'absolute',
         left: 0,
         top: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        // backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: AppColors.background,
         width: '100%',
         height: '100%',
     },

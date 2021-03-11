@@ -47,7 +47,6 @@ class GeneralSettingsView extends Component<Props, State> {
         super(props);
 
         this.state = { coreSettings: CoreRepository.getSettings(), locales: Localize.getLocales() };
-        // console.log(this.state);
     }
 
     componentDidMount() {
@@ -153,7 +152,8 @@ class GeneralSettingsView extends Component<Props, State> {
         CoreRepository.saveSettings({ theme: value });
         // console.log(value.toLowerCase())
         // global.theme = value.toLowerCase()
-        // console.log(global.theme)
+        // console.log(global.theme);
+        global.theme = value;
         // re-render the app
         Navigator.reRender();
     }
@@ -183,54 +183,85 @@ class GeneralSettingsView extends Component<Props, State> {
                             <TouchableOpacity
                                 // testID={testID}
                                 activeOpacity={0.8}
-                                onPress={() => { this.selectTheme('Light'); }}
-                                style={[styles.themeItem, coreSettings.theme === 'Light'
+                                onPress={() => { this.selectTheme('light'); }}
+                                style={[styles.themeItem, global.theme === 'light'
                                 ? styles.themeItemSelected : null]}
                             >
                                 <View style={AppStyles.flex1}>
-                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Light'
+                                    <View style={[styles.themeItemDot, global.theme === 'light'
                                     ? styles.themeItemDotSelected : null]}>
-                                        {coreSettings.theme === 'Light' && <View style={styles.themeItemFilled} />}
+                                        {global.theme === 'light' && <View style={styles.themeItemFilled} />}
                                     </View>
                                 </View>
                                 <View style={AppStyles.flex5}>
                                     <Text
-                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Light'
-                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                        style={[AppStyles.p, AppStyles.strong, global.theme === 'light'
+                                        ? AppStyles.colorBlack : AppStyles.colorSilver]}
                                     >
                                         Default
                                     </Text>
-                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Light'
-                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
+                                    <Text style={[styles.themeItemLabelSmall, global.theme === 'light'
+                                    ? AppStyles.colorBlack : AppStyles.colorSilver]}>
                                         Fresh and bright
                                     </Text>
                                 </View>
                                 <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewLight]}>
-                                    <Text style={[AppStyles.p, AppStyles.strong]}>Aa</Text>
+                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewLight]}>Aa</Text>
                                 </View>
                             </TouchableOpacity>
+
                             <TouchableOpacity
                                 // testID={testID}
                                 activeOpacity={0.8}
-                                onPress={() => { this.selectTheme('Moonlight'); }}
-                                style={[styles.themeItem, coreSettings.theme === 'Moonlight'
+                                onPress={() => { this.selectTheme('dark'); }}
+                                style={[styles.themeItem, global.theme === 'dark'
                                 ? styles.themeItemSelected : null]}
                             >
                                 <View style={AppStyles.flex1}>
-                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Moonlight'
+                                    <View style={[styles.themeItemDot, global.theme === 'dark'
                                     ? styles.themeItemDotSelected : null]}>
-                                        {coreSettings.theme === 'Moonlight' && <View style={styles.themeItemFilled} />}
+                                        {global.theme === 'dark' && <View style={styles.themeItemFilled} />}
                                     </View>
                                 </View>
                                 <View style={AppStyles.flex5}>
                                     <Text
-                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Moonlight'
-                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                        style={[AppStyles.p, AppStyles.strong, global.theme === 'dark'
+                                        ? AppStyles.colorBlack : AppStyles.colorSilver]}
+                                    >
+                                        Dark
+                                    </Text>
+                                    <Text style={[styles.themeItemLabelSmall, global.theme === 'dark'
+                                    ? AppStyles.colorBlack : AppStyles.colorSilver]}>
+                                        Really dark
+                                    </Text>
+                                </View>
+                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewDark]}>
+                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewDark]}>Aa</Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                // testID={testID}
+                                activeOpacity={0.8}
+                                onPress={() => { this.selectTheme('moonlight'); }}
+                                style={[styles.themeItem, global.theme === 'moonlight'
+                                ? styles.themeItemSelected : null]}
+                            >
+                                <View style={AppStyles.flex1}>
+                                    <View style={[styles.themeItemDot, global.theme === 'moonlight'
+                                    ? styles.themeItemDotSelected : null]}>
+                                        {global.theme === 'moonlight' && <View style={styles.themeItemFilled} />}
+                                    </View>
+                                </View>
+                                <View style={AppStyles.flex5}>
+                                    <Text
+                                        style={[AppStyles.p, AppStyles.strong, global.theme === 'moonlight'
+                                        ? AppStyles.colorBlack : AppStyles.colorSilver]}
                                     >
                                         Moonlight
                                     </Text>
-                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Moonlight'
-                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
+                                    <Text style={[styles.themeItemLabelSmall, global.theme === 'moonlight'
+                                    ? AppStyles.colorBlack : AppStyles.colorSilver]}>
                                         A touch of moon
                                     </Text>
                                 </View>
@@ -240,33 +271,34 @@ class GeneralSettingsView extends Component<Props, State> {
                                     </Text>
                                 </View>
                             </TouchableOpacity>
+
                             <TouchableOpacity
                                 // testID={testID}
                                 activeOpacity={0.8}
-                                onPress={() => { this.selectTheme('Dark'); }}
-                                style={[styles.themeItem, coreSettings.theme === 'Dark'
+                                onPress={() => { this.selectTheme('royal'); }}
+                                style={[styles.themeItem, global.theme === 'royal'
                                 ? styles.themeItemSelected : null]}
                             >
                                 <View style={AppStyles.flex1}>
-                                    <View style={[styles.themeItemDot, coreSettings.theme === 'Dark'
+                                    <View style={[styles.themeItemDot, global.theme === 'royal'
                                     ? styles.themeItemDotSelected : null]}>
-                                        {coreSettings.theme === 'Dark' && <View style={styles.themeItemFilled} />}
+                                        {global.theme === 'royal' && <View style={styles.themeItemFilled} />}
                                     </View>
                                 </View>
                                 <View style={AppStyles.flex5}>
                                     <Text
-                                        style={[AppStyles.p, AppStyles.strong, coreSettings.theme === 'Dark'
-                                        ? AppStyles.colorBlack : AppStyles.colorGreyDark]}
+                                        style={[AppStyles.p, AppStyles.strong, global.theme === 'royal'
+                                        ? AppStyles.colorBlack : AppStyles.colorSilver]}
                                     >
-                                        Dark
+                                        Royal
                                     </Text>
-                                    <Text style={[styles.themeItemLabelSmall, coreSettings.theme === 'Dark'
-                                    ? AppStyles.colorBlack : AppStyles.colorGreyDark]}>
-                                        Really dark
+                                    <Text style={[styles.themeItemLabelSmall, global.theme === 'royal'
+                                    ? AppStyles.colorBlack : AppStyles.colorSilver]}>
+                                        Royal blue blue
                                     </Text>
                                 </View>
-                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewDark]}>
-                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewDark]}>Aa</Text>
+                                <View style={[AppStyles.flex1, styles.themePreview, styles.themePreviewRoyal]}>
+                                    <Text style={[AppStyles.p, AppStyles.strong, styles.themePreviewRoyal]}>Aa</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>

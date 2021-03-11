@@ -112,7 +112,7 @@ class FinishView extends Component<Props, State> {
     render() {
         const { isLoading, isTOSLoaded } = this.state;
         return (
-            <SafeAreaView testID="agreement-setup-screen" style={[AppStyles.flex1]}>
+            <SafeAreaView testID="agreement-setup-screen" style={[AppStyles.flex1, styles.container]}>
                 <View style={[AppStyles.flex1, AppStyles.centerContent, AppStyles.centerAligned]}>
                     <Image style={styles.logo} source={Images.xummLogo} />
                 </View>
@@ -130,6 +130,7 @@ class FinishView extends Component<Props, State> {
                             <ActivityIndicator color={AppColors.blue} style={styles.loadingStyle} size="large" />
                         )}
                         source={{ uri: AppConfig.termOfUseURL }}
+                        style={styles.webview}
                     />
                 </View>
 

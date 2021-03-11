@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     headerContainer: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         left: 0,

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { AppSizes, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center' },
+    container: { flex: 1, justifyContent: 'center', backgroundColor: AppColors.background },
     contentContainer: {
         flex: 1,
         padding: 35,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 0,
         borderTopWidth: 5,
-        borderColor: AppColors.lightBlue,
+        borderColor: AppColors.tint,
     },
     footerContent: {
         width: '90%',

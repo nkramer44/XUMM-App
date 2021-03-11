@@ -21,7 +21,7 @@ export default StyleSheet.create({
         width: 23,
         borderRadius: 5,
         borderWidth: 3,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         // marginTop: 4,
         alignItems: 'center',
         justifyContent: 'center',
@@ -38,18 +38,18 @@ export default StyleSheet.create({
     label: {
         fontSize: AppFonts.base.size,
         fontFamily: AppFonts.base.familyExtraBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     labelSmall: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     labelSelected: {
         color: AppColors.blue,
     },
     descriptionText: {
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         marginTop: 3,
     },
     descriptionTextSelected: {

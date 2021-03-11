@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
         height: AppSizes.widthPercentageToDP(8),
         width: AppSizes.widthPercentageToDP(8),
         borderRadius: 10,
-        backgroundColor: AppColors.grey,
-        borderColor: AppColors.greyDark,
+        backgroundColor: AppColors.silver,
+        borderColor: AppColors.silver,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 3,
         borderColor: AppColors.blue,
-        backgroundColor: AppColors.lightBlue,
+        backgroundColor: AppColors.blue,
     },
     boxPast: {
         backgroundColor: AppColors.blue,
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: AppFonts.base.familyExtraBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.greyDark,
+        color: AppColors.textPrimary,
         textAlign: 'center',
     },
     labelActive: {
         fontSize: AppFonts.h5.size,
-        color: AppColors.blue,
+        color: AppColors.white,
     },
     labelPast: {
         color: AppColors.white,

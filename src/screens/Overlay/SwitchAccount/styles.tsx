@@ -5,7 +5,7 @@ import { AppColors, AppSizes, AppFonts } from '@theme';
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
     visibleContent: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         shadowColor: AppColors.black,
@@ -24,16 +24,18 @@ const styles = StyleSheet.create({
     },
     accountRow: {
         paddingRight: 20,
-        paddingLeft: 15,
-        paddingTop: 6,
-        paddingBottom: 6,
-        marginTop: 10,
-        borderRadius: AppSizes.scale(50) / 3,
+        paddingLeft: 13,
+        paddingTop: 20,
+        paddingBottom: 20,
+        marginBottom: 10,
+        borderRadius: 18,
+        // borderRadius: AppSizes.scale(50) / 4,
+        backgroundColor: AppColors.tint,
     },
     accountRowSelected: {
         borderBottomWidth: 0,
-        borderRadius: 20,
-        backgroundColor: AppColors.lightGreen,
+        // borderRadius: 20,
+        backgroundColor: AppColors.lightBlue,
     },
     selectedText: {
         marginRight: 10,
@@ -48,51 +50,64 @@ const styles = StyleSheet.create({
     accountLabel: {
         fontFamily: AppFonts.h5.family,
         fontSize: AppFonts.p.size,
-        color: AppColors.black,
+        color: AppColors.silver,
+    },
+    accountLabelSelected: {
+        color: AppColors.blue,
     },
     accountAddress: {
         fontFamily: AppFonts.base.familyMonoBold,
         fontSize: AppFonts.small.size,
-        color: AppColors.black,
+        color: AppColors.silver,
+        marginTop: 2,
+        marginLeft: 2,
+    },
+    accountAddressSelected: {
+        color: AppColors.textSecondary,
     },
     accessLevelBadge: {
         flexDirection: 'row',
-        paddingHorizontal: 5,
-        paddingVertical: 2,
+        paddingHorizontal: 8,
+        paddingVertical: 3,
         borderRadius: 10,
         marginTop: 7,
         alignSelf: 'flex-start',
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.lightGrey,
         justifyContent: 'center',
         alignContent: 'center',
     },
     accessLevelBadgeSelected: {
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.lightBlue,
+    },
+    accessLevelIcon: {
+        tintColor: AppColors.grey,
     },
     accessLevelLabel: {
         marginLeft: 5,
         fontSize: AppFonts.base.size * 0.7,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         includeFontPadding: false,
     },
     accessLevelLabelSelected: {
-        color: AppColors.white,
+        color: AppColors.textPrimary,
     },
     radioCircle: {
         width: AppSizes.scale(23),
         height: AppSizes.scale(23),
         borderWidth: 3,
         borderColor: AppColors.grey,
-        borderRadius: AppSizes.scale(23) / 2,
+        // borderRadius: AppSizes.scale(23) / 2,
+        borderRadius: 100,
     },
     radioCircleSelected: {
         width: AppSizes.scale(23),
         height: AppSizes.scale(23),
         borderWidth: AppSizes.scale(6),
-        borderColor: AppColors.green,
-        borderRadius: AppSizes.scale(23) / 2,
-        backgroundColor: AppColors.white,
+        borderColor: AppColors.blue,
+        // borderRadius: AppSizes.scale(23) / 2,
+        borderRadius: 100,
+        backgroundColor: AppColors.background,
     },
 });
 

@@ -128,7 +128,7 @@ class AccountListView extends Component<Props, State> {
                     this.onItemPress(item);
                 }}
                 // underlayColor="rgba(248, 250, 253, 1)"
-                underlayColor={AppColors.light}
+                underlayColor={AppColors.lightBlue}
             >
                 <>
                     <View style={[AppStyles.row, styles.rowHeader, AppStyles.centerContent]}>
@@ -136,8 +136,8 @@ class AccountListView extends Component<Props, State> {
                             <View style={[AppStyles.flex1]}>
                                 <Text style={[styles.accountLabel]}>{item.label}</Text>
                                 <View style={[styles.accessLevelContainer]}>
-                                    <Icon size={13} name={accessLevelIcon} style={AppStyles.imgColorGreyDark} />
-                                    <Text style={[styles.accessLevelLabel, AppStyles.colorBlack]}>
+                                    <Icon size={13} name={accessLevelIcon} style={AppStyles.imgColorGrey} />
+                                    <Text style={[styles.accessLevelLabel, AppStyles.textPrimary]}>
                                         {accessLevelLabel}
                                     </Text>
                                 </View>
@@ -148,9 +148,9 @@ class AccountListView extends Component<Props, State> {
                                 light
                                 roundedSmall
                                 icon="IconEdit"
-                                iconStyle={styles.rowIcon}
+                                iconStyle={styles.buttonEditIcon}
                                 iconSize={15}
-                                textStyle={styles.rowText}
+                                textStyle={styles.buttonEditText}
                                 label={Localize.t('global.edit')}
                                 onPress={() => {
                                     this.onItemPress(item);
@@ -160,7 +160,7 @@ class AccountListView extends Component<Props, State> {
                     </View>
                     <View style={[AppStyles.row, styles.subRow]}>
                         <View style={[AppStyles.flex1]}>
-                            <Text style={[AppStyles.monoBold, AppStyles.colorGreyDark, styles.subLabel]}>
+                            <Text style={[AppStyles.monoBold, AppStyles.colorGrey, styles.subLabel]}>
                                 {Localize.t('global.address')}:
                             </Text>
                             <Text style={[AppStyles.monoSubText, AppStyles.colorBlue]}>{item.address}</Text>

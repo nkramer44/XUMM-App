@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
         marginTop: -10,
         paddingHorizontal: 10,
         alignSelf: 'center',
-        backgroundColor: AppColors.white,
-        color: AppColors.greyDark,
+        backgroundColor: AppColors.background,
+        color: AppColors.grey,
         fontFamily: AppFonts.base.familyBold,
     },
 });

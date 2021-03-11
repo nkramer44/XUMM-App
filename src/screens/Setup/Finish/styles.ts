@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import { AppSizes, AppStyles, AppColors } from '@theme';
 
 const styles = StyleSheet.create({
+    container :{
+        backgroundColor: AppColors.background,
+    },
     logo: {
         width: AppSizes.screen.width * 0.4,
         height: AppSizes.screen.height * 0.1,
@@ -16,6 +19,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    webview: {
+        borderRadius: AppStyles.borderRadius.borderRadius,
     },
     contentArea: {
         paddingHorizontal: AppStyles.paddingHorizontalSml.paddingHorizontal,

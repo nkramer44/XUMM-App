@@ -146,7 +146,7 @@ class Input extends Component<Props, State> {
                     }}
                     onFocus={this.onFocus}
                     onBlur={this.onBlur}
-                    placeholderTextColor={AppColors.greyDark}
+                    placeholderTextColor={AppColors.textSecondary}
                     autoCapitalize={autoCapitalize || 'none'}
                     autoCorrect={false}
                     multiline={false}
@@ -193,7 +193,7 @@ class Input extends Component<Props, State> {
 
                 {isLoading && (
                     <View style={styles.loadingOverlay}>
-                        <ActivityIndicator color={AppColors.blue} style={styles.loadingIndicator} />
+                        <ActivityIndicator color={AppColors.textPrimary} style={styles.loadingIndicator} />
                     </View>
                 )}
             </View>

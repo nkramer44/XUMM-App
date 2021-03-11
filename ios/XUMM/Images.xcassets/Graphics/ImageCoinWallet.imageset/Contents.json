@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ImageCoinWallet.png",
+      "filename" : "icon-coin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ImageCoinWallet-1.png",
+      "filename" : "icon-coin-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ImageCoinWallet-2.png",
+      "filename" : "icon-coin-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

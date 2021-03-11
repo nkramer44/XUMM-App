@@ -6,40 +6,87 @@ const buildImageSource = (iosSrc: string, androidSrc: string): { uri: string } =
 
 export const Images = {
     // Backgrounds
-    backgroundPattern: buildImageSource('BackgroundPattern', 'background_pattern'),
+    backgroundPattern: global.theme === 'light'
+        ? buildImageSource('BackgroundPattern', 'background_pattern')
+        : buildImageSource('BackgroundPatternLight', 'background_pattern'),
     BackgroundShapes: buildImageSource('BackgroundShapes', 'background_shapes'),
     // Visuals
-    ImageFirstAccount: buildImageSource('ImageFirstAccount', 'image_first_account'),
-    ImageNoEvents: buildImageSource('ImageNoEvents', 'image_no_events'),
-    ImageProfile: buildImageSource('ImageProfile', 'image_profile'),
-    ImageNoContacts: buildImageSource('ImageNoContacts', 'image_no_contacts'),
-    ImageAddAccount: buildImageSource('ImageAddAccount', 'image_add_account'),
-    ImageNewAccount: buildImageSource('ImageNewAccount', 'image_new_account'),
-    ImageSecretWarning: buildImageSource('ImageSecretWarning', 'image_secret_warning'),
-    ImageManageAccounts: buildImageSource('ImageManageAccounts', 'image_manage_accounts'),
-    ImageSecurityFirst: buildImageSource('ImageSecurityFirst', 'image_security_first'),
-    ImageSendReceive: buildImageSource('ImageSendReceive', 'image_send_receive'),
-    ImagePincode: buildImageSource('ImagePincode', 'image_pincode'),
-    ImageBiometric: buildImageSource('ImageBiometric', 'image_biometric'),
-    ImageNotifications: buildImageSource('ImageNotifications', 'image_notifications'),
-    ImageComplete: buildImageSource('ImageComplete', 'image_complete'),
-    ImageCloudAlert: buildImageSource('ImageCloudAlert', 'image_cloud_alert'),
-    ImageWarningShield: buildImageSource('ImageWarningShield', 'image_warning_shield'),
-    ImageCoinWallet: buildImageSource('ImageCoinWallet', 'image_coin_wallet'),
+    ImageFirstAccount: global.theme === 'light'
+        ? buildImageSource('ImageFirstAccount', 'image_first_account')
+        : buildImageSource('ImageFirstAccountLight', 'image_first_account'),
+    ImageNoEvents: global.theme === 'light'
+        ? buildImageSource('ImageNoEvents', 'image_no_events')
+        : buildImageSource('ImageNoEventsLight', 'image_no_events'),
+    ImageProfile: global.theme === 'light'
+        ? buildImageSource('ImageProfile', 'image_profile')
+        : buildImageSource('ImageProfileLight', 'image_profile'),
+    ImageNoContacts: global.theme === 'light'
+        ? buildImageSource('ImageNoContacts', 'image_no_contacts')
+        : buildImageSource('ImageNoContactsLight', 'image_no_contacts'),
+    ImageAddAccount: global.theme === 'light'
+        ? buildImageSource('ImageAddAccount', 'image_add_account')
+        : buildImageSource('ImageAddAccountLight', 'image_add_account'),
+    ImageNewAccount: global.theme === 'light'
+        ? buildImageSource('ImageNewAccount', 'image_new_account')
+        : buildImageSource('ImageNewAccountLight', 'image_new_account'),
+    ImageSecretWarning: global.theme === 'light'
+        ? buildImageSource('ImageSecretWarning', 'image_secret_warning')
+        : buildImageSource('ImageSecretWarningLight', 'image_secret_warning'),
+    ImageManageAccounts: global.theme === 'light'
+        ? buildImageSource('ImageManageAccounts', 'image_manage_accounts')
+        : buildImageSource('ImageManageAccountsLight', 'image_manage_accounts'),
+    ImageSecurityFirst: global.theme === 'light'
+        ? buildImageSource('ImageSecurityFirst', 'image_security_first')
+        : buildImageSource('ImageSecurityFirstLight', 'image_security_first'),
+    ImageSendReceive: global.theme === 'light'
+        ? buildImageSource('ImageSendReceive', 'image_send_receive')
+        : buildImageSource('ImageSendReceiveLight', 'image_send_receive'),
+    ImagePincode: global.theme === 'light'
+        ? buildImageSource('ImagePincode', 'image_pincode')
+        : buildImageSource('ImagePincodeLight', 'image_pincode_light'),
+    ImageBiometric: global.theme === 'light'
+        ? buildImageSource('ImageBiometric', 'image_biometric')
+        : buildImageSource('ImageBiometricLight', 'image_biometric'),
+    ImageNotifications: global.theme === 'light'
+        ? buildImageSource('ImageNotifications', 'image_notifications')
+        : buildImageSource('ImageNotificationsLight', 'image_notifications_light'),
+    ImageComplete: global.theme === 'light'
+        ? buildImageSource('ImageComplete', 'image_complete')
+        : buildImageSource('ImageCompleteLight', 'image_complete'),
+    ImageCloudAlert: global.theme === 'light'
+        ? buildImageSource('ImageCloudAlert', 'image_cloud_alert')
+        : buildImageSource('ImageCloudAlertLight', 'image_cloud_alert'),
+    ImageWarningShield: global.theme === 'light'
+        ? buildImageSource('ImageWarningShield', 'image_warning_shield')
+        : buildImageSource('ImageWarningShieldLight', 'image_warning_shield'),
+    ImageCoinWallet: global.theme === 'light'
+        ? buildImageSource('ImageCoinWallet', 'image_coin_wallet')
+        : buildImageSource('ImageCoinWalletLight', 'image_coin_wallet'),
     // Xumm
-    xummLogo: buildImageSource('XummLogo', 'xumm_logo'),
-    xummIcon: buildImageSource('XummIcon', 'xumm_icon'),
+    xummLogo: global.theme === 'light'
+        ? buildImageSource('XummLogo', 'xumm_logo')
+        : buildImageSource('XummLogoLight', 'xumm_logo_light'),
+    xummIcon: global.theme === 'light'
+        ? buildImageSource('XummIcon', 'xumm_icon')
+        : buildImageSource('XummIconLight', 'xumm_icon_light'),
     SideGradient: buildImageSource('SideGradient', 'side_gradient'),
     // Icons
-    IconTabBarScan: buildImageSource('IconTabBarScan', 'icon_tabbar_scan'),
     IconTabBarHome: buildImageSource('IconTabBarHome', 'icon_tabbar_home'),
-    IconTabBarHomeSelected: buildImageSource('IconTabBarHomeSelected', 'icon_tabbar_home_selected'),
+    IconTabBarHomeSelected: global.theme === 'light'
+        ? buildImageSource('IconTabBarHomeSelected', 'icon_tabbar_home_selected')
+        : buildImageSource('IconTabBarHomeSelectedLight', 'icon_tabbar_home_selected'),
     IconTabBarEvents: buildImageSource('IconTabBarEvents', 'icon_tabbar_events'),
-    IconTabBarEventsSelected: buildImageSource('IconTabBarEventsSelected', 'icon_tabbar_events_selected'),
+    IconTabBarEventsSelected: global.theme === 'light'
+        ? buildImageSource('IconTabBarEventsSelected', 'icon_tabbar_events_selected')
+        : buildImageSource('IconTabBarEventsSelectedLight', 'icon_tabbar_events_selected'),
     IconTabBarProfile: buildImageSource('IconTabBarProfile', 'icon_tabbar_profile'),
-    IconTabBarProfileSelected: buildImageSource('IconTabBarProfileSelected', 'icon_tabbar_profile_selected'),
+    IconTabBarProfileSelected: global.theme === 'light'
+        ? buildImageSource('IconTabBarProfileSelected', 'icon_tabbar_profile_selected')
+        : buildImageSource('IconTabBarProfileSelectedLight', 'icon_tabbar_profile_selected'),
     IconTabBarSettings: buildImageSource('IconTabBarSettings', 'icon_tabbar_settings'),
-    IconTabBarSettingsSelected: buildImageSource('IconTabBarSettingsSelected', 'icon_tabbar_settings_selected'),
+    IconTabBarSettingsSelected: global.theme === 'light'
+        ? buildImageSource('IconTabBarSettingsSelected', 'icon_tabbar_settings_selected')
+        : buildImageSource('IconTabBarSettingsSelectedLight', 'icon_tabbar_settings_selected'),
     IconLock: buildImageSource('IconLock', 'icon_lock'),
     IconChevronLeft: buildImageSource('IconChevronLeft', 'icon_chevron_left'),
     IconChevronRight: buildImageSource('IconChevronRight', 'icon_chevron_right'),
@@ -95,5 +142,7 @@ export const Images = {
     IconArrowRightLong: buildImageSource('IconArrowRightLong', 'icon_arrow_right_long'),
     IconCheckXumm: buildImageSource('IconCheckXumm', 'icon_check_xumm'),
     IconApps: buildImageSource('IconApps', 'icon_apps'),
-    IconTabbarActions: buildImageSource('IconTabbarActions', 'icon_tabbar_actions'),
+    IconTabBarActions: global.theme === 'light'
+        ? buildImageSource('IconTabBarActions', 'icon_tabbar_actions')
+        : buildImageSource('IconTabBarActionsLight', 'icon_tabbar_actions'),
 };

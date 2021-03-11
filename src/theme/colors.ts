@@ -4,7 +4,7 @@
 
 /* eslint-disable spellcheck/spell-checker */
 
-/*
+
 function ColorLuminance(hex, lum) {
   // validate hex string
   hex = String(hex).replace(/[^0-9a-f]/gi, '');
@@ -22,7 +22,6 @@ function ColorLuminance(hex, lum) {
   }
   return rgb;
 }
-*/
 
 function hexToRgbA(hex, opacity) {
     let c;
@@ -45,13 +44,20 @@ const colorsGeneral = {
     green: '#3BDC96',
     red: '#FF5B5B',
 
-    white: 'white',
-    black: 'black',
+    black: '#000000',
+    white: '#ffffff',
 
-    grey: '#EDEFF6',
+    grey: '#606885',
+    silver: '#ACB1C1',
+    // light: '#F8FAFD',
+    light: '#F3F6FA',
+
+    themeLight: '#ffffff',
+    themeDark: '#000000',
+    themeMoonlight: '#181A21',
+    themeRoyal: '#030B36',
 
     transparent: 'transparent',
-    transparentBlack: 'rgba(0, 0, 0, 0.7)',
 
     brandBithomp: '#3fa3b5',
     brandXrplns: '#3767CE',
@@ -61,72 +67,79 @@ const colorsGeneral = {
 
 const colorMutations = {
     // testBlue: ColorLuminance(colorsGeneral.blue, -0.5),
+    // lightBlue: ColorLuminance(colorsGeneral.blue, -0.5),
     lightBlue: hexToRgbA(colorsGeneral.blue, 0.06),
     lightOrange: hexToRgbA(colorsGeneral.orange, 0.06),
     lightGreen: hexToRgbA(colorsGeneral.green, 0.06),
     lightRed: hexToRgbA(colorsGeneral.red, 0.06),
     lightGrey: hexToRgbA(colorsGeneral.grey, 0.06),
+    transparentBlack: hexToRgbA(colorsGeneral.black, 0.7),
+    transparentBlue: hexToRgbA(colorsGeneral.blue, 0.7),
+    darkBlue: ColorLuminance(colorsGeneral.blue, -0.9),
 };
 
 if (global.theme === 'light') {
     colorsTheme = {
-        white: '#FFFFFF',
-        black: '#000000',
-        light: '#F8FAFD',
-        // grey: '#EDEFF6',
-        // grey: '#606885',
-        // greyDark: '#848DB8',
-        // grey: '#888EA3',
-        greyDark: '#606885',
-        // greyDark: 'red',
+        background: colorsGeneral.white,
+        tint: colorsGeneral.light,
+        contrast: colorsGeneral.black,
+        textContrast: colorsGeneral.white,
+        textPrimary: colorsGeneral.black,
+        textSecondary: colorsGeneral.grey
     };
 }
 if (global.theme === 'dark') {
     colorsTheme = {
         // THEME Dark
-        themeDark: '#000000',
-        themeDarkText: '#ffffff',
+        background: colorsGeneral.black,
+        // tint: hexToRgbA(colorsGeneral.grey, 0.25),
+        tint: ColorLuminance(colorsGeneral.grey, -0.85),
+        contrast: colorsGeneral.white,
+        textContrast: colorsGeneral.black,
+        textPrimary: colorsGeneral.white,
+        textSecondary: colorsGeneral.silver,
 
-        white: '#000000',
-        black: '#ffffff',
-        light: '#181A21',
-        grey: '#262934',
-        greyDark: '#222530',
+        lightBlue: hexToRgbA(colorsGeneral.blue, 0.22),
+        lightOrange: hexToRgbA(colorsGeneral.orange, 0.22),
+        lightGreen: hexToRgbA(colorsGeneral.green, 0.22),
+        lightRed: hexToRgbA(colorsGeneral.red, 0.22),
+        lightGrey: hexToRgbA(colorsGeneral.grey, 0.22),
     };
 }
 if (global.theme === 'moonlight') {
     colorsTheme = {
         // THEME Moonlight
-        themeMoonlight: '#262934',
-        themeMoonlightText: '#848CB8',
+        background: colorsGeneral.themeMoonlight,
+        // tint: hexToRgbA(colorsGeneral.grey, 0.19),
+        tint: ColorLuminance(colorsGeneral.grey, -0.65),
+        contrast: colorsGeneral.white,
+        textContrast: colorsGeneral.black,
+        textPrimary: colorsGeneral.white,
+        textSecondary: colorsGeneral.silver,
 
-        // white: ColorLuminance(colorsGeneral.red, -0.5),
-        // black: hexToRgbA(colorsGeneral.red, 1),
-
-        white: '#181A21',
-        black: '#ffffff',
-        light: '#232630',
-        grey: '#262934',
-        greyDark: '#222530',
-        // greyDark: 'red',
-
-        // lightGrey: '#0F1114',
-        // lightBlue: '#F0F3FF',
-        // lightOrange: '#FFF9ED',
-        // lightOrange: 'rgba(248, 191, 76, 0.06)',
-        // lightOrange: 'rgba(' + colorsGeneral.orange + ', 0.5)',
-        // lightGreen: '#E6FAF2',
-        // lightRed: '#FFF9F9',
+        lightBlue: hexToRgbA(colorsGeneral.blue, 0.17),
+        lightOrange: hexToRgbA(colorsGeneral.orange, 0.17),
+        lightGreen: hexToRgbA(colorsGeneral.green, 0.17),
+        lightRed: hexToRgbA(colorsGeneral.red, 0.17),
+        lightGrey: hexToRgbA(colorsGeneral.grey, 0.17),
     };
 }
 if (global.theme === 'royal') {
     colorsTheme = {
         // THEME Dark
-        themeDark: '#000000',
-        themeDarkText: '#ffffff',
-        white: '#030B36',
-        black: '#ffffff',
-        light: hexToRgbA('#606885', 0.22),
+        background: colorsGeneral.themeRoyal,
+        // tint: hexToRgbA(colorsGeneral.grey, 0.22),
+        tint: ColorLuminance(colorsGeneral.blue, -0.72),
+        contrast: colorsGeneral.white,
+        textContrast: colorsGeneral.black,
+        textPrimary: colorsGeneral.white,
+        textSecondary: colorsGeneral.silver,
+
+        lightBlue: hexToRgbA(colorsGeneral.blue, 0.17),
+        lightOrange: hexToRgbA(colorsGeneral.orange, 0.17),
+        lightGreen: hexToRgbA(colorsGeneral.green, 0.17),
+        lightRed: hexToRgbA(colorsGeneral.red, 0.17),
+        lightGrey: hexToRgbA(colorsGeneral.grey, 0.17),
     };
 }
 

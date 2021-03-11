@@ -18,6 +18,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'stretch',
+        backgroundColor: Colors.background
     },
     tabContainer: {
         position: 'relative',
@@ -27,6 +28,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         alignContent: 'stretch',
         marginBottom: Sizes.tabbarHeight,
+        backgroundColor: Colors.background
     },
     headerContainer: {
         backgroundColor: Colors.transparent,
@@ -71,75 +73,73 @@ export default StyleSheet.create({
     },
 
     buttonTransparent: {
-        color: Colors.greyDark,
         borderColor: Colors.transparent,
-        tintColor: Colors.greyDark,
+        tintColor: Colors.grey,
         backgroundColor: Colors.transparent,
     },
     buttonBlue: {
-        color: Colors.blue,
         borderColor: Colors.blue,
         tintColor: Colors.blue,
         backgroundColor: Colors.blue,
     },
     buttonBlueLight: {
-        color: Colors.lightBlue,
         borderColor: Colors.lightBlue,
         tintColor: Colors.lightBlue,
         backgroundColor: Colors.lightBlue,
     },
     buttonGreen: {
-        color: Colors.white,
         borderColor: Colors.green,
         tintColor: Colors.green,
         backgroundColor: Colors.green,
     },
     buttonRed: {
-        color: Colors.red,
         borderColor: Colors.red,
         tintColor: Colors.red,
         backgroundColor: Colors.red,
     },
     buttonRedOutline: {
-        color: Colors.red,
         borderColor: Colors.red,
         tintColor: Colors.red,
         backgroundColor: Colors.transparent,
     },
     buttonGrey: {
-        color: Colors.greyDark,
-        borderColor: Colors.greyDark,
-        tintColor: Colors.greyDark,
-        backgroundColor: Colors.greyDark,
+        borderColor: Colors.grey,
+        tintColor: Colors.grey,
+        backgroundColor: Colors.grey,
     },
-    buttonGreyOutline: {
-        color: Colors.greyDark,
-        borderColor: Colors.greyDark,
-        tintColor: Colors.greyDark,
-        backgroundColor: Colors.transparent,
+    buttonSilver: {
+        borderColor: Colors.silver,
+        tintColor: Colors.silver,
+        backgroundColor: Colors.silver,
+    },
+    buttonLight: {
+        borderColor: Colors.light,
+        tintColor: Colors.light,
+        backgroundColor: Colors.light,
     },
     buttonBlack: {
-        color: Colors.black,
         borderColor: Colors.black,
         tintColor: Colors.white,
         backgroundColor: Colors.black,
     },
 
+    colorPrimary: { color: Colors.textPrimary },
     colorWhite: { color: Colors.white },
     colorBlack: { color: Colors.black },
     colorBlue: { color: Colors.blue },
     colorGreen: { color: Colors.green },
     colorOrange: { color: Colors.orange },
     colorRed: { color: Colors.red },
-    colorGreyDark: { color: Colors.greyDark },
-    // colorPurple: { color: Colors.purple },
-    // colorGreyBlue: { color: Colors.greyBlue },
+    colorGrey: { color: Colors.grey },
+    colorSilver: { color: Colors.silver },
+
+    imgColorPrimary: { tintColor: Colors.textPrimary },
     imgColorBlue: { tintColor: Colors.blue },
     imgColorGreen: { tintColor: Colors.green },
     imgColorWhite: { tintColor: Colors.white },
     imgColorBlack: { tintColor: Colors.black },
     imgColorGrey: { tintColor: Colors.grey },
-    imgColorGreyDark: { tintColor: Colors.greyDark },
+    imgColorSilver: { tintColor: Colors.silver },
     imgColorRed: { tintColor: Colors.red },
     imgColorOrange: { tintColor: Colors.orange },
 
@@ -182,7 +182,7 @@ export default StyleSheet.create({
 
     // Text Styles
     baseText: {
-        color: Colors.black,
+        color: Colors.textPrimary,
         fontFamily: Fonts.base.family,
         fontSize: Fonts.base.size,
     },
@@ -190,17 +190,17 @@ export default StyleSheet.create({
     p: {
         fontFamily: Fonts.p.family,
         fontSize: Fonts.p.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     pbold: {
         fontFamily: Fonts.pb.family,
         fontSize: Fonts.pb.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     h1: {
         fontFamily: Fonts.h1.family,
         fontSize: Fonts.h1.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
         margin: 0,
         marginBottom: 10,
         left: 0,
@@ -209,7 +209,7 @@ export default StyleSheet.create({
     h2: {
         fontFamily: Fonts.h2.family,
         fontSize: Fonts.h2.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
         margin: 0,
         marginBottom: 8,
         left: 0,
@@ -218,7 +218,7 @@ export default StyleSheet.create({
     h3: {
         fontFamily: Fonts.h3.family,
         fontSize: Fonts.h3.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
         margin: 0,
         marginBottom: 6,
         left: 0,
@@ -227,7 +227,7 @@ export default StyleSheet.create({
     h4: {
         fontFamily: Fonts.h4.family,
         fontSize: Fonts.h4.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
         margin: 0,
         marginBottom: 4,
         left: 0,
@@ -236,7 +236,7 @@ export default StyleSheet.create({
     h5: {
         fontFamily: Fonts.h5.family,
         fontSize: Fonts.h5.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
         margin: 0,
         marginTop: 4,
         marginBottom: 4,
@@ -251,17 +251,17 @@ export default StyleSheet.create({
     },
     link: {
         textDecorationLine: 'underline',
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     subtext: {
         fontFamily: Fonts.subtext.family,
         fontSize: Fonts.subtext.size,
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     monoSubText: {
         fontFamily: Fonts.base.familyMono,
         fontSize: Fonts.subtext.size - 1,
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     mono: {
         fontFamily: Fonts.base.familyMono,
@@ -476,7 +476,7 @@ export default StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.darkBlue,
     },
     panelHeader: {
         alignItems: 'center',
@@ -486,17 +486,18 @@ export default StyleSheet.create({
         width: 40,
         height: 6,
         borderRadius: 4,
-        backgroundColor: Colors.greyDark,
+        backgroundColor: Colors.grey,
     },
 
     // Empty view
     emptyIcon: {
-        // width: Sizes.screen.width * 0.4,
-        // height: Sizes.screen.width * 0.4,
+        // width: Sizes.screen.width * 0.3,
+        // height: Sizes.screen.width * 0.3,
         width: Sizes.scale(140),
         height: Sizes.scale(140),
         alignSelf: 'center',
         marginBottom: 20,
+        overflow:'visible'
     },
     emptyText: {
         width: '90%',
@@ -506,11 +507,11 @@ export default StyleSheet.create({
         paddingBottom: Sizes.padding,
         paddingHorizontal: Sizes.padding,
         alignSelf: 'center',
-        color: Colors.black,
+        color: Colors.textPrimary,
     },
     BackgroundShapes: {
         resizeMode: 'contain',
-        tintColor: Colors.light,
+        tintColor: Colors.tint,
     },
     BackgroundShapesWH: {
         width: '100%',

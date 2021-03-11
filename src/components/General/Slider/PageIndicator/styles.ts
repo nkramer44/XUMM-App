@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         paddingLeft: 40,
     },
     dot: {
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.silver,
         borderRadius: 5,
         width: 10,
         height: 10,

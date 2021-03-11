@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: AppFonts.base.familyExtraBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.greyDark,
+        color: AppColors.textPrimary,
         textAlign: 'center',
     },
     labelActive: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         color: AppColors.blue,
     },
     line: {
-        borderBottomColor: AppColors.grey,
+        borderBottomColor: AppColors.tint,
         borderBottomWidth: 4,
         width: AppSizes.widthPercentageToDP(6),
     },
