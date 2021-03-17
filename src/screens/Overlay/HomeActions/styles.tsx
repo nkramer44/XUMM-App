@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size,
         textAlign: 'center',
-        color: AppColors.textPrimary
+        color: AppColors.textPrimary,
     },
     activityIndicator: {
         height: AppSizes.scale(130),
