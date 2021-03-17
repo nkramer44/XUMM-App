@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         width: AppSizes.widthPercentageToDP(8),
         borderRadius: 10,
         backgroundColor: AppColors.grey,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         justifyContent: 'center',
         alignItems: 'center',
     },

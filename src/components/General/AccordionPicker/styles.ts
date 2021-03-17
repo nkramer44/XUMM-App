@@ -10,7 +10,7 @@ export default StyleSheet.create({
     },
     pickerContainerExpanded: {
         backgroundColor: AppColors.white,
-        shadowColor: AppColors.greyDark,
+        shadowColor: AppColors.grey,
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 8,
         shadowOpacity: 0.1,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
         backgroundColor: AppColors.white,
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
-        shadowColor: AppColors.greyDark,
+        shadowColor: AppColors.grey,
         shadowOffset: { width: 0, height: 8 },
         shadowRadius: 8,
         shadowOpacity: 0.1,

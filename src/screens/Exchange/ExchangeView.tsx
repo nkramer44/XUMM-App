@@ -387,7 +387,7 @@ class ExchangeView extends Component<Props, State> {
                         <Button
                             onPress={this.openXRPToolkit}
                             icon="IconLink"
-                            iconStyle={AppStyles.imgColorGreyDark}
+                            iconStyle={AppStyles.imgColorGrey}
                             light
                             rounded
                             label={Localize.t('global.openXRPToolkitByTowoLabs')}

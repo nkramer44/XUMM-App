@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.transparent,
     },
     scanIconTransparent: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         opacity: 0.1,
     },
 });

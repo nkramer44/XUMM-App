@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     visibleContent: {
         width: AppSizes.screen.width * 0.9,
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderRadius: AppSizes.screen.width * 0.07,
         shadowColor: AppColors.black,
         shadowOffset: { width: 0, height: 0 },
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         ...AppStyles.p,
-        color: AppColors.black,
         textAlign: 'center',
     },
     titleError: {

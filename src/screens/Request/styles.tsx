@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     currencySymbolText: {
         fontFamily: AppFonts.base.familyMonoBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         fontSize: AppFonts.h5.size * 0.9,
     },
 });

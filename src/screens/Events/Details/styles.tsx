@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
     dateText: {
         fontFamily: AppFonts.base.familyMonoBold,
         fontSize: AppFonts.small.size,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         textAlign: 'left',
     },
     hashText: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: AppFonts.base.size * 0.9,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         textAlign: 'left',
     },
     labelText: {
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
         tintColor: AppColors.orange,
     },
     naturalColor: {
-        color: AppColors.greyDark,
-        tintColor: AppColors.greyDark,
+        color: AppColors.grey,
+        tintColor: AppColors.grey,
     },
 });
 

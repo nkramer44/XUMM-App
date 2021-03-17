@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
 });
 

@@ -9,7 +9,7 @@ global.Buffer = require('buffer').Buffer;
 global.process = require('process');
 
 global.theme = 'light';
-// global.theme = 'dark';
+global.theme = 'dark';
 // global.theme = 'moonlight';
 // global.theme = 'royal';
 

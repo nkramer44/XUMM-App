@@ -169,7 +169,7 @@ class RequestDeclineOverlay extends Component<Props, State> {
                         </View>
                         <View style={[AppStyles.flex1, AppStyles.paddingHorizontalSml]}>
                             <Text style={[AppStyles.p, AppStyles.textCenterAligned]}>
-                                <Text style={[AppStyles.bold, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.bold, AppStyles.colorgrey]}>
                                     {Localize.t('global.close')}{' '}
                                 </Text>
                                 {Localize.t('payload.willIgnoreTheRequestAndClose')}{' '}

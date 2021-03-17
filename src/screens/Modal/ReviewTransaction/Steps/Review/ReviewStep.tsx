@@ -280,7 +280,7 @@ class ReviewStep extends Component<Props, State> {
                         <View style={[styles.transactionContent]}>
                             <View style={[AppStyles.paddingHorizontalSml]}>
                                 <View style={styles.rowLabel}>
-                                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                         {payload.payload.tx_type === 'SignIn' || payload.meta.multisign
                                             ? Localize.t('global.signAs')
                                             : Localize.t('global.signWith')}

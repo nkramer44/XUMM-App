@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.red,
     },
     closeButton: {
-        backgroundColor: AppColors.greyDark,
+        backgroundColor: AppColors.grey,
     },
 });
 

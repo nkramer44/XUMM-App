@@ -11,11 +11,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: AppSizes.heightPercentageToDP(7.5),
     },
+    touchHighlight: {
+        borderRadius: 10,
+    },
     row: {
         paddingTop: 10,
     },
     iconContainer: {
-        borderColor: AppColors.grey,
+        borderColor: AppColors.lightGrey,
+        backgroundColor: AppColors.tint,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     xAppsIcon: {
-        tintColor: AppColors.greyBlack,
+        tintColor: AppColors.lightGrey,
         marginLeft: 8,
         resizeMode: 'contain',
         height: 15,
@@ -37,11 +41,12 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size,
+        color: AppColors.textPrimary,
     },
     description: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size * 0.9,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     amount: {
         fontFamily: AppFonts.base.familyMonoBold,
@@ -56,7 +61,7 @@ const styles = StyleSheet.create({
         tintColor: AppColors.red,
     },
     incomingColor: {
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         tintColor: AppColors.green,
     },
     orangeColor: {
@@ -64,8 +69,8 @@ const styles = StyleSheet.create({
         tintColor: AppColors.orange,
     },
     naturalColor: {
-        color: AppColors.greyDark,
-        tintColor: AppColors.greyDark,
+        color: AppColors.grey,
+        tintColor: AppColors.grey,
     },
 });
 

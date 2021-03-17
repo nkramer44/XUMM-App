@@ -277,7 +277,7 @@ export default class PasswordInput extends Component<Props, State> {
                         this.instance = r;
                     }}
                     editable={editable}
-                    placeholderTextColor={AppColors.greyDark}
+                    placeholderTextColor={AppColors.grey}
                     secureTextEntry={hidePassword}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -298,7 +298,7 @@ export default class PasswordInput extends Component<Props, State> {
                     <Icon
                         size={22}
                         name={hidePassword ? 'IconEye' : 'IconEyeOff'}
-                        style={[styles.eyeIcon, !editable ? { tintColor: AppColors.greyDark } : null]}
+                        style={[styles.eyeIcon, !editable ? { tintColor: AppColors.grey } : null]}
                     />
                 </TouchableOpacity>
             </View>

@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     // Disabled
     buttonDisabled: {
         borderColor: AppColors.transparent,
-        // backgroundColor: AppColors.greyDark,
+        // backgroundColor: AppColors.grey,
         opacity: 0.5,
     },
     textButtonDisabled: {
-        // color: AppColors.greyDark,
+        // color: AppColors.grey,
     },
 
     // Rounded

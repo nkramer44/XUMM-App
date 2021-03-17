@@ -124,6 +124,7 @@ export default StyleSheet.create({
     },
 
     colorPrimary: { color: Colors.textPrimary },
+    colorContrast: { color: Colors.textContrast },
     colorWhite: { color: Colors.white },
     colorBlack: { color: Colors.black },
     colorBlue: { color: Colors.blue },
@@ -134,6 +135,7 @@ export default StyleSheet.create({
     colorSilver: { color: Colors.silver },
 
     imgColorPrimary: { tintColor: Colors.textPrimary },
+    imgColorContrast: { tintColor: Colors.textContrast },
     imgColorBlue: { tintColor: Colors.blue },
     imgColorGreen: { tintColor: Colors.green },
     imgColorWhite: { tintColor: Colors.white },
@@ -476,7 +478,7 @@ export default StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: Colors.darkBlue,
+        backgroundColor: Colors.darkGrey,
     },
     panelHeader: {
         alignItems: 'center',

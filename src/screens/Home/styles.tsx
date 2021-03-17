@@ -193,19 +193,21 @@ const styles = StyleSheet.create({
         marginRight: 1.5,
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
+        backgroundColor: global.theme === 'light' ? AppColors.white : AppColors.blue,
     },
-    sendButtonIcon: { marginRight: 5, tintColor: AppColors.blue },
-    sendButtonText: { color: AppColors.blue },
+    sendButtonIcon: { marginRight: 5, tintColor: global.theme === 'light' ? AppColors.blue : AppColors.white },
+    sendButtonText: { color: global.theme === 'light' ? AppColors.blue : AppColors.white },
 
     // REQUEST BUTTON
     requestButton: {
         marginLeft: 1.5,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
+        backgroundColor: global.theme === 'light' ? AppColors.white : AppColors.grey,
     },
 
-    requestButtonIcon: { marginLeft: 5, tintColor: AppColors.green },
-    requestButtonText: { color: AppColors.green },
+    requestButtonIcon: { marginLeft: 5, tintColor: global.theme === 'light' ? AppColors.green : AppColors.white },
+    requestButtonText: { color: global.theme === 'light' ? AppColors.green : AppColors.white },
 
     QRButtonText: { fontSize: AppFonts.base.size },
 

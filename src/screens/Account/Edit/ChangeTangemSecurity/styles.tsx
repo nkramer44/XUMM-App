@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
     accountIcon: {
         width: AppSizes.screen.width * 0.07,
         height: AppSizes.screen.width * 0.07,
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         resizeMode: 'contain',
     },
     rowIcon: {
         width: AppSizes.screen.width * 0.07,
         height: AppSizes.screen.width * 0.07,
         resizeMode: 'contain',
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginRight: -10,
     },
     row: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.white,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderTopWidth: StyleSheet.hairlineWidth,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
     },
 
     label: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.subtext.size,
         textAlign: 'right',
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     descriptionText: {
         padding: AppSizes.paddingSml,

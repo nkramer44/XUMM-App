@@ -122,7 +122,7 @@ class RecipientElement extends PureComponent<Props> {
 
                         {!!recipient.tag && showTag && (
                             <View style={styles.destinationTagContainer}>
-                                <Text style={[AppStyles.monoSubText, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.monoSubText, AppStyles.colorgrey]}>
                                     {Localize.t('global.destinationTag')}:{' '}
                                     <Text style={AppStyles.colorBlue}>{recipient.tag}</Text>
                                 </Text>
@@ -136,7 +136,7 @@ class RecipientElement extends PureComponent<Props> {
                             activeOpacity={0.7}
                             style={[AppStyles.flex1, AppStyles.rightAligned, AppStyles.centerContent]}
                         >
-                            <Icon name="IconMoreVertical" size={30} style={AppStyles.imgColorGreyDark} />
+                            <Icon name="IconMoreVertical" size={30} style={AppStyles.imgColorGrey} />
                         </TouchableOpacity>
                     )}
                 </View>

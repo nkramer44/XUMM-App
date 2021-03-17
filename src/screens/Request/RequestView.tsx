@@ -220,7 +220,7 @@ class RequestView extends Component<Props, State> {
 
                         <View style={[styles.rowItem]}>
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                     {Localize.t('global.to')}
                                 </Text>
                             </View>
@@ -241,7 +241,7 @@ class RequestView extends Component<Props, State> {
                                 onPress={this.toggleUseAmount}
                             >
                                 <View style={AppStyles.flex5}>
-                                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                         {Localize.t('global.requestWithAmount')}
                                     </Text>
                                 </View>
@@ -259,7 +259,7 @@ class RequestView extends Component<Props, State> {
                                                 onChange={this.onAmountChange}
                                                 returnKeyType="done"
                                                 style={[styles.amountInput]}
-                                                placeholderTextColor={AppColors.greyDark}
+                                                placeholderTextColor={AppColors.grey}
                                                 value={amount}
                                             />
                                         </View>
@@ -276,7 +276,7 @@ class RequestView extends Component<Props, State> {
                                                 onChange={this.onRateAmountChange}
                                                 returnKeyType="done"
                                                 style={[styles.amountRateInput]}
-                                                placeholderTextColor={AppColors.greyDark}
+                                                placeholderTextColor={AppColors.grey}
                                                 value={amountRate}
                                             />
                                         </View>

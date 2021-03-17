@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     accountItemSub: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: 16,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     // Currency
     pickerItemCurrency: {
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     currencyBalance: {
         fontSize: AppFonts.subtext.size * 0.9,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     editButton: {
         justifyContent: 'center',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     },
     currencySymbolText: {
         fontFamily: AppFonts.base.familyMonoBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         fontSize: AppFonts.h5.size * 0.9,
     },
     rateContainer: {

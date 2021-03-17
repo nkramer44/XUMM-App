@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     visibleContent: {
         // height: Sizes.screen.heightHalf + 100,
         height: AppSizes.heightPercentageToDP(92),
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         shadowColor: AppColors.black,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     reserveAmount: {
         fontSize: AppFonts.base.size,
         fontFamily: AppFonts.base.familyMonoBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         // fontWeight: 'bold',
         alignItems: 'flex-start',
         justifyContent: 'center',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     currencyItemLabel: {
         fontSize: AppFonts.h5.size,
         fontFamily: AppFonts.base.familyMonoBold,
-        // fontWeight: 'bold',
+        color: AppColors.textPrimary,
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginRight: 10,
         marginBottom: 3,
-        // borderWidth: 1,
-        // borderColor: 'red',
     },
     xrpAvatar: {
         resizeMode: 'contain',
@@ -66,28 +64,28 @@ const styles = StyleSheet.create({
         marginRight: 10,
         backgroundColor: AppColors.white,
         borderWidth: 1,
-        borderColor: AppColors.grey,
+        borderColor: AppColors.lightGrey,
         borderRadius: 8,
         justifyContent: 'center',
     },
     trustLineInfoIcon: {
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         marginRight: 5,
     },
     rowTitle: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.p.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     rowLabel: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     rowLabelSmall: {
         fontSize: AppFonts.subtext.size * 0.8,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     listHeader: {
         paddingVertical: 5,

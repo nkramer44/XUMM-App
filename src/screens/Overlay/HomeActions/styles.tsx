@@ -6,7 +6,7 @@ import { AppColors, AppSizes, AppFonts } from '@theme';
 const styles = StyleSheet.create({
     container: {
         // height: Sizes.screen.heightHalf + 100,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         shadowColor: AppColors.black,
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
     },
     actionButtonBlack: {
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.contrast,
     },
     appIcon: {
         width: AppSizes.scale(60),
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size,
         textAlign: 'center',
+        color: AppColors.textPrimary
     },
     activityIndicator: {
         height: AppSizes.scale(130),

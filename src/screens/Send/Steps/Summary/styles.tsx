@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     pickerItemSub: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: 16,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     currencyAvatar: {
         width: AppSizes.screen.width * 0.035,
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     currencyBalance: {
         fontSize: AppFonts.subtext.size * 0.9,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     brandAvatarContainer: {
         marginRight: 10,
         borderWidth: 1,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         borderRadius: 8,
         justifyContent: 'center',
         overflow: 'hidden',
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginRight: 10,
         borderWidth: 1,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         borderRadius: 8,
         justifyContent: 'center',
 

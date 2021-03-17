@@ -6,7 +6,7 @@ import { AppColors, AppSizes, AppFonts } from '@theme';
 const styles = StyleSheet.create({
     visibleContent: {
         height: AppSizes.heightPercentageToDP(92),
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         shadowColor: AppColors.black,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     selectedRow: {
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.tint,
     },
     selectedText: {
         color: AppColors.blue,

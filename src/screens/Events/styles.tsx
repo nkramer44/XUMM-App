@@ -5,13 +5,13 @@ import { AppColors, AppSizes } from '@theme';
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.background,
     },
     filterIcon: {
         tintColor: AppColors.blue,
     },
     sectionHeader: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         paddingBottom: 0,
         paddingTop: 10,
         shadowColor: AppColors.white,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingLeft: AppSizes.padding,
         paddingRight: AppSizes.padding,
         paddingBottom: AppSizes.paddingSml,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
     },
     listEmptyContainer: {
         flex: 1,

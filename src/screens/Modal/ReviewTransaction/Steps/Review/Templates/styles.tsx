@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.subtext.family,
         fontSize: AppFonts.subtext.size,
         fontWeight: 'bold',
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         paddingLeft: 5,
         marginBottom: 10,
     },
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyMonoBold,
         fontWeight: '600',
         fontSize: AppFonts.subtext.size,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     logo: {
         width: AppSizes.screen.width * 0.2,

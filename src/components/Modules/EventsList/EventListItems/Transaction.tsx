@@ -15,7 +15,7 @@ import Localize from '@locale';
 
 import { Icon, Avatar, AmountText } from '@components/General';
 
-import { AppStyles } from '@theme';
+import { AppStyles, AppColors } from '@theme';
 import styles from './styles';
 
 /* types ==================================================================== */
@@ -329,7 +329,7 @@ class TransactionTemplate extends Component<Props, State> {
 
         if (item.Memos) {
             return (
-                <Icon name="IconFileText" style={[AppStyles.imgColorGreyDark, AppStyles.paddingLeftSml]} size={12} />
+                <Icon name="IconFileText" style={[AppStyles.imgColorGrey, AppStyles.paddingLeftSml]} size={12} />
             );
         }
 
@@ -455,7 +455,7 @@ class TransactionTemplate extends Component<Props, State> {
 
     render() {
         return (
-            <TouchableHighlight onPress={this.onPress} underlayColor="#FFF">
+            <TouchableHighlight onPress={this.onPress} underlayColor={AppColors.tint} style={styles.touchHighlight}>
                 <View style={[AppStyles.row, styles.container]}>
                     <View style={[AppStyles.flex1, AppStyles.centerContent]}>{this.getIcon()}</View>
                     <View style={[AppStyles.flex3, AppStyles.centerContent]}>

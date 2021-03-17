@@ -28,7 +28,7 @@ export default StyleSheet.create({
     },
     subtitle: {
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         fontSize: AppFonts.base.size * 0.8,
     },
     tag: {

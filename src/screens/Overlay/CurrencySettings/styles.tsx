@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     visibleContent: {
         width: AppSizes.screen.width * 0.9,
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.tint,
         borderRadius: 20,
     },
     headerContainer: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         left: 0,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: AppSizes.paddingSml,
-        shadowColor: AppColors.blue,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 3,
         shadowOpacity: 0.1,
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     currencyItemLabelSmall: {
         fontSize: AppFonts.p.size,
         fontFamily: AppFonts.base.familyMono,
+        color: AppColors.textPrimary,
         alignItems: 'flex-start',
         justifyContent: 'center',
         marginRight: 10,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     issuerLabel: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     currencyAvatar: {
         width: AppSizes.screen.width * 0.035,
@@ -83,16 +84,18 @@ const styles = StyleSheet.create({
         marginRight: 1.5,
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
+        backgroundColor: global.theme === 'light' ? AppColors.white : AppColors.blue,
     },
-    sendButtonIcon: { marginRight: 5, tintColor: AppColors.blue },
-    sendButtonText: { color: AppColors.blue },
+    sendButtonIcon: { marginRight: 5, tintColor: global.theme === 'light' ? AppColors.blue : AppColors.white },
+    sendButtonText: { color: global.theme === 'light' ? AppColors.blue : AppColors.white },
     exchangeButton: {
         marginLeft: 1.5,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
+        backgroundColor: global.theme === 'light' ? AppColors.white : AppColors.grey,
     },
-    exchangeButtonIcon: { marginLeft: 5 },
-    exchangeButtonText: { color: AppColors.black },
+    exchangeButtonIcon: { marginLeft: 5, tintColor: global.theme === 'light' ? AppColors.blue : AppColors.white },
+    exchangeButtonText: { color: global.theme === 'light' ? AppColors.black : AppColors.white },
 
     infoButton: {
         marginLeft: 1.5,

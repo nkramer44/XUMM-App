@@ -294,7 +294,7 @@ class PaymentTemplate extends Component<Props, State> {
         return (
             <>
                 <View style={styles.label}>
-                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                    <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                         {Localize.t('global.to')}
                     </Text>
                 </View>

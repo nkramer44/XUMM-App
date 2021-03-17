@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     subLabel: {
         fontSize: AppFonts.subtext.size,
         fontFamily: AppFonts.base.familyMono,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
 
     inputContainer: {

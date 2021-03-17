@@ -147,6 +147,8 @@ export const Images = {
         : buildImageSource('IconTabBarActionsLight', 'icon_tabbar_actions'),
     IconReorder: buildImageSource('IconReorder', 'icon_reorder'),
     IconReorderHandle: buildImageSource('IconReorderHandle', 'icon_reorder_handle'),
-    IconXApps: buildImageSource('IconXApps', 'icon_xapps'),
+    IconXApps: global.theme === 'light'
+        ? buildImageSource('IconXApps', 'icon_xapps')
+        : buildImageSource('IconXAppsLight', 'icon_xapps_light'),
     IconXApp: buildImageSource('IconXApp', 'icon_xapp'),
 };

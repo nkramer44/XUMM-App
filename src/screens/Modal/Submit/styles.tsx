@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         width: AppSizes.screen.width * 0.85,
         backgroundColor: AppColors.white,
         borderRadius: AppSizes.screen.width * 0.06,
-        shadowColor: AppColors.greyDark,
+        shadowColor: AppColors.grey,
         shadowOffset: { width: 0, height: 5 },
         shadowRadius: 15,
         shadowOpacity: 0.2,

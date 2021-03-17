@@ -31,6 +31,6 @@ export default StyleSheet.create({
     accountItemSub: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: 16,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
 });

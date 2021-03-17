@@ -281,7 +281,7 @@ class DetailsStep extends Component<Props, State> {
                             <Text
                                 style={[
                                     styles.currencyBalance,
-                                    selected ? AppStyles.colorBlue : AppStyles.colorGreyDark,
+                                    selected ? AppStyles.colorBlue : AppStyles.colorgrey,
                                 ]}
                             >
                                 {Localize.t('global.available')}: {Localize.formatNumber(source.availableBalance)}
@@ -307,7 +307,7 @@ class DetailsStep extends Component<Props, State> {
 
                         <AmountText
                             prefix={`${Localize.t('global.balance')}: `}
-                            style={[styles.currencyBalance, selected ? AppStyles.colorBlue : AppStyles.colorGreyDark]}
+                            style={[styles.currencyBalance, selected ? AppStyles.colorBlue : AppStyles.colorgrey]}
                             value={item.balance}
                         />
                     </View>
@@ -346,7 +346,7 @@ class DetailsStep extends Component<Props, State> {
                                 resizeMode="stretch"
                             />
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                     {Localize.t('global.from')}
                                 </Text>
                             </View>
@@ -355,7 +355,7 @@ class DetailsStep extends Component<Props, State> {
                         {/* Currency */}
                         <View style={[styles.rowItem]}>
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                     {Localize.t('global.asset')}
                                 </Text>
                             </View>
@@ -379,7 +379,7 @@ class DetailsStep extends Component<Props, State> {
                         {/* Amount */}
                         <View style={[styles.rowItem]}>
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                     {Localize.t('global.amount')}
                                 </Text>
                             </View>
@@ -394,7 +394,7 @@ class DetailsStep extends Component<Props, State> {
                                         onChange={this.onAmountChange}
                                         returnKeyType="done"
                                         style={[styles.amountInput]}
-                                        placeholderTextColor={AppColors.greyDark}
+                                        placeholderTextColor={AppColors.grey}
                                         value={amount}
                                     />
                                 </View>
@@ -405,7 +405,7 @@ class DetailsStep extends Component<Props, State> {
                                     style={styles.editButton}
                                     roundedSmall
                                     iconSize={15}
-                                    iconStyle={AppStyles.imgColorGreyDark}
+                                    iconStyle={AppStyles.imgColorGrey}
                                     light
                                     icon="IconEdit"
                                 />
@@ -423,7 +423,7 @@ class DetailsStep extends Component<Props, State> {
                                             onChange={this.onRateAmountChange}
                                             returnKeyType="done"
                                             style={[styles.amountRateInput]}
-                                            placeholderTextColor={AppColors.greyDark}
+                                            placeholderTextColor={AppColors.grey}
                                             value={amountRate}
                                         />
                                     </View>

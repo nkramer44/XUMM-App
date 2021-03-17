@@ -6,7 +6,7 @@ export default StyleSheet.create({
     sectionList: {
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
     },
     sectionListContainer: {
         paddingLeft: AppSizes.padding,
@@ -14,10 +14,10 @@ export default StyleSheet.create({
         paddingBottom: AppSizes.paddingSml,
     },
     sectionHeader: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         paddingBottom: 0,
         paddingTop: 10,
-        shadowColor: AppColors.white,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 5 },
         shadowRadius: 5,
         shadowOpacity: 1,
@@ -25,12 +25,12 @@ export default StyleSheet.create({
     sectionHeaderText: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.p.size,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     sectionHeaderDateText: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.subtext.size,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     listEmptyContainer: {
         flex: 1,

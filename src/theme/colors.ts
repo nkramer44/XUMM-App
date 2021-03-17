@@ -76,7 +76,7 @@ const colorMutations = {
     lightGrey: hexToRgbA(colorsGeneral.grey, 0.06),
     transparentBlack: hexToRgbA(colorsGeneral.black, 0.7),
     transparentBlue: hexToRgbA(colorsGeneral.blue, 0.7),
-    darkBlue: ColorLuminance(colorsGeneral.blue, -0.9),
+    darkGrey: ColorLuminance(colorsGeneral.grey, -0.75),
 };
 
 if (global.theme === 'light') {

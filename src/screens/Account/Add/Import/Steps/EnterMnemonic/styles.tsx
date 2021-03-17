@@ -6,7 +6,7 @@ import { AppSizes, AppColors, AppFonts } from '@theme';
 const styles = StyleSheet.create({
     label: {
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         fontSize: AppFonts.subtext.size,
         textAlign: 'center',
         paddingHorizontal: 10,

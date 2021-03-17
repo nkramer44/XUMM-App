@@ -11,7 +11,7 @@ export default StyleSheet.create({
     },
     image: {},
     border: {
-        borderColor: AppColors.grey,
+        borderColor: AppColors.lightGrey,
         borderWidth: 1,
         borderRadius: 10,
     },

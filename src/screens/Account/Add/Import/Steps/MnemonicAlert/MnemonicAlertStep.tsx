@@ -64,14 +64,14 @@ class MnemonicAlertStep extends Component<Props, State> {
                         <Icon
                             name="IconLink"
                             size={20}
-                            style={[AppStyles.imgColorGreyDark, AppStyles.marginRightSml]}
+                            style={[AppStyles.imgColorGrey, AppStyles.marginRightSml]}
                         />
                         <Text
                             style={[
                                 AppStyles.subtext,
                                 AppStyles.textCenterAligned,
                                 AppStyles.link,
-                                AppStyles.colorGreyDark,
+                                AppStyles.colorgrey,
                             ]}
                         >
                             {Localize.t('global.readMoreInTheFAQ')}

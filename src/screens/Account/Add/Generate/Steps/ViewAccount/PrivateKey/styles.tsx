@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         fontSize: AppFonts.h4.size,
         fontFamily: AppFonts.base.familyMonoBold,
         paddingRight: 15,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
     },
     privateKeyRowIdActive: {
         color: AppColors.orange,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     privateKeyNum: {
         backgroundColor: AppColors.grey,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         padding: 2,
         fontSize: AppFonts.h4.size,
         fontFamily: AppFonts.base.familyMonoBold,

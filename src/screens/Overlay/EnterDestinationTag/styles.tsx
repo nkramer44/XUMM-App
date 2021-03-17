@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     avatarImage: {
         height: AppSizes.scale(30),
         width: AppSizes.scale(30),
-        tintColor: AppColors.greyDark,
+        tintColor: AppColors.grey,
         resizeMode: 'contain',
     },
     itemRow: {

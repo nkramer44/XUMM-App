@@ -28,7 +28,7 @@ import { BackendService } from '@services';
 import { AppScreens } from '@common/constants';
 
 // components
-import { Button, Spacer, HorizontalLine } from '@components/General';
+import { Button, Spacer } from '@components/General';
 
 import Localize from '@locale';
 
@@ -278,12 +278,9 @@ class HomeActionsOverlay extends Component<Props, State> {
                             </View>
                         )}
 
-                        <HorizontalLine />
-
                         <View
                             style={[
                                 AppStyles.row,
-                                AppStyles.paddingVertical,
                                 { marginBottom: AppSizes.navigationBarHeight },
                             ]}
                         >
@@ -293,8 +290,9 @@ class HomeActionsOverlay extends Component<Props, State> {
                                     label={Localize.t('global.scanAQRCode')}
                                     onPress={this.onScanButtonPress}
                                     style={styles.actionButtonBlack}
+                                    textStyle={AppStyles.colorContrast}
                                     icon="IconScan"
-                                    iconStyle={AppStyles.imgColorWhite}
+                                    iconStyle={AppStyles.imgColorContrast}
                                 />
                             </View>
                         </View>

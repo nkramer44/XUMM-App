@@ -69,7 +69,7 @@ class DepositPreauthTemplate extends Component<Props, State> {
                 {transaction.Authorize && (
                     <>
                         <View style={styles.label}>
-                            <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                            <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                 {Localize.t('global.authorize')}
                             </Text>
                         </View>
@@ -89,7 +89,7 @@ class DepositPreauthTemplate extends Component<Props, State> {
                 {transaction.Unauthorize && (
                     <>
                         <View style={styles.label}>
-                            <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGreyDark]}>
+                            <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
                                 {Localize.t('global.unauthorize')}
                             </Text>
                         </View>

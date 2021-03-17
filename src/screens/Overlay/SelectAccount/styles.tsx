@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         fontSize: AppFonts.base.size * 0.7,
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.greyDark,
+        color: AppColors.grey,
         includeFontPadding: false,
     },
     accessLevelLabelSelected: {

@@ -13,7 +13,7 @@ export default StyleSheet.create({
         flex: 1,
         height: AppSizes.heightPercentageToDP(3.5),
         backgroundColor: AppColors.transparent,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         justifyContent: 'center',
         // alignItems: 'center',
         margin: 4,
@@ -42,7 +42,7 @@ export default StyleSheet.create({
     },
     separator: {
         width: 1,
-        backgroundColor: AppColors.greyDark,
+        backgroundColor: AppColors.grey,
         height: '70%',
         alignSelf: 'center',
         borderTopWidth: 5,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
         borderBottomRightRadius: AppSizes.scale(7),
     },
     buttonMiddleLeft: {
-        backgroundColor: AppColors.greyDark,
+        backgroundColor: AppColors.grey,
         justifyContent: 'center',
         alignItems: 'center',
         width: AppSizes.scale(60),
@@ -156,7 +156,7 @@ export default StyleSheet.create({
     },
     privateKeyNum: {
         backgroundColor: AppColors.grey,
-        borderColor: AppColors.greyDark,
+        borderColor: AppColors.grey,
         padding: 8,
         fontSize: AppFonts.h4.size,
         fontFamily: AppFonts.base.familyMonoBold,

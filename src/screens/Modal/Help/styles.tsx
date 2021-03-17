@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center', alignSelf: 'stretch' },
     backgroundImageStyle: {
         resizeMode: 'contain',
-        tintColor: AppColors.grey,
-        opacity: 0.5,
+        tintColor: AppColors.tint,
+        opacity: 1,
     },
 });
 

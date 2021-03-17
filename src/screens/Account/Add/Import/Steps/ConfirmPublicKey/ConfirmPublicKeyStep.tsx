@@ -132,13 +132,13 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
                                 <View key={index} style={[AppStyles.row, AppStyles.centerAligned, styles.accountRow]}>
                                     <View style={[AppStyles.row, AppStyles.flex1, AppStyles.centerAligned]}>
                                         <View style={styles.iconContainer}>
-                                            <Icon size={25} style={AppStyles.imgColorGreyDark} name="IconAccount" />
+                                            <Icon size={25} style={AppStyles.imgColorGrey} name="IconAccount" />
                                         </View>
 
                                         <View>
                                             <Text style={[AppStyles.p, AppStyles.bold]}>{a.label}</Text>
                                             <Text
-                                                style={[AppStyles.subtext, AppStyles.monoBold, AppStyles.colorGreyDark]}
+                                                style={[AppStyles.subtext, AppStyles.monoBold, AppStyles.colorgrey]}
                                             >
                                                 {a.address}
                                             </Text>
@@ -211,8 +211,8 @@ class ConfirmPublicKeyStep extends Component<Props, State> {
                         label={Localize.t('account.copyAddress')}
                         icon="IconClipboard"
                         style={AppStyles.buttonBlueLight}
-                        iconStyle={AppStyles.imgColorGreyDark}
-                        textStyle={[AppStyles.colorGreyDark]}
+                        iconStyle={AppStyles.imgColorGrey}
+                        textStyle={[AppStyles.colorgrey]}
                         onPress={this.copyPubKeyToClipboard}
                         roundedSmall
                         outline
