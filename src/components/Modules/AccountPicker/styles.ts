@@ -27,7 +27,7 @@ export default StyleSheet.create({
         fontSize: AppStyles.baseText.fontSize,
         fontWeight: 'bold',
         marginBottom: 3,
-        color: AppColors.textPrimary
+        color: AppColors.textPrimary,
     },
     accountItemSub: {
         fontFamily: AppFonts.base.familyMono,
