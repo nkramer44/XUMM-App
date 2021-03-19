@@ -13,16 +13,16 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         zIndex: 9999,
-        backgroundColor: AppColors.white,
-        shadowColor: AppColors.white,
+        backgroundColor: AppColors.background,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 12 },
         shadowRadius: 5,
         shadowOpacity: 1,
         elevation: 1,
     },
     footerContainer: {
-        backgroundColor: AppColors.white,
-        shadowColor: AppColors.white,
+        backgroundColor: AppColors.background,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: -10 },
         shadowRadius: 5,
         shadowOpacity: 1,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         color: AppColors.white,
     },
     optionsButton: {
-        backgroundColor: AppColors.grey,
+        backgroundColor: AppColors.tint,
         borderRadius: 20,
         paddingRight: 10,
         paddingLeft: 10,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     optionsButtonText: {
         paddingRight: 10,
         paddingLeft: 10,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         fontFamily: AppFonts.base.family,
         fontSize: AppFonts.base.size,
     },

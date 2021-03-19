@@ -228,16 +228,9 @@ const styles = StyleSheet.create({
     },
     switchAccountButton: {
         backgroundColor: AppColors.tint,
-        borderColor: AppColors.lightGrey,
         paddingHorizontal: 10,
         alignSelf: 'flex-end',
-    },
-    switchAccountButtonText: {
-        fontSize: AppFonts.small.size,
-        fontFamily: AppFonts.base.familyBold,
-        color: AppColors.grey,
-        paddingLeft: 1,
-        paddingRight: 0,
+        marginRight: -10,
     },
     rateLoader: {
         paddingVertical: 4,

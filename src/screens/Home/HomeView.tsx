@@ -378,6 +378,8 @@ class HomeView extends Component<Props, State> {
                 {account?.isValid() && (
                     <View style={[AppStyles.flex1]}>
                         <Button
+                            light
+                            roundedSmall
                             onPress={() => {
                                 Navigator.showOverlay(AppScreens.Overlay.SwitchAccount, {
                                     layout: {
@@ -387,11 +389,7 @@ class HomeView extends Component<Props, State> {
                                 });
                             }}
                             style={styles.switchAccountButton}
-                            textStyle={styles.switchAccountButtonText}
-                            outline
-                            roundedSmall
                             iconSize={14}
-                            iconStyle={AppStyles.imgColorGrey}
                             icon="IconSwitchAccount"
                             label={Localize.t('account.switchAccount')}
                         />
@@ -475,16 +473,15 @@ class HomeView extends Component<Props, State> {
                     {isSpendable && (
                         <View style={[AppStyles.flex5]}>
                             <Button
+                                light
+                                roundedSmall
                                 numberOfLines={1}
                                 testID="add-asset-button"
                                 label={Localize.t('home.addAsset')}
                                 onPress={this.addCurrency}
-                                roundedSmall
                                 icon="IconPlus"
-                                iconStyle={[AppStyles.imgColorBlue]}
                                 iconSize={20}
                                 style={[AppStyles.rightSelf]}
-                                light
                             />
                         </View>
                     )}

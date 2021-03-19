@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     },
     touchHighlight: {
         borderRadius: 10,
+        paddingLeft: 5,
+        marginLeft: -5,
+        marginRight: -5,
     },
     row: {
         paddingTop: 10,

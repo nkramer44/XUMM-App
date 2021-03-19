@@ -10,8 +10,8 @@ global.process = require('process');
 
 global.theme = 'light';
 global.theme = 'dark';
-// global.theme = 'moonlight';
-// global.theme = 'royal';
+global.theme = 'moonlight';
+global.theme = 'royal';
 
 global.process.env.NODE_ENV = __DEV__ ? 'development' : 'production';
 

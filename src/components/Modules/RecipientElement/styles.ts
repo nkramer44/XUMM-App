@@ -3,15 +3,18 @@ import { StyleSheet } from 'react-native';
 import { AppFonts, AppColors } from '@theme';
 /* Styles ==================================================================== */
 export default StyleSheet.create({
+    touchRow: {
+        borderRadius: 13,
+    },
     itemRow: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 5,
-        marginBottom: 8,
-        backgroundColor: AppColors.light,
+        // marginBottom: 8,
+        backgroundColor: AppColors.tint,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: AppColors.light,
+        borderColor: AppColors.tint,
     },
     itemSelected: {
         borderColor: AppColors.blue,
@@ -20,7 +23,7 @@ export default StyleSheet.create({
     },
     title: {
         fontFamily: AppFonts.base.familyBold,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
         fontSize: AppFonts.base.size,
     },
     selectedText: {

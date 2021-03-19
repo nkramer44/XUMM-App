@@ -181,11 +181,11 @@ class AccountAddView extends Component<Props, State> {
                                 <Spacer />
 
                                 <Button
+                                    secondary
                                     numberOfLines={1}
                                     testID="account-import-button"
                                     label={Localize.t('account.importExisting')}
                                     onPress={this.goToImport}
-                                    style={[AppStyles.buttonSilver]}
                                 />
 
                                 <View style={[styles.separatorContainer]}>
@@ -193,12 +193,10 @@ class AccountAddView extends Component<Props, State> {
                                 </View>
 
                                 <Button
+                                    light
                                     testID="tangem-import-button"
                                     label={Localize.t('account.addTangemCard')}
                                     onPress={this.onAddTangemCardPress}
-                                    // style={AppStyles.buttonContrast}
-                                    // textStyle={AppStyles.colorBlack}
-                                    contrast
                                 />
                             </View>
                         </View>

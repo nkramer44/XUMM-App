@@ -22,6 +22,7 @@ interface Props {
     clear?: boolean;
     rounded?: boolean;
     roundedSmall?: boolean;
+    roundedSmallBlock?: boolean;
     roundedMini?: boolean;
     block?: boolean;
     accessibilityLabel?: string;
@@ -59,12 +60,13 @@ export default class Button extends Component<Props> {
             iconPosition,
             secondary,
             light,
-            contrast,
-            outline,
-            clear,
-            rounded,
+            // contrast,
+            // outline,
+            // clear,
+            // rounded,
             roundedSmall,
-            roundedMini,
+            roundedSmallBlock,
+            // roundedMini,
             allowFontScaling,
             adjustsFontSizeToFit,
             numberOfLines,
@@ -80,7 +82,7 @@ export default class Button extends Component<Props> {
                     <Icon
                         name={icon}
                         size={iconSize}
-                        style={[styles.iconLeft, secondary && styles.iconButtonSecondary, iconStyle]}
+                        style={[styles.iconLeft, light && styles.iconButtonLight, iconStyle]}
                     />
                 )}
                 {label && (
@@ -89,12 +91,13 @@ export default class Button extends Component<Props> {
                             styles.textButton,
                             secondary && styles.textButtonSecondary,
                             light && styles.textButtonLight,
-                            contrast && styles.textButtonContrast,
-                            outline && styles.textButtonOutline,
-                            clear && styles.textButtonClear,
-                            rounded && styles.textButtonRounded,
+                            // contrast && styles.textButtonContrast,
+                            // outline && styles.textButtonOutline,
+                            // clear && styles.textButtonClear,
+                            // rounded && styles.textButtonRounded,
                             roundedSmall && styles.textButtonRoundedSmall,
-                            roundedMini && styles.textButtonRoundedMini,
+                            roundedSmallBlock && styles.textButtonRoundedSmallBlock,
+                            // roundedMini && styles.textButtonRoundedMini,
                             isDisabled && styles.textButtonDisabled,
                             textStyle,
                         ]}
@@ -109,7 +112,7 @@ export default class Button extends Component<Props> {
                     <Icon
                         name={icon}
                         size={iconSize}
-                        style={[styles.iconRight, secondary && styles.iconButtonSecondary, iconStyle]}
+                        style={[styles.iconRight, iconStyle]}
                     />
                 )}
             </View>
@@ -157,13 +160,14 @@ export default class Button extends Component<Props> {
             style,
             secondary,
             light,
-            contrast,
-            outline,
-            clear,
-            rounded,
+            // contrast,
+            // outline,
+            // clear,
+            // rounded,
             roundedSmall,
-            roundedMini,
-            block,
+            roundedSmallBlock,
+            // roundedMini,
+            // block,
             disabledStyle,
             accessibilityLabel,
             activeOpacity,
@@ -173,7 +177,10 @@ export default class Button extends Component<Props> {
 
         if (isDisabled === true) {
             return (
-                <View testID={testID} style={[styles.button, disabledStyle || styles.buttonDisabled, style]}>
+                <View
+testID={testID}
+style={[styles.button, secondary && styles.buttonSecondary,
+                    light && styles.buttonLight, disabledStyle || styles.buttonDisabled, style]}>
                     {this.renderInnerContent()}
                 </View>
             );
@@ -195,13 +202,14 @@ export default class Button extends Component<Props> {
                     styles.button,
                     secondary && styles.buttonSecondary,
                     light && styles.buttonLight,
-                    contrast && styles.buttonContrast,
-                    outline && styles.buttonOutline,
-                    clear && styles.buttonClear,
-                    rounded && styles.buttonRounded,
+                    // contrast && styles.buttonContrast,
+                    // outline && styles.buttonOutline,
+                    // clear && styles.buttonClear,
+                    // rounded && styles.buttonRounded,
                     roundedSmall && styles.buttonRoundedSmall,
-                    roundedMini && styles.buttonRoundedMini,
-                    block && styles.buttonBlock,
+                    roundedSmallBlock && styles.buttonRoundedSmallBlock,
+                    // roundedMini && styles.buttonRoundedMini,
+                    // block && styles.buttonBlock,
                     isDisabled && (disabledStyle || styles.buttonDisabled),
                     style,
                 ]}

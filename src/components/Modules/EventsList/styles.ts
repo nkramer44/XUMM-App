@@ -17,6 +17,7 @@ export default StyleSheet.create({
         backgroundColor: AppColors.background,
         paddingBottom: 0,
         paddingTop: 10,
+        marginBottom: 5,
         shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 5 },
         shadowRadius: 5,

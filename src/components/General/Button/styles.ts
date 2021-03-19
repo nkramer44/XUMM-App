@@ -12,11 +12,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: 1,
         borderRadius: AppSizes.scale(75) / 4,
-        // borderRadius: 16,
         paddingHorizontal: 15,
         alignSelf: 'stretch',
         justifyContent: 'center',
-        // alignItems: 'center',
         borderColor: AppColors.transparent,
         backgroundColor: AppColors.blue,
     },
@@ -24,14 +22,11 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size * 1.1,
         textAlign: 'center',
-        // color: AppColors.white,
         paddingHorizontal: 5,
         color: AppColors.white,
-        // borderWidth: 1,
-        // borderColor: AppColors.red,
     },
-    // Active
 
+    // Active
     activeButton: {
         backgroundColor: AppColors.red,
     },
@@ -43,16 +38,49 @@ const styles = StyleSheet.create({
 
     // Secondary
     buttonSecondary: {
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.grey,
     },
     textButtonSecondary: {
-        fontFamily: AppFonts.base.familyBold,
-        color: AppColors.black,
-        fontSize: AppFonts.base.size * 1.1,
+        color: AppColors.white,
     },
-    iconButtonSecondary: {
-        tintColor: AppColors.black,
+
+    // Light
+    buttonLight: {
+        backgroundColor: AppColors.tint,
     },
+    textButtonLight: {
+        color: AppColors.textPrimary,
+    },
+    iconButtonLight: {
+        tintColor: AppColors.textPrimary,
+    },
+
+    // Rounded Small
+    buttonRoundedSmall: {
+        height: AppSizes.scale(33),
+        // paddingHorizontal: 18,
+        alignSelf: 'center',
+        borderRadius: AppSizes.scale(33) / 2,
+    },
+    textButtonRoundedSmall: {
+        fontSize: AppFonts.base.size * 0.9,
+    },
+    // Rounded Small Block
+    buttonRoundedSmallBlock: {
+        height: AppSizes.scale(33),
+        paddingHorizontal: 18,
+        alignSelf: 'stretch',
+        borderRadius: AppSizes.scale(33) / 2,
+    },
+    textButtonRoundedSmallBlock: {
+        fontSize: AppFonts.base.size * 0.9,
+    },
+
+    // Disabled
+    buttonDisabled: {
+        opacity: 0.4,
+    },
+    /*
 
     // Contrast
     buttonContrast: {
@@ -98,16 +126,6 @@ const styles = StyleSheet.create({
         fontSize: AppFonts.base.size * 1,
     },
 
-    // Disabled
-    buttonDisabled: {
-        borderColor: AppColors.transparent,
-        // backgroundColor: AppColors.grey,
-        opacity: 0.5,
-    },
-    textButtonDisabled: {
-        // color: AppColors.grey,
-    },
-
     // Rounded
     buttonRounded: {
         height: AppSizes.scale(42),
@@ -139,18 +157,20 @@ const styles = StyleSheet.create({
     textButtonRoundedMini: {
         fontSize: AppFonts.base.size * 0.7,
     },
-    iconLeft: {
-        marginRight: 3,
-        tintColor: AppColors.textPrimary,
+
+    */
+   iconLeft: {
+       marginRight: 3,
+       tintColor: AppColors.white,
     },
     iconRight: {
         marginLeft: 3,
-        tintColor: AppColors.textPrimary,
-    },
-    spinner: {
-        flex: 1,
-        alignSelf: 'center',
-    },
+        tintColor: AppColors.white,
+   },
+   spinner: {
+       flex: 1,
+       alignSelf: 'center',
+   },
 });
 
 export default styles;

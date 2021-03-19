@@ -85,7 +85,8 @@ class RecipientElement extends PureComponent<Props> {
                 testID={`recipient-${recipient.address}`}
                 activeOpacity={onPress ? 0.7 : 1}
                 onPress={this.onPress}
-                underlayColor="#FFF"
+                underlayColor={AppColors.tint}
+                style={styles.touchRow}
                 key={recipient.id}
             >
                 <View style={[styles.itemRow, selected && styles.itemSelected, containerStyle]}>
@@ -122,7 +123,7 @@ class RecipientElement extends PureComponent<Props> {
 
                         {!!recipient.tag && showTag && (
                             <View style={styles.destinationTagContainer}>
-                                <Text style={[AppStyles.monoSubText, AppStyles.colorgrey]}>
+                                <Text style={[AppStyles.monoSubText, AppStyles.colorGrey]}>
                                     {Localize.t('global.destinationTag')}:{' '}
                                     <Text style={AppStyles.colorBlue}>{recipient.tag}</Text>
                                 </Text>

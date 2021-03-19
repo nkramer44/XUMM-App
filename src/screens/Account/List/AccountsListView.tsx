@@ -179,7 +179,7 @@ class AccountListView extends Component<Props, State> {
                             <Text style={[styles.accountLabel]}>{item.label}</Text>
                             <View style={[styles.accessLevelContainer]}>
                                 <Icon size={13} name={accessLevelIcon} style={AppStyles.imgColorGrey} />
-                                <Text style={[styles.accessLevelLabel, AppStyles.colorBlack]}>{accessLevelLabel}</Text>
+                                <Text style={[styles.accessLevelLabel]}>{accessLevelLabel}</Text>
                             </View>
                         </View>
                     </View>
@@ -292,10 +292,8 @@ class AccountListView extends Component<Props, State> {
                                     <Button
                                         label={Localize.t('home.addAccount')}
                                         icon="IconPlus"
-                                        iconStyle={[AppStyles.imgColorBlue]}
                                         roundedSmall
                                         secondary
-                                        textStyle={[AppStyles.colorBlue]}
                                         onPress={() => {
                                             Navigator.push(AppScreens.Account.Add);
                                         }}

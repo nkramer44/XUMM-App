@@ -1453,7 +1453,7 @@ class TransactionDetailsView extends Component<Props, State> {
                         />
                     </>
                 )}
-                <Icon name="IconArrowDown" style={AppStyles.centerSelf} />
+                <Icon name="IconArrowDown" style={[AppStyles.centerSelf, styles.iconArrow]} />
                 <Text style={[styles.labelText]}>{Localize.t('global.to')}</Text>
                 <RecipientElement
                     recipient={to}

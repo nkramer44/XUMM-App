@@ -6,7 +6,7 @@ import { AppColors, AppSizes } from '@theme';
 const styles = StyleSheet.create({
     container: {
         // height: Sizes.screen.heightHalf + 100,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         shadowColor: AppColors.black,

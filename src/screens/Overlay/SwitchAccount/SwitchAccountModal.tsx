@@ -340,11 +340,10 @@ class SwitchAccountOverlay extends Component<Props, State> {
                             </View>
                             <View style={[AppStyles.row, AppStyles.flex1, AppStyles.flexEnd]}>
                                 <Button
+                                    light
+                                    roundedSmall
                                     label={Localize.t('home.addAccount')}
                                     icon="IconPlus"
-                                    iconStyle={[AppStyles.imgColorBlue]}
-                                    roundedSmall
-                                    light
                                     isDisabled={false}
                                     onPress={this.onAddPressed}
                                 />

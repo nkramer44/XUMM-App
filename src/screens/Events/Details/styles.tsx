@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     extraHeaderContainer: {
         padding: 25,
-        borderTopColor: AppColors.grey,
+        borderTopColor: AppColors.tint,
         borderTopWidth: 1,
     },
     actionButtonsContainer: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         paddingBottom: 25,
     },
     detailsContainer: {
-        borderTopColor: AppColors.grey,
+        borderTopColor: AppColors.tint,
         borderTopWidth: 1,
         width: AppSizes.screen.width,
         padding: 25,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     amountContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.tint,
         paddingVertical: 20,
         paddingHorizontal: 30,
         borderRadius: 50,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     amountContainerSmall: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.tint,
         paddingVertical: 10,
         paddingHorizontal: 30,
         borderRadius: 50,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         fontFamily: AppFonts.base.familyMonoBold,
         fontSize: AppFonts.h5.size,
         textAlign: 'center',
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     statusText: {
         fontFamily: AppFonts.base.familyBold,
@@ -97,19 +97,20 @@ const styles = StyleSheet.create({
     labelText: {
         fontFamily: AppFonts.base.familyBold,
         fontSize: AppFonts.base.size,
+        color: AppColors.textPrimary,
         marginBottom: 8,
     },
     contentText: {
         fontFamily: AppFonts.base.familyMono,
         lineHeight: 20,
         fontSize: AppFonts.base.size * 0.9,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     memoText: {
         fontFamily: AppFonts.base.family,
         lineHeight: 20,
         fontSize: AppFonts.base.size * 0.9,
-        color: AppColors.black,
+        color: AppColors.textPrimary,
     },
     dangerHeader: {
         alignSelf: 'stretch',
@@ -133,6 +134,10 @@ const styles = StyleSheet.create({
     naturalColor: {
         color: AppColors.grey,
         tintColor: AppColors.grey,
+    },
+    iconArrow: {
+        marginTop: 12,
+        marginBottom: -12,
     },
 });
 

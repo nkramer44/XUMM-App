@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
         marginVertical: 15,
     },
     selectedButton: {
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.tint,
         borderRadius: 12,
-        shadowColor: AppColors.blue,
+        shadowColor: AppColors.background,
         shadowOffset: { width: 0, height: 4 },
         shadowRadius: 4,
         shadowOpacity: 0.1,

@@ -84,7 +84,7 @@ if (global.theme === 'light') {
         background: colorsGeneral.white,
         tint: colorsGeneral.light,
         contrast: colorsGeneral.black,
-        textContrast: colorsGeneral.white,
+        textContrast: colorsGeneral.black,
         textPrimary: colorsGeneral.black,
         textSecondary: colorsGeneral.grey,
     };
@@ -93,8 +93,7 @@ if (global.theme === 'dark') {
     colorsTheme = {
         // THEME Dark
         background: colorsGeneral.black,
-        // tint: hexToRgbA(colorsGeneral.grey, 0.25),
-        tint: ColorLuminance(colorsGeneral.grey, -0.85),
+        tint: ColorLuminance(colorsGeneral.grey, -0.75),
         contrast: colorsGeneral.white,
         textContrast: colorsGeneral.black,
         textPrimary: colorsGeneral.white,
@@ -111,7 +110,6 @@ if (global.theme === 'moonlight') {
     colorsTheme = {
         // THEME Moonlight
         background: colorsGeneral.themeMoonlight,
-        // tint: hexToRgbA(colorsGeneral.grey, 0.19),
         tint: ColorLuminance(colorsGeneral.grey, -0.65),
         contrast: colorsGeneral.white,
         textContrast: colorsGeneral.black,
@@ -129,8 +127,7 @@ if (global.theme === 'royal') {
     colorsTheme = {
         // THEME Dark
         background: colorsGeneral.themeRoyal,
-        // tint: hexToRgbA(colorsGeneral.grey, 0.22),
-        tint: ColorLuminance(colorsGeneral.blue, -0.72),
+        tint: ColorLuminance(colorsGeneral.blue, -0.70),
         contrast: colorsGeneral.white,
         textContrast: colorsGeneral.black,
         textPrimary: colorsGeneral.white,
