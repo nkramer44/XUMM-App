@@ -5,13 +5,13 @@ import { AppColors, AppStyles, AppFonts } from '@theme';
 export default StyleSheet.create({
     pickerContainer: {
         borderRadius: 15,
-        backgroundColor: AppColors.light,
+        backgroundColor: AppColors.darkGrey,
         height: 80,
         paddingHorizontal: 17,
         justifyContent: 'center',
     },
     collapseButton: {
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.lightBlue,
         borderRadius: 8,
         height: 25,
         width: 40,
@@ -21,12 +21,13 @@ export default StyleSheet.create({
     },
     collapseIcon: {
         alignSelf: 'center',
-        tintColor: AppColors.white,
+        tintColor: AppColors.textPrimary,
     },
     accountItemTitle: {
         fontSize: AppStyles.baseText.fontSize,
         fontWeight: 'bold',
         marginBottom: 3,
+        color: AppColors.textPrimary
     },
     accountItemSub: {
         fontFamily: AppFonts.base.familyMono,

@@ -30,7 +30,7 @@ import { Button, Spacer, RaisedButton, AmountText } from '@components/General';
 import Localize from '@locale';
 
 // style
-import { AppStyles } from '@theme';
+import { AppStyles, AppColors } from '@theme';
 import styles from './styles';
 
 /* types ==================================================================== */
@@ -359,11 +359,12 @@ class CurrencySettingsModal extends Component<Props, State> {
 
         const interpolateColor = this.animatedColor.interpolate({
             inputRange: [0, 150],
-            outputRange: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)'],
+            // outputRange: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)'],
+            outputRange: ['rgba(0,0,0,0)', AppColors.backdrop],
         });
 
         return (
-            <Animated.View style={[styles.container, { backgroundColor: interpolateColor }]}>
+            <Animated.View style={[styles.container, { backgroundColor: interpolateColor}]}>
                 <Animated.View style={[styles.visibleContent, { opacity: this.animatedOpacity }]}>
                     <View style={styles.headerContainer}>
                         <View style={[AppStyles.flex1, AppStyles.paddingLeftSml]}>

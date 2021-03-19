@@ -74,9 +74,13 @@ const colorMutations = {
     lightGreen: hexToRgbA(colorsGeneral.green, 0.06),
     lightRed: hexToRgbA(colorsGeneral.red, 0.06),
     lightGrey: hexToRgbA(colorsGeneral.grey, 0.06),
+    backdrop: hexToRgbA(colorsGeneral.grey, 0.40),
     transparentBlack: hexToRgbA(colorsGeneral.black, 0.7),
+    transparentMoonlight: hexToRgbA(colorsGeneral.themeMoonlight, 0.7),
     transparentBlue: hexToRgbA(colorsGeneral.blue, 0.7),
-    darkGrey: ColorLuminance(colorsGeneral.grey, -0.75),
+    transparentGrey: hexToRgbA(colorsGeneral.grey, 0.6),
+    darkGrey: ColorLuminance(colorsGeneral.grey, 0.15),
+    // darkGrey: ColorLuminance(colorsGeneral.grey, -0.75),
 };
 
 if (global.theme === 'light') {
@@ -132,6 +136,23 @@ if (global.theme === 'royal') {
         textContrast: colorsGeneral.black,
         textPrimary: colorsGeneral.white,
         textSecondary: colorsGeneral.silver,
+
+        lightBlue: hexToRgbA(colorsGeneral.blue, 0.17),
+        lightOrange: hexToRgbA(colorsGeneral.orange, 0.17),
+        lightGreen: hexToRgbA(colorsGeneral.green, 0.17),
+        lightRed: hexToRgbA(colorsGeneral.red, 0.17),
+        lightGrey: hexToRgbA(colorsGeneral.grey, 0.17),
+    };
+}
+if (global.theme === 'wtf') {
+    colorsTheme = {
+        // THEME Dark
+        background: '#cccccc',
+        tint: '#aaaaaa',
+        contrast: '#FFF000',
+        textContrast: '#6E33FF',
+        textPrimary: '#000000',
+        textSecondary: '#CCCCCC',
 
         lightBlue: hexToRgbA(colorsGeneral.blue, 0.17),
         lightOrange: hexToRgbA(colorsGeneral.orange, 0.17),

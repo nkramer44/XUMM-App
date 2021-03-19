@@ -281,7 +281,7 @@ class DetailsStep extends Component<Props, State> {
                             <Text
                                 style={[
                                     styles.currencyBalance,
-                                    selected ? AppStyles.colorBlue : AppStyles.colorgrey,
+                                    selected ? AppStyles.colorBlue : AppStyles.colorGrey,
                                 ]}
                             >
                                 {Localize.t('global.available')}: {Localize.formatNumber(source.availableBalance)}
@@ -307,7 +307,7 @@ class DetailsStep extends Component<Props, State> {
 
                         <AmountText
                             prefix={`${Localize.t('global.balance')}: `}
-                            style={[styles.currencyBalance, selected ? AppStyles.colorBlue : AppStyles.colorgrey]}
+                            style={[styles.currencyBalance, selected ? AppStyles.colorBlue : AppStyles.colorGrey]}
                             value={item.balance}
                         />
                     </View>
@@ -332,7 +332,7 @@ class DetailsStep extends Component<Props, State> {
                         {/* Source Account */}
                         <View
                             onLayout={this.setGradientHeight}
-                            style={[styles.rowItem, { backgroundColor: AppColors.light }]}
+                            style={[styles.rowItem, { backgroundColor: AppColors.tint }]}
                         >
                             <Animated.Image
                                 source={Images.SideGradient}
@@ -346,7 +346,7 @@ class DetailsStep extends Component<Props, State> {
                                 resizeMode="stretch"
                             />
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGrey]}>
                                     {Localize.t('global.from')}
                                 </Text>
                             </View>
@@ -355,7 +355,7 @@ class DetailsStep extends Component<Props, State> {
                         {/* Currency */}
                         <View style={[styles.rowItem]}>
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGrey]}>
                                     {Localize.t('global.asset')}
                                 </Text>
                             </View>
@@ -379,7 +379,7 @@ class DetailsStep extends Component<Props, State> {
                         {/* Amount */}
                         <View style={[styles.rowItem]}>
                             <View style={[styles.rowTitle]}>
-                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorgrey]}>
+                                <Text style={[AppStyles.subtext, AppStyles.bold, AppStyles.colorGrey]}>
                                     {Localize.t('global.amount')}
                                 </Text>
                             </View>

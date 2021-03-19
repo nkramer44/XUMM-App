@@ -12,6 +12,7 @@ global.theme = 'light';
 global.theme = 'dark';
 global.theme = 'moonlight';
 global.theme = 'royal';
+global.theme = 'wtf';
 
 global.process.env.NODE_ENV = __DEV__ ? 'development' : 'production';
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: AppSizes.paddingSml,
         paddingTop: AppSizes.paddingSml,
         paddingBottom: 10,
-        borderTopColor: AppColors.grey,
+        borderTopColor: AppColors.tint,
         borderTopWidth: 1,
     },
     amountContainer: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: Platform.OS === 'ios' ? 20 : 10,
         paddingLeft: 20,
-        marginLeft: 15,
+        // marginLeft: 15,
         backgroundColor: AppColors.lightGrey,
         borderRadius: 15,
     },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     rateText: {
         fontFamily: AppFonts.base.familyMono,
         fontSize: AppFonts.base.size,
-        color: AppColors.greyBlack,
+        color: AppColors.grey,
     },
 });
 

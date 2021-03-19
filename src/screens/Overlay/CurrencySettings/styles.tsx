@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     visibleContent: {
         width: AppSizes.screen.width * 0.9,
-        backgroundColor: AppColors.tint,
+        backgroundColor: AppColors.background,
         borderRadius: 20,
     },
     headerContainer: {
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.tint,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         left: 0,
