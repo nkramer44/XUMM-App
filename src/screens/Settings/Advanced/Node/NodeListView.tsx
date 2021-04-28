@@ -87,6 +87,12 @@ class NodeListView extends Component<Props, State> {
                     return { chain: NodeChain.Test, url: n };
                 }),
             },
+            {
+                title: Localize.t('global.cbdc_devnet'),
+                data: flatMap(AppConfig.nodes.cbdc_devnet, (n) => {
+                    return { chain: NodeChain.Dev, url: n };
+                }),
+            },
         ];
 
         return nodesCategoryMap;

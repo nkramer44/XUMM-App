@@ -1,4 +1,7 @@
 {
+  "0": {
+    "0": "500: Internal Server Error"
+  },
   "global": {
     "language": "Language",
     "ok": "Ok",
@@ -84,6 +87,7 @@
     "deviceUUID": "Device ID",
     "mainnet": "Main net",
     "testnet": "Test net",
+    "cbdc_devnet": "CBDC Devnet",
     "custom": "Custom",
     "warning": "Warning",
     "pleaseNote": "Please note",
@@ -150,8 +154,8 @@
     "inExchangeForReceive": "In exchange for (receive)",
     "fee": "Transaction fee",
     "invoiceID": "Invoice ID",
-    "sendMax": "Send Max",
-    "deliverMin": "Deliver Min",
+    "sendMax": "Send All",
+    "deliverMin": "Deliver Minimum",
     "checkID": "Check ID",
     "checkAmount": "Check amount",
     "regularKey": "Regular Key",

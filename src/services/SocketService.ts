@@ -359,10 +359,11 @@ class SocketService extends EventEmitter {
 
         if (this.chain === NodeChain.Main) {
             nodes = AppConfig.nodes.main;
-        } else {
+        } else if (this.chain === NodeChain.Test) {
             nodes = AppConfig.nodes.test;
+        } else {
+            nodes = AppConfig.nodes.cbdc_devnet;
         }
-
         // move preferred node to the first
         nodes.sort((x, y) => {
             return x === this.node ? -1 : y === this.node ? 1 : 0;

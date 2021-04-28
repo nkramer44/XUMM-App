@@ -460,7 +460,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = LK5BBJNJZ6;
+						DevelopmentTeam = 98UKSYV37N;
 						LastSwiftMigration = 1220;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -636,12 +636,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XUMM-XUMMTests/Pods-XUMM-XUMMTests-frameworks.sh",
 				"${PODS_ROOT}/VeriffSDK/Veriff.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Veriff.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -676,12 +674,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XUMM/Pods-XUMM-frameworks.sh",
 				"${PODS_ROOT}/VeriffSDK/Veriff.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Veriff.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -880,7 +876,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XUMM/XUMM.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LK5BBJNJZ6;
+				DEVELOPMENT_TEAM = 98UKSYV37N;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -896,7 +892,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xrpllabs.xumm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nk.ripple.cbdc.xumm;
 				PRODUCT_NAME = XUMM;
 				SWIFT_OBJC_BRIDGING_HEADER = "XUMM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -913,7 +909,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XUMM/XUMM.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LK5BBJNJZ6;
+				DEVELOPMENT_TEAM = 98UKSYV37N;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				INFOPLIST_FILE = XUMM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -924,7 +920,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xrpllabs.xumm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nk.ripple.cbdc.xumm;
 				PRODUCT_NAME = XUMM;
 				SWIFT_OBJC_BRIDGING_HEADER = "XUMM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -25,6 +25,7 @@ export default {
         default: 'wss://xrplcluster.com',
         main: ['wss://xrplcluster.com', 'wss://xrpl.link', 'wss://s2.ripple.com'],
         test: ['wss://testnet.xrpl-labs.com', 'wss://s.altnet.rippletest.net:51233'],
+        cbdc_devnet: ['wss://dev.rippledprimary.cbdc.xpring.dev'],
     },
 
     // xrpl explorers

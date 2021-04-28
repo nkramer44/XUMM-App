@@ -15,21 +15,21 @@
 
 
 #ifdef FB_SONARKIT_ENABLED
-#import <FlipperKit/FlipperClient.h>
-#import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
-#import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
-#import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
-#import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
-#import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+// #import <FlipperKit/FlipperClient.h>
+// #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
+// #import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
+// #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
+// #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
+// #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
 static void InitializeFlipper(UIApplication *application) {
-  FlipperClient *client = [FlipperClient sharedClient];
-  SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
-  [client addPlugin:[[FlipperKitLayoutPlugin alloc] initWithRootNode:application withDescriptorMapper:layoutDescriptorMapper]];
-  [client addPlugin:[[FKUserDefaultsPlugin alloc] initWithSuiteName:nil]];
-  [client addPlugin:[FlipperKitReactPlugin new]];
-  [client addPlugin:[[FlipperKitNetworkPlugin alloc] initWithNetworkAdapter:[SKIOSNetworkAdapter new]]];
-  [client start];
+//   FlipperClient *client = [FlipperClient sharedClient];
+//   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
+//   [client addPlugin:[[FlipperKitLayoutPlugin alloc] initWithRootNode:application withDescriptorMapper:layoutDescriptorMapper]];
+//   [client addPlugin:[[FKUserDefaultsPlugin alloc] initWithSuiteName:nil]];
+//   [client addPlugin:[FlipperKitReactPlugin new]];
+//   [client addPlugin:[[FlipperKitNetworkPlugin alloc] initWithNetworkAdapter:[SKIOSNetworkAdapter new]]];
+//   [client start];
 }
 #endif
 
@@ -58,16 +58,16 @@ static void InitializeFlipper(UIApplication *application) {
 
   // bootstrap rnn
   [ReactNativeNavigation bootstrapWithDelegate:self launchOptions:launchOptions];
-  
+
   // bootstrap local notification
   [LocalNotificationModule initialise];
-  
+
   // init firebase app
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
-  
-  
+
+
   return YES;
 }
 
@@ -86,12 +86,12 @@ static void InitializeFlipper(UIApplication *application) {
 
 // hide snapshot in task switcher
 - (void)applicationWillResignActive:(UIApplication *)application {
-  
+
     // prevent from showing blur view if user is purchasing
     if([InAppPurchaseModule isUserPurchasing]){
       return;
     }
-    
+
     self.window.backgroundColor = [UIColor clearColor];
 
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -108,17 +108,17 @@ static void InitializeFlipper(UIApplication *application) {
     [UIView animateWithDuration:0.5 animations:^{
         blurEffectView.alpha = 1;
     }];
-  
+
     blureViewActive = YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  
+
     // ignore if blureview is not present
     if(!blureViewActive){
       return;
     }
-  
+
     // grab a reference to our custom blur view
     UIView *blurEffectView = [self.window viewWithTag:1234];
 
@@ -129,7 +129,7 @@ static void InitializeFlipper(UIApplication *application) {
         // remove when finished fading
         [blurEffectView removeFromSuperview];
     }];
-  
+
   blureViewActive = NO;
 }
 
